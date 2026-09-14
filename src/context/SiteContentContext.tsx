@@ -165,14 +165,38 @@ export const SiteContentProvider: React.FC<{ children: React.ReactNode }> = ({ c
     setIsDarkMode((prev) => !prev);
   };
 
-  // Save changes to localStorage
+  // Load the shared content saved in the cloud
   useEffect(() => {
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(content));
-    } catch (e) {
-      console.error('Failed to save site content to localStorage:', e);
-    }
-  }, [content]);
+    let cancelled = false;
+    getSiteContent()
+      .then((remote) => {
+        if (cancelled) return;
+        if (remote) setContent(mergeContent(remote));
+      })
+      .catch((e) => console.error('Failed to load site content:', e))
+      .finally(() => {
+        if (!cancelled) setIsLoaded(true);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  // Persist admin edits centrally (debounced)
+  useEffect(() => {
+    if (!isLoaded || !adminPasskey) return;
+    if (saveTimer.current) clearTimeout(saveTimer.current);
+    setIsSaving(true);
+    saveTimer.current = setTimeout(() => {
+      saveSiteContent({ data: { passkey: adminPasskey, content } })
+        .catch((e) => console.error('Failed to save site content:', e))
+        .finally(() => setIsSaving(false));
+    }, 800);
+    return () => {
+      if (saveTimer.current) clearTimeout(saveTimer.current);
+    };
+  }, [content, adminPasskey, isLoaded]);
+
 
   // Apply dynamic theme custom properties and font families
   useEffect(() => {
