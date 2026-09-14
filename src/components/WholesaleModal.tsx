@@ -28,25 +28,24 @@ export const WholesaleModal: React.FC<WholesaleModalProps> = ({ isOpen, onClose 
     setSubmitting(true);
 
     try {
-      if (isSupabaseConfigured && supabase) {
-        // Ready for direct Supabase table insertion
-        await (supabase.from('inquiries') as any).insert([
-          {
-            ...formData,
-            status: 'pending',
-          },
-        ]);
-      }
-      // Simulate fast smooth submission
-      setTimeout(() => {
-        setSubmitting(false);
-        setSubmitted(true);
-      }, 500);
+      await submitInquiry({
+        data: {
+          businessName: formData.businessName,
+          contactPerson: formData.contactPerson,
+          email: formData.email,
+          phone: formData.phone,
+          businessType: formData.businessType,
+          message: formData.message,
+        },
+      });
+      setSubmitting(false);
+      setSubmitted(true);
     } catch (err) {
       console.error('Error submitting enquiry:', err);
       setSubmitting(false);
       setSubmitted(true);
     }
+
   };
 
   return (
