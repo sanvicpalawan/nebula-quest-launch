@@ -240,26 +240,27 @@ export const SiteContentProvider: React.FC<{ children: React.ReactNode }> = ({ c
 
   const resetToDefault = () => {
     setContent(DEFAULT_SITE_CONTENT);
-    try {
-      localStorage.removeItem(STORAGE_KEY);
-    } catch {}
   };
 
-  const loginAdmin = (passkey: string): boolean => {
-    if (passkey === ADMIN_PASSKEY) {
-      setIsAdminLoggedIn(true);
-      try {
-        sessionStorage.setItem(AUTH_KEY, 'true');
-      } catch {}
-      setIsLoginModalOpen(false);
-      setIsAdminPanelOpen(true);
-      return true;
+  const loginAdmin = async (passkey: string): Promise<boolean> => {
+    try {
+      const { ok } = await verifyPasskey({ data: { passkey } });
+      if (!ok) return false;
+    } catch (e) {
+      console.error('Passkey check failed:', e);
+      return false;
     }
-    return false;
+    setAdminPasskey(passkey);
+    try {
+      sessionStorage.setItem(AUTH_KEY, passkey);
+    } catch {}
+    setIsLoginModalOpen(false);
+    setIsAdminPanelOpen(true);
+    return true;
   };
 
   const logoutAdmin = () => {
-    setIsAdminLoggedIn(false);
+    setAdminPasskey(null);
     try {
       sessionStorage.removeItem(AUTH_KEY);
     } catch {}
@@ -278,6 +279,7 @@ export const SiteContentProvider: React.FC<{ children: React.ReactNode }> = ({ c
         updateContent,
         resetToDefault,
         isAdminLoggedIn,
+        adminPasskey,
         loginAdmin,
         logoutAdmin,
         isLoginModalOpen,
@@ -288,7 +290,10 @@ export const SiteContentProvider: React.FC<{ children: React.ReactNode }> = ({ c
         closeAdminPanel,
         isDarkMode,
         toggleDarkMode,
+        isSaving,
       }}
+    >
+
     >
       {children}
     </SiteContentContext.Provider>
