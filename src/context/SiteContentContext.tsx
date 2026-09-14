@@ -108,20 +108,28 @@ function mergeContent(parsed: any): SiteContentState {
           ),
           customSections: parsed.customSections || [],
         };
-      }
-    } catch (e) {
-      console.error('Failed to parse saved site content:', e);
     }
-    return DEFAULT_SITE_CONTENT;
-  });
+  } catch (e) {
+    console.error('Failed to parse saved site content:', e);
+  }
+  return DEFAULT_SITE_CONTENT;
+}
 
-  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState<boolean>(() => {
+export const SiteContentProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [content, setContent] = useState<SiteContentState>(DEFAULT_SITE_CONTENT);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
+  const saveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const [adminPasskey, setAdminPasskey] = useState<string | null>(() => {
     try {
-      return sessionStorage.getItem(AUTH_KEY) === 'true';
+      return sessionStorage.getItem(AUTH_KEY);
     } catch {
-      return false;
+      return null;
     }
   });
+  const isAdminLoggedIn = adminPasskey !== null;
+
 
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isAdminPanelOpen, setIsAdminPanelOpen] = useState(false);
