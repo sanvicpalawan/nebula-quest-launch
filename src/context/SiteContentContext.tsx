@@ -1,18 +1,18 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useRef } from 'react';
 import type { SiteContentState } from '../types/siteContent';
 import { DEFAULT_SITE_CONTENT } from '../data/defaultSiteContent';
+import { getSiteContent, saveSiteContent, verifyPasskey } from '../lib/site.functions';
 
-const STORAGE_KEY = 'jaycee_site_content_v1';
 const AUTH_KEY = 'jaycee_admin_auth_v1';
 const THEME_MODE_KEY = 'jaycee_theme_mode_v1';
-export const ADMIN_PASSKEY = '5309';
 
 interface SiteContentContextType {
   content: SiteContentState;
   updateContent: (updater: (prev: SiteContentState) => SiteContentState) => void;
   resetToDefault: () => void;
   isAdminLoggedIn: boolean;
-  loginAdmin: (passkey: string) => boolean;
+  adminPasskey: string | null;
+  loginAdmin: (passkey: string) => Promise<boolean>;
   logoutAdmin: () => void;
   isLoginModalOpen: boolean;
   openLoginModal: () => void;
@@ -22,18 +22,17 @@ interface SiteContentContextType {
   closeAdminPanel: () => void;
   isDarkMode: boolean;
   toggleDarkMode: () => void;
+  isSaving: boolean;
 }
 
 const SiteContentContext = createContext<SiteContentContextType | undefined>(undefined);
 
-export const SiteContentProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [content, setContent] = useState<SiteContentState>(() => {
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved) {
-        const parsed = JSON.parse(saved);
+function mergeContent(parsed: any): SiteContentState {
+  try {
+    if (parsed && typeof parsed === 'object') {
         // Deep merge with default to ensure no missing keys if schema expanded
         return {
+
           ...DEFAULT_SITE_CONTENT,
           ...parsed,
           theme: { ...DEFAULT_SITE_CONTENT.theme, ...(parsed.theme || {}) },
