@@ -124,7 +124,7 @@ export const ImageUploadField: React.FC<ImageUploadFieldProps> = ({
           title="Upload from device"
         >
           <Upload className="w-3.5 h-3.5 text-stone-600" />
-          <span>Upload Image</span>
+          <span>{uploading ? 'Uploading…' : 'Upload Image'}</span>
         </button>
       </div>
 
