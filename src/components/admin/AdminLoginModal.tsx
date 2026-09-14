@@ -76,7 +76,7 @@ export const AdminLoginModal: React.FC = () => {
           {error && (
             <div className="flex items-center space-x-2 text-xs text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-950/50 p-2.5 rounded-md border border-red-200 dark:border-red-900/50 animate-in fade-in">
               <AlertCircle className="w-4 h-4 shrink-0" />
-              <span>Incorrect passkey. Please enter 5309 to unlock the backoffice.</span>
+              <span>Incorrect passkey. Please try again.</span>
             </div>
           )}
 
@@ -92,7 +92,7 @@ export const AdminLoginModal: React.FC = () => {
               type="submit"
               className="w-1/2 py-2.5 px-4 bg-[#8B1D24] hover:bg-[#74151B] text-white text-xs font-medium rounded-lg shadow transition-all cursor-pointer"
             >
-              Unlock Dashboard
+              {checking ? 'Checking…' : 'Unlock Dashboard'}
             </button>
           </div>
         </form>
