@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { X, CheckCircle2, Send, Phone } from 'lucide-react';
 import { PHONE_NUMBER, PHONE_TEL } from '../data/jayceeData';
-import { supabase, isSupabaseConfigured } from '../lib/supabase';
+import { submitInquiry } from '../lib/site.functions';
 import type { WholesaleInquiry } from '../types/database';
 
 interface WholesaleModalProps {
