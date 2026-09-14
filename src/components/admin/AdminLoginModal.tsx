@@ -1,23 +1,28 @@
 import React, { useState } from 'react';
 import { Lock, KeyRound, AlertCircle, X } from 'lucide-react';
-import { useSiteContent, ADMIN_PASSKEY } from '../../context/SiteContentContext';
+import { useSiteContent } from '../../context/SiteContentContext';
 
 export const AdminLoginModal: React.FC = () => {
   const { isLoginModalOpen, closeLoginModal, loginAdmin } = useSiteContent();
   const [passkey, setPasskey] = useState('');
   const [error, setError] = useState(false);
+  const [checking, setChecking] = useState(false);
 
   if (!isLoginModalOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (loginAdmin(passkey)) {
+    setChecking(true);
+    const ok = await loginAdmin(passkey);
+    setChecking(false);
+    if (ok) {
       setPasskey('');
       setError(false);
     } else {
       setError(true);
     }
   };
+
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-xs p-4 animate-in fade-in duration-200">
