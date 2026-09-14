@@ -1,5 +1,7 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Upload, X, Image as ImageIcon } from 'lucide-react';
+import { useSiteContent } from '../../context/SiteContentContext';
+import { uploadSiteImage } from '../../lib/site.functions';
 
 interface ImageUploadFieldProps {
   label: string;
@@ -17,6 +19,8 @@ export const ImageUploadField: React.FC<ImageUploadFieldProps> = ({
   id,
 }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const { adminPasskey } = useSiteContent();
+  const [uploading, setUploading] = useState(false);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -29,14 +33,29 @@ export const ImageUploadField: React.FC<ImageUploadFieldProps> = ({
     }
 
     const reader = new FileReader();
-    reader.onload = (uploadEvent) => {
+    reader.onload = async (uploadEvent) => {
       const result = uploadEvent.target?.result;
-      if (typeof result === 'string') {
+      if (typeof result !== 'string') return;
+      if (!adminPasskey) {
         onChange(result);
+        return;
+      }
+      setUploading(true);
+      try {
+        const { url } = await uploadSiteImage({
+          data: { passkey: adminPasskey, fileName: file.name, dataUrl: result },
+        });
+        onChange(url);
+      } catch (err) {
+        console.error('Image upload failed:', err);
+        alert('Sorry, that image could not be uploaded. Please try again.');
+      } finally {
+        setUploading(false);
       }
     };
     reader.readAsDataURL(file);
   };
+
 
   const handleTriggerUpload = () => {
     fileInputRef.current?.click();
