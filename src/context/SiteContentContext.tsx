@@ -293,8 +293,6 @@ export const SiteContentProvider: React.FC<{ children: React.ReactNode }> = ({ c
         isSaving,
       }}
     >
-
-    >
       {children}
     </SiteContentContext.Provider>
   );
