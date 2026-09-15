@@ -12,7 +12,7 @@ interface SiteContentContextType {
   resetToDefault: () => void;
   isAdminLoggedIn: boolean;
   adminPasskey: string | null;
-  loginAdmin: (passkey: string) => Promise<boolean>;
+  loginAdmin: (passkey: string) => Promise<LoginResult>;
   logoutAdmin: () => void;
   isLoginModalOpen: boolean;
   openLoginModal: () => void;
@@ -24,6 +24,9 @@ interface SiteContentContextType {
   toggleDarkMode: () => void;
   isSaving: boolean;
 }
+
+/** Result of a backoffice login attempt. `error` = the check itself failed (server/network). */
+export type LoginResult = "ok" | "incorrect" | "error";
 
 const SiteContentContext = createContext<SiteContentContextType | undefined>(undefined);
 
@@ -246,21 +249,22 @@ export const SiteContentProvider: React.FC<{ children: React.ReactNode }> = ({ c
     setContent(DEFAULT_SITE_CONTENT);
   };
 
-  const loginAdmin = async (passkey: string): Promise<boolean> => {
+  const loginAdmin = async (passkey: string): Promise<LoginResult> => {
+    const trimmed = (passkey ?? '').trim();
     try {
-      const { ok } = await verifyPasskey({ data: { passkey } });
-      if (!ok) return false;
+      const { ok } = await verifyPasskey({ data: { passkey: trimmed } });
+      if (!ok) return 'incorrect';
     } catch (e) {
       console.error('Passkey check failed:', e);
-      return false;
+      return 'error';
     }
-    setAdminPasskey(passkey);
+    setAdminPasskey(trimmed);
     try {
-      sessionStorage.setItem(AUTH_KEY, passkey);
+      sessionStorage.setItem(AUTH_KEY, trimmed);
     } catch {}
     setIsLoginModalOpen(false);
     setIsAdminPanelOpen(true);
-    return true;
+    return 'ok';
   };
 
   const logoutAdmin = () => {

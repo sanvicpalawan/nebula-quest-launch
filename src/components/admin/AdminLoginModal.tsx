@@ -5,7 +5,7 @@ import { useSiteContent } from '../../context/SiteContentContext';
 export const AdminLoginModal: React.FC = () => {
   const { isLoginModalOpen, closeLoginModal, loginAdmin } = useSiteContent();
   const [passkey, setPasskey] = useState('');
-  const [error, setError] = useState(false);
+  const [error, setError] = useState<'incorrect' | 'error' | null>(null);
   const [checking, setChecking] = useState(false);
 
   if (!isLoginModalOpen) return null;
@@ -13,13 +13,13 @@ export const AdminLoginModal: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setChecking(true);
-    const ok = await loginAdmin(passkey);
+    const result = await loginAdmin(passkey);
     setChecking(false);
-    if (ok) {
+    if (result === 'ok') {
       setPasskey('');
-      setError(false);
+      setError(null);
     } else {
-      setError(true);
+      setError(result === 'error' ? 'error' : 'incorrect');
     }
   };
 
@@ -66,7 +66,7 @@ export const AdminLoginModal: React.FC = () => {
                 value={passkey}
                 onChange={(e) => {
                   setPasskey(e.target.value);
-                  setError(false);
+                  setError(null);
                 }}
                 className="w-full pl-9 pr-3 py-2.5 border border-stone-300 dark:border-stone-700 bg-white dark:bg-[#242120] text-stone-900 dark:text-white rounded-lg text-lg tracking-widest font-mono text-center focus:ring-2 focus:ring-[#8B1D24] focus:border-transparent outline-none"
               />
@@ -76,7 +76,11 @@ export const AdminLoginModal: React.FC = () => {
           {error && (
             <div className="flex items-center space-x-2 text-xs text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-950/50 p-2.5 rounded-md border border-red-200 dark:border-red-900/50 animate-in fade-in">
               <AlertCircle className="w-4 h-4 shrink-0" />
-              <span>Incorrect passkey. Please try again.</span>
+              <span>
+                {error === 'error'
+                  ? 'Could not reach the server to check the passkey. Please try again in a moment.'
+                  : 'Incorrect passkey. Please try again.'}
+              </span>
             </div>
           )}
 

@@ -4,9 +4,27 @@ import { z } from "zod";
 
 const SITE_CONTENT_ID = "singleton";
 
+/**
+ * Backoffice passkey.
+ *
+ * Preferred: set `ADMIN_PASSKEY` as a server env var (or a Lovable Cloud secret) —
+ * see `.env`, which is the value read here.
+ * Fallback: when no secret is configured at all, the built-in passkey below is
+ * used so the backoffice stays reachable instead of rejecting every login.
+ * NOTE: this fallback lives in the repo, so treat it as a convenience default —
+ * set ADMIN_PASSKEY in the environment if the repository is public.
+ */
+const FALLBACK_ADMIN_PASSKEY = "5309";
+
+/** Returns the configured passkey, trimmed; falls back to the built-in default. */
+function expectedPasskey(): string {
+  const fromEnv = (process.env["ADMIN_PASSKEY"] ?? "").trim();
+  return fromEnv.length > 0 ? fromEnv : FALLBACK_ADMIN_PASSKEY;
+}
+
 function checkPasskey(passkey: string) {
-  const expected = process.env["ADMIN_PASSKEY"];
-  if (!expected || passkey !== expected) {
+  const expected = expectedPasskey();
+  if (!expected || (passkey ?? "").trim() !== expected) {
     throw new Error("Incorrect passkey");
   }
 }
@@ -46,8 +64,8 @@ export const getSiteContent = createServerFn({ method: "GET" }).handler(async ()
 export const verifyPasskey = createServerFn({ method: "POST" })
   .inputValidator((data) => z.object({ passkey: z.string() }).parse(data))
   .handler(async ({ data }) => {
-    const expected = process.env["ADMIN_PASSKEY"];
-    return { ok: Boolean(expected) && data.passkey === expected };
+    const expected = expectedPasskey();
+    return { ok: Boolean(expected) && (data.passkey ?? "").trim() === expected };
   });
 
 export const saveSiteContent = createServerFn({ method: "POST" })
