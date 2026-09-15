@@ -79,18 +79,18 @@ export const AdminDashboard: React.FC = () => {
     <div className="admin-dashboard fixed inset-0 z-50 flex overflow-hidden bg-black/60 backdrop-blur-xs animate-in fade-in">
       <div className="w-full h-full flex flex-col bg-white overflow-hidden shadow-2xl">
         {/* Top App Bar */}
-        <header className="bg-[#1C1917] text-white px-6 py-4 flex items-center justify-between border-b border-stone-800 shrink-0">
-          <div className="flex items-center space-x-3">
-            <span className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse" />
-            <h1 className="text-lg font-serif tracking-tight font-medium text-white flex items-center gap-2">
-              <span>JayCee Backoffice</span>
-              <span className="text-[10px] uppercase font-sans tracking-widest bg-stone-800 px-2 py-0.5 rounded text-amber-400 font-semibold border border-stone-700">
+        <header className="bg-[#1C1917] text-white px-3 py-3 md:px-6 md:py-4 flex items-center justify-between gap-2 border-b border-stone-800 shrink-0 flex-wrap">
+          <div className="flex items-center space-x-2 md:space-x-3 min-w-0">
+            <span className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+            <h1 className="text-sm md:text-lg font-serif tracking-tight font-medium text-white flex items-center gap-2 min-w-0">
+              <span className="truncate">JayCee Backoffice</span>
+              <span className="text-[10px] uppercase font-sans tracking-widest bg-stone-800 px-2 py-0.5 rounded text-amber-400 font-semibold border border-stone-700 whitespace-nowrap">
                 Live Admin Mode
               </span>
             </h1>
           </div>
 
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center gap-1.5 md:gap-0 md:space-x-3 shrink-0">
             {saveSuccess && (
               <span className="inline-flex items-center space-x-1 text-xs text-emerald-400 bg-emerald-950/60 px-2.5 py-1 rounded border border-emerald-800">
                 <Check className="w-3.5 h-3.5" />
@@ -101,17 +101,17 @@ export const AdminDashboard: React.FC = () => {
             <button
               type="button"
               onClick={handleResetConfirm}
-              className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded text-xs font-medium text-stone-300 hover:text-white hover:bg-stone-800 transition-colors"
+              className="inline-flex items-center space-x-1.5 px-2 md:px-3 py-1.5 rounded text-xs font-medium text-stone-300 hover:text-white hover:bg-stone-800 transition-colors"
               title="Reset to factory defaults"
             >
               <RotateCcw className="w-3.5 h-3.5" />
-              <span>Reset Default</span>
+              <span className="hidden sm:inline">Reset Default</span>
             </button>
 
             <button
               type="button"
               onClick={closeAdminPanel}
-              className="inline-flex items-center space-x-1.5 bg-[#8B1D24] hover:bg-[#74151B] text-white px-3.5 py-1.5 rounded text-xs font-medium transition-all shadow"
+              className="inline-flex items-center space-x-1.5 bg-[#8B1D24] hover:bg-[#74151B] text-white px-2.5 md:px-3.5 py-1.5 rounded text-xs font-medium transition-all shadow whitespace-nowrap"
             >
               <Eye className="w-3.5 h-3.5" />
               <span>Preview Site</span>
@@ -137,9 +137,36 @@ export const AdminDashboard: React.FC = () => {
         </header>
 
         {/* Workspace Body: Sidebar Tabs + Content Area */}
-        <div className="flex-1 flex overflow-hidden">
-          {/* Left Navigation Sidebar */}
-          <aside className="w-64 bg-stone-50 border-r border-stone-200 overflow-y-auto shrink-0 p-3 space-y-1">
+        <div className="flex-1 flex flex-col md:flex-row overflow-hidden min-h-0">
+          {/* Mobile section switcher — sidebar is hidden on small screens */}
+          <div className="md:hidden shrink-0 border-b border-stone-200 bg-stone-50 px-3 py-2">
+            <label className="block text-[10px] font-bold tracking-[0.2em] text-stone-400 uppercase mb-1">
+              Edit section
+            </label>
+            <select
+              value={activeTab}
+              onChange={(e) => setActiveTab(e.target.value as AdminTab)}
+              className="w-full text-sm px-3 py-2.5 border border-stone-300 rounded-lg bg-white text-stone-800 font-medium"
+            >
+              <option value="theme">Colors & Fonts</option>
+              <option value="header">Header & Navigation</option>
+              <option value="hero">Hero Section</option>
+              <option value="categories">The JayCee Selection</option>
+              <option value="featured">Featured Range Cards</option>
+              <option value="stories">Editorial Stories (3 Rows)</option>
+              <option value="essentials">Everyday Essentials</option>
+              <option value="company">Company Story & Pillars</option>
+              <option value="location">Location & Directions</option>
+              <option value="faqs">FAQs Accordion</option>
+              <option value="ribbon">Culinary Photo Ribbon</option>
+              <option value="customSections">Add Custom Sections ({content.customSections.length})</option>
+              <option value="footer">Footer & Copyright</option>
+              <option value="enquiries">Enquiries</option>
+            </select>
+          </div>
+
+          {/* Left Navigation Sidebar (tablet + desktop only) */}
+          <aside className="hidden md:block w-64 bg-stone-50 border-r border-stone-200 overflow-y-auto shrink-0 p-3 space-y-1">
             <div className="px-3 py-2 text-[10px] font-bold tracking-[0.2em] text-stone-400 uppercase">
               Design & Global
             </div>
@@ -322,11 +349,11 @@ export const AdminDashboard: React.FC = () => {
           </aside>
 
           {/* Right Main Form Panel */}
-          <main className="flex-1 overflow-y-auto p-6 lg:p-8 bg-stone-100/60">
-            <div className="max-w-4xl mx-auto space-y-6">
+          <main className="flex-1 min-w-0 min-h-0 overflow-y-auto overscroll-contain p-4 md:p-6 lg:p-8 bg-stone-100/60">
+            <div className="max-w-4xl mx-auto space-y-6 min-w-0">
               {/* TAB 1: Theme & Color Palette & Fonts */}
               {activeTab === 'theme' && (
-                <div className="bg-white p-6 rounded-xl border border-stone-200 shadow-xs space-y-6">
+                <div className="bg-white p-4 md:p-6 rounded-xl border border-stone-200 shadow-xs space-y-6">
                   <div>
                     <h2 className="text-xl font-serif text-stone-900">Color Palette & Fonts</h2>
                     <p className="text-xs text-stone-500 mt-1">
@@ -340,7 +367,7 @@ export const AdminDashboard: React.FC = () => {
                       <label className="block text-xs font-semibold text-stone-700 mb-1.5">
                         Primary Brand Color
                       </label>
-                      <div className="flex items-center space-x-2">
+                      <div className="flex items-center space-x-2 min-w-0">
                         <input
                           type="color"
                           value={content.theme.primaryColor}
@@ -361,7 +388,7 @@ export const AdminDashboard: React.FC = () => {
                               theme: { ...prev.theme, primaryColor: e.target.value },
                             }))
                           }
-                          className="flex-1 text-xs font-mono px-3 py-2 border border-stone-300 rounded-md"
+                          className="flex-1 min-w-0 text-xs font-mono px-3 py-2 border border-stone-300 rounded-md"
                         />
                       </div>
                       <span className="text-[10px] text-stone-400 mt-1 block">Used for main buttons and tags</span>
@@ -371,7 +398,7 @@ export const AdminDashboard: React.FC = () => {
                       <label className="block text-xs font-semibold text-stone-700 mb-1.5">
                         Primary Hover State
                       </label>
-                      <div className="flex items-center space-x-2">
+                      <div className="flex items-center space-x-2 min-w-0">
                         <input
                           type="color"
                           value={content.theme.primaryHoverColor}
@@ -392,7 +419,7 @@ export const AdminDashboard: React.FC = () => {
                               theme: { ...prev.theme, primaryHoverColor: e.target.value },
                             }))
                           }
-                          className="flex-1 text-xs font-mono px-3 py-2 border border-stone-300 rounded-md"
+                          className="flex-1 min-w-0 text-xs font-mono px-3 py-2 border border-stone-300 rounded-md"
                         />
                       </div>
                       <span className="text-[10px] text-stone-400 mt-1 block">Button hover accent</span>
@@ -402,7 +429,7 @@ export const AdminDashboard: React.FC = () => {
                       <label className="block text-xs font-semibold text-stone-700 mb-1.5">
                         Highlight Accent Color
                       </label>
-                      <div className="flex items-center space-x-2">
+                      <div className="flex items-center space-x-2 min-w-0">
                         <input
                           type="color"
                           value={content.theme.accentColor}
@@ -423,7 +450,7 @@ export const AdminDashboard: React.FC = () => {
                               theme: { ...prev.theme, accentColor: e.target.value },
                             }))
                           }
-                          className="flex-1 text-xs font-mono px-3 py-2 border border-stone-300 rounded-md"
+                          className="flex-1 min-w-0 text-xs font-mono px-3 py-2 border border-stone-300 rounded-md"
                         />
                       </div>
                       <span className="text-[10px] text-stone-400 mt-1 block">Highlights, icons, selection</span>
@@ -511,7 +538,7 @@ export const AdminDashboard: React.FC = () => {
 
               {/* TAB 2: Header & Navigation */}
               {activeTab === 'header' && (
-                <div className="bg-white p-6 rounded-xl border border-stone-200 shadow-xs space-y-6">
+                <div className="bg-white p-4 md:p-6 rounded-xl border border-stone-200 shadow-xs space-y-6">
                   <div>
                     <h2 className="text-xl font-serif text-stone-900">Header & Navigation Bar</h2>
                     <p className="text-xs text-stone-500 mt-1">
@@ -689,7 +716,7 @@ export const AdminDashboard: React.FC = () => {
 
               {/* TAB 3: Hero Section */}
               {activeTab === 'hero' && (
-                <div className="bg-white p-6 rounded-xl border border-stone-200 shadow-xs space-y-6">
+                <div className="bg-white p-4 md:p-6 rounded-xl border border-stone-200 shadow-xs space-y-6">
                   <div>
                     <h2 className="text-xl font-serif text-stone-900">Hero Section</h2>
                     <p className="text-xs text-stone-500 mt-1">
@@ -867,7 +894,7 @@ export const AdminDashboard: React.FC = () => {
 
               {/* TAB 4: The JayCee Selection Categories */}
               {activeTab === 'categories' && (
-                <div className="bg-white p-6 rounded-xl border border-stone-200 shadow-xs space-y-6">
+                <div className="bg-white p-4 md:p-6 rounded-xl border border-stone-200 shadow-xs space-y-6">
                   <div className="flex items-center justify-between">
                     <div>
                       <h2 className="text-xl font-serif text-stone-900">The JayCee Selection Carousel</h2>
@@ -969,7 +996,7 @@ export const AdminDashboard: React.FC = () => {
 
               {/* TAB 5: Featured Range Cards */}
               {activeTab === 'featured' && (
-                <div className="bg-white p-6 rounded-xl border border-stone-200 shadow-xs space-y-6">
+                <div className="bg-white p-4 md:p-6 rounded-xl border border-stone-200 shadow-xs space-y-6">
                   <div className="flex items-center justify-between">
                     <div>
                       <h2 className="text-xl font-serif text-stone-900">Featured Range Cards (3 Columns)</h2>
@@ -1088,7 +1115,7 @@ export const AdminDashboard: React.FC = () => {
 
               {/* TAB 6: Editorial Stories */}
               {activeTab === 'stories' && (
-                <div className="bg-white p-6 rounded-xl border border-stone-200 shadow-xs space-y-6">
+                <div className="bg-white p-4 md:p-6 rounded-xl border border-stone-200 shadow-xs space-y-6">
                   <div className="flex items-center justify-between">
                     <div>
                       <h2 className="text-xl font-serif text-stone-900">Editorial Stories ("From Our Shelves...")</h2>
@@ -1265,7 +1292,7 @@ export const AdminDashboard: React.FC = () => {
 
               {/* TAB 7: Everyday Essentials */}
               {activeTab === 'essentials' && (
-                <div className="bg-white p-6 rounded-xl border border-stone-200 shadow-xs space-y-6">
+                <div className="bg-white p-4 md:p-6 rounded-xl border border-stone-200 shadow-xs space-y-6">
                   <div className="flex items-center justify-between">
                     <div>
                       <h2 className="text-xl font-serif text-stone-900">Everyday Essentials Grid</h2>
@@ -1366,7 +1393,7 @@ export const AdminDashboard: React.FC = () => {
 
               {/* TAB 8: Company Story & Pillars */}
               {activeTab === 'company' && (
-                <div className="bg-white p-6 rounded-xl border border-stone-200 shadow-xs space-y-6">
+                <div className="bg-white p-4 md:p-6 rounded-xl border border-stone-200 shadow-xs space-y-6">
                   <div>
                     <h2 className="text-xl font-serif text-stone-900">Locally Rooted & Company Pillars</h2>
                     <p className="text-xs text-stone-500 mt-1">
@@ -1507,7 +1534,7 @@ export const AdminDashboard: React.FC = () => {
 
               {/* TAB 9: Location & Directions */}
               {activeTab === 'location' && (
-                <div className="bg-white p-6 rounded-xl border border-stone-200 shadow-xs space-y-6">
+                <div className="bg-white p-4 md:p-6 rounded-xl border border-stone-200 shadow-xs space-y-6">
                   <div>
                     <h2 className="text-xl font-serif text-stone-900">Location & Storefront Details</h2>
                     <p className="text-xs text-stone-500 mt-1">
@@ -1600,7 +1627,7 @@ export const AdminDashboard: React.FC = () => {
 
               {/* TAB 10: FAQs */}
               {activeTab === 'faqs' && (
-                <div className="bg-white p-6 rounded-xl border border-stone-200 shadow-xs space-y-6">
+                <div className="bg-white p-4 md:p-6 rounded-xl border border-stone-200 shadow-xs space-y-6">
                   <div className="flex items-center justify-between">
                     <div>
                       <h2 className="text-xl font-serif text-stone-900">Frequently Asked Questions</h2>
@@ -1688,7 +1715,7 @@ export const AdminDashboard: React.FC = () => {
 
               {/* TAB 11: Photo Ribbon */}
               {activeTab === 'ribbon' && (
-                <div className="bg-white p-6 rounded-xl border border-stone-200 shadow-xs space-y-6">
+                <div className="bg-white p-4 md:p-6 rounded-xl border border-stone-200 shadow-xs space-y-6">
                   <div className="flex items-center justify-between">
                     <div>
                       <h2 className="text-xl font-serif text-stone-900">Culinary Photo Ribbon</h2>
@@ -1768,7 +1795,7 @@ export const AdminDashboard: React.FC = () => {
 
               {/* TAB 12: Add Custom Sections */}
               {activeTab === 'customSections' && (
-                <div className="bg-white p-6 rounded-xl border border-stone-200 shadow-xs space-y-6">
+                <div className="bg-white p-4 md:p-6 rounded-xl border border-stone-200 shadow-xs space-y-6">
                   <div className="flex items-center justify-between">
                     <div>
                       <h2 className="text-xl font-serif text-stone-900">Add & Manage Custom Sections</h2>
@@ -1822,7 +1849,7 @@ export const AdminDashboard: React.FC = () => {
                           className="border border-stone-200 rounded-xl p-5 bg-stone-50 space-y-4"
                         >
                           <div className="flex items-center justify-between">
-                            <div className="flex items-center space-x-2">
+                            <div className="flex items-center space-x-2 min-w-0">
                               <span className="text-xs font-bold text-stone-800">
                                 Section #{idx + 1}: {sec.title || 'Untitled'}
                               </span>
@@ -1972,7 +1999,7 @@ export const AdminDashboard: React.FC = () => {
 
               {/* TAB 13: Footer */}
               {activeTab === 'footer' && (
-                <div className="bg-white p-6 rounded-xl border border-stone-200 shadow-xs space-y-6">
+                <div className="bg-white p-4 md:p-6 rounded-xl border border-stone-200 shadow-xs space-y-6">
                   <div>
                     <h2 className="text-xl font-serif text-stone-900">Footer Details</h2>
                     <p className="text-xs text-stone-500 mt-1">
