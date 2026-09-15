@@ -18,9 +18,11 @@ import {
   Eye,
   LogOut,
   ExternalLink,
+  Inbox,
 } from 'lucide-react';
 import { useSiteContent } from '../../context/SiteContentContext';
 import { ImageUploadField } from './ImageUploadField';
+import { EnquiriesPanel } from './EnquiriesPanel';
 import type {
   CategoryItem,
   FeaturedRangeItem,
@@ -43,7 +45,8 @@ type AdminTab =
   | 'faqs'
   | 'ribbon'
   | 'customSections'
-  | 'footer';
+  | 'footer'
+  | 'enquiries';
 
 export const AdminDashboard: React.FC = () => {
   const {
@@ -303,6 +306,18 @@ export const AdminDashboard: React.FC = () => {
             >
               <Footprints className="w-4 h-4 text-stone-600" />
               <span>Footer & Copyright</span>
+            </button>
+
+            <button
+              onClick={() => setActiveTab('enquiries')}
+              className={`w-full flex items-center space-x-2.5 px-3 py-2 rounded-lg text-xs font-medium transition-all ${
+                activeTab === 'enquiries'
+                  ? 'bg-stone-900 text-white shadow-xs'
+                  : 'text-stone-700 hover:bg-stone-200/70'
+              }`}
+            >
+              <Inbox className="w-4 h-4 text-red-700" />
+              <span>Enquiries</span>
             </button>
           </aside>
 
@@ -2175,6 +2190,8 @@ export const AdminDashboard: React.FC = () => {
                   </div>
                 </div>
               )}
+
+              {activeTab === 'enquiries' && <EnquiriesPanel />}
             </div>
           </main>
         </div>

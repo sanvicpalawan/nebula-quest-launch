@@ -40,7 +40,7 @@ export const getSiteContent = createServerFn({ method: "GET" }).handler(async ()
     console.error("getSiteContent failed", error.message);
     return null;
   }
-  return (data?.content ?? null) as unknown;
+  return data?.content == null ? null : JSON.stringify(data.content);
 });
 
 export const verifyPasskey = createServerFn({ method: "POST" })

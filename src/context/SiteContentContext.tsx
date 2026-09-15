@@ -171,7 +171,7 @@ export const SiteContentProvider: React.FC<{ children: React.ReactNode }> = ({ c
     getSiteContent()
       .then((remote) => {
         if (cancelled) return;
-        if (remote) setContent(mergeContent(remote));
+        if (remote) setContent(mergeContent(JSON.parse(remote)));
       })
       .catch((e) => console.error('Failed to load site content:', e))
       .finally(() => {
@@ -292,8 +292,6 @@ export const SiteContentProvider: React.FC<{ children: React.ReactNode }> = ({ c
         toggleDarkMode,
         isSaving,
       }}
-    >
-
     >
       {children}
     </SiteContentContext.Provider>
