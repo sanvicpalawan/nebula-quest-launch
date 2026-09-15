@@ -23,11 +23,14 @@ export const CustomSectionsRenderer: React.FC = () => {
               className="relative py-24 md:py-32 w-full bg-[#141212] text-white overflow-hidden"
             >
               <div className="absolute inset-0 z-0">
-                <img
-                  src={section.imageUrl}
-                  alt={section.title}
-                  className="w-full h-full object-cover object-center opacity-40 mix-blend-luminosity"
-                />
+                {section.imageUrl?.trim() ? (
+                  <img
+                    src={section.imageUrl}
+                    alt={section.title}
+                    className="w-full h-full object-cover object-center opacity-40 mix-blend-luminosity"
+                  />
+                ) : null}
+
                 <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/30" />
               </div>
 
