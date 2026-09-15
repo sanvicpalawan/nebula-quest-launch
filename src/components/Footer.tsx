@@ -1,6 +1,6 @@
 import React from 'react';
 import { ArrowUpRight, ArrowUp, Instagram, MapPin } from 'lucide-react';
-import { JayCeeLogo } from './JayCeeLogo';
+import { LogoDisplay } from './LogoDisplay';
 import { LogoClickHandler } from './LogoClickHandler';
 import { useSiteContent } from '../context/SiteContentContext';
 
@@ -9,7 +9,7 @@ interface FooterProps {
 }
 
 export const Footer: React.FC<FooterProps> = ({ onOpenWholesale }) => {
-  const { content, openLoginModal, isAdminLoggedIn, openAdminPanel } = useSiteContent();
+  const { content, openLoginModal, isAdminLoggedIn, openAdminPanel, isDarkMode } = useSiteContent();
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -23,7 +23,11 @@ export const Footer: React.FC<FooterProps> = ({ onOpenWholesale }) => {
           {/* Brand Info with 3-click trigger */}
           <div className="md:col-span-4 lg:col-span-4 space-y-4">
             <LogoClickHandler id="footer-brand-logo" className="inline-block">
-              <JayCeeLogo size="md" variant="full" className="items-start" src={content.header.logoUrl} />
+              <LogoDisplay 
+                size="md" 
+                src={content.header.logoUrl}
+                isDarkMode={isDarkMode}
+              />
             </LogoClickHandler>
             <p className="text-xs sm:text-sm text-[#78716C] dark:text-[#A8A29E] font-light max-w-xs pt-2 whitespace-pre-line">
               {content.footer?.tagline || 'Quality food. Personal service.\nProudly Palawan.'}
@@ -172,4 +176,3 @@ export const Footer: React.FC<FooterProps> = ({ onOpenWholesale }) => {
     </footer>
   );
 };
-
