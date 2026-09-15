@@ -1,6 +1,55 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Volume2 } from 'lucide-react';
-import { PARTNER_BRANDS } from '../data/jayceeData';
+
+import bestWestern from '../assets/clients/best-western.png';
+import astoria from '../assets/clients/astoria.png';
+import robinsons from '../assets/clients/robinsons.png';
+import nccc from '../assets/clients/nccc.png';
+import seda from '../assets/clients/seda.png';
+import elNido from '../assets/clients/elnido.png';
+import funnyLion from '../assets/clients/funnylion.png';
+import hue from '../assets/clients/hue.png';
+
+type ClientLogo = { src: string; alt: string };
+
+const CLIENT_LOGOS: ClientLogo[] = [
+  { src: seda, alt: 'Seda Hotels' },
+  { src: funnyLion, alt: 'The Funny Lion, El Nido' },
+  { src: robinsons, alt: 'Robinsons Place Palawan' },
+  { src: hue, alt: 'Hue Hotels & Resorts' },
+  { src: elNido, alt: 'El Nido Resorts' },
+  { src: bestWestern, alt: 'Best Western Plus — The Ivywall Hotel' },
+  { src: astoria, alt: 'Astoria Palawan' },
+  { src: nccc, alt: 'NCCC Supermarket' },
+];
+
+const MarqueeRow: React.FC<{ reverse?: boolean }> = ({ reverse }) => {
+  // Duplicate the set so the scroll loop is seamless.
+  const doubled = useMemo(() => [...CLIENT_LOGOS, ...CLIENT_LOGOS], []);
+
+  return (
+    <div
+      className={`partner-marquee-row flex shrink-0 items-center gap-10 md:gap-16 px-4 md:px-6${
+        reverse ? ' reverse' : ''
+      }`}
+    >
+      {doubled.map((logo, i) => (
+        <div
+          key={`${logo.alt}-${i}`}
+          className="flex h-10 min-w-[90px] shrink-0 items-center justify-center md:h-14 md:min-w-[130px] grayscale hover:grayscale-0 opacity-70 dark:opacity-85 hover:opacity-100 dark:brightness-110 transition-all duration-300"
+          title={logo.alt}
+        >
+          <img
+            src={logo.src}
+            alt={logo.alt}
+            loading="lazy"
+            className="max-h-full max-w-[110px] md:max-w-[150px] w-auto h-auto object-contain"
+          />
+        </div>
+      ))}
+    </div>
+  );
+};
 
 export const PartnerLogos: React.FC = () => {
   return (
@@ -20,102 +69,15 @@ export const PartnerLogos: React.FC = () => {
             <Volume2 className="w-4 h-4" />
           </div>
         </div>
+      </div>
 
-        {/* Logos Flex Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-6 md:gap-8 items-center justify-items-center">
-          {PARTNER_BRANDS.map((brand) => (
-            <div
-              key={brand.name}
-              className="w-full flex items-center justify-center p-2 grayscale hover:grayscale-0 opacity-70 dark:opacity-85 hover:opacity-100 transition-all duration-300 group dark:brightness-110"
-              title={brand.name}
-            >
-              <div className="text-center">
-                {brand.name === 'Best Western PLUS' && (
-                  <div className="flex flex-col items-center">
-                    <span className="text-[11px] font-black tracking-tighter text-[#1E3A8A] dark:text-[#60A5FA] leading-none">
-                      Best Western
-                    </span>
-                    <span className="text-[8px] font-bold tracking-widest text-[#B91C1C] dark:text-[#F87171]">
-                      PLUS
-                    </span>
-                  </div>
-                )}
-
-                {brand.name === 'ASTORIA PALAWAN' && (
-                  <div className="flex flex-col items-center">
-                    <div className="w-4 h-4 text-[#059669] dark:text-[#34D399] mb-0.5">▲</div>
-                    <span className="text-[10px] font-bold tracking-widest text-[#059669] dark:text-[#34D399]">
-                      ASTORIA
-                    </span>
-                    <span className="text-[7px] tracking-wider text-[#065F46] dark:text-[#6EE7B7]">
-                      PALAWAN
-                    </span>
-                  </div>
-                )}
-
-                {brand.name === 'ROBINSONS PLACE PALAWAN' && (
-                  <div className="flex items-center space-x-1">
-                    <span className="font-extrabold text-[12px] text-[#DC2626] dark:text-[#EF4444]">R</span>
-                    <div className="text-left">
-                      <span className="text-[8px] font-bold block leading-tight text-[#1F2937] dark:text-[#E7E5E4]">ROBINSONS</span>
-                      <span className="text-[6px] tracking-wider block text-[#DC2626] dark:text-[#EF4444]">PALAWAN</span>
-                    </div>
-                  </div>
-                )}
-
-                {brand.name === 'NCCC SUPERMARKET' && (
-                  <div className="flex flex-col items-center">
-                    <span className="text-[11px] font-black tracking-widest text-[#2563EB] dark:text-[#60A5FA]">
-                      NCCC
-                    </span>
-                    <span className="text-[7px] font-semibold text-[#1E40AF] dark:text-[#93C5FD]">
-                      SUPERMARKET
-                    </span>
-                  </div>
-                )}
-
-                {brand.name === 'SEDA' && (
-                  <span className="text-base font-serif italic tracking-widest text-[#374151] dark:text-[#E7E5E4]">
-                    seda
-                  </span>
-                )}
-
-                {brand.name === 'EL NIDO RESORTS' && (
-                  <div className="flex flex-col items-center">
-                    <span className="text-[9px] font-serif font-bold tracking-widest text-[#0F766E] dark:text-[#2DD4BF]">
-                      EL NIDO
-                    </span>
-                    <span className="text-[7px] tracking-[0.15em] text-[#115E59] dark:text-[#5EEAD4]">
-                      RESORTS
-                    </span>
-                  </div>
-                )}
-
-                {brand.name === 'THE FUNNY LION' && (
-                  <div className="flex flex-col items-center">
-                    <div className="w-4 h-4 border border-[#B45309] dark:border-[#F59E0B] rounded-full flex items-center justify-center text-[7px] mb-0.5 text-[#B45309] dark:text-[#F59E0B]">
-                      ☼
-                    </div>
-                    <span className="text-[8px] font-serif tracking-wider text-[#92400E] dark:text-[#FBBF24]">
-                      THE FUNNY LION
-                    </span>
-                  </div>
-                )}
-
-                {brand.name === 'HUE HOTELS & RESORTS' && (
-                  <div className="flex flex-col items-center">
-                    <span className="text-[13px] font-black tracking-widest text-[#6B21A8] dark:text-[#C084FC]">
-                      HUE
-                    </span>
-                    <span className="text-[6px] tracking-widest text-[#581C87] dark:text-[#E9D5FF]">
-                      HOTELS & RESORTS
-                    </span>
-                  </div>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
+      {/* Motion logo marquee — background matches the section (light/dark) so it reads as one surface */}
+      <div className="partner-marquee-track relative flex overflow-hidden bg-white dark:bg-[#141212]">
+        <MarqueeRow />
+      </div>
+      <div className="h-6 md:h-8 bg-white dark:bg-[#141212]" />
+      <div className="partner-marquee-track relative flex overflow-hidden bg-white dark:bg-[#141212]">
+        <MarqueeRow reverse />
       </div>
     </section>
   );

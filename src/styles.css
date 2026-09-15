@@ -136,6 +136,47 @@
   --sidebar-ring: oklch(0.551 0.027 264.364);
 }
 
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+
+@keyframes marquee-right {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+@layer components {
+  .partner-marquee-track {
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+  }
+
+  .partner-marquee-row {
+    animation: marquee-left 34s linear infinite;
+  }
+
+  .partner-marquee-row.reverse {
+    animation-name: marquee-right;
+  }
+
+  .partner-marquee-track:hover .partner-marquee-row {
+    animation-play-state: paused;
+  }
+
+  @media (max-width: 640px) {
+    .partner-marquee-row {
+      animation-duration: 20s;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .partner-marquee-row {
+      animation: none;
+    }
+  }
+}
+
 @layer base {
   * {
     border-color: var(--color-border);
