@@ -53,7 +53,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenWholesale }) => {
 
           {/* Center Brand Identity / Logo with 3-click Admin handler */}
           <LogoClickHandler id="brand-logo-home" className="flex items-center justify-center group focus:outline-none">
-            <JayCeeLogo size="md" variant="full" />
+            <JayCeeLogo size="md" variant="full" src={content.header.logoUrl} />
           </LogoClickHandler>
 
           {/* Desktop Right Nav Links & Actions */}

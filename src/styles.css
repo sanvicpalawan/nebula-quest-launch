@@ -95,6 +95,10 @@
   --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
   --sidebar-border: oklch(0.929 0.013 255.508);
   --sidebar-ring: oklch(0.704 0.04 256.788);
+  --admin-field-background: oklch(1 0 0);
+  --admin-field-foreground: oklch(0.18 0.01 60);
+  --admin-field-placeholder: oklch(0.55 0.01 60);
+  --admin-field-border: oklch(0.82 0.01 60);
 }
 
 .dark {
@@ -140,5 +144,26 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+  }
+}
+
+@layer components {
+  .admin-dashboard {
+    color-scheme: light;
+  }
+
+  .admin-dashboard input:not([type="color"]):not([type="checkbox"]):not([type="file"]),
+  .admin-dashboard textarea,
+  .admin-dashboard select {
+    background-color: var(--admin-field-background);
+    color: var(--admin-field-foreground);
+    border-color: var(--admin-field-border);
+    caret-color: var(--admin-field-foreground);
+  }
+
+  .admin-dashboard input::placeholder,
+  .admin-dashboard textarea::placeholder {
+    color: var(--admin-field-placeholder);
+    opacity: 1;
   }
 }

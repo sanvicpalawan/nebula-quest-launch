@@ -7,6 +7,7 @@ export interface ThemeConfig {
 }
 
 export interface HeaderConfig {
+  logoUrl: string;
   topBarText: string;
   topBarMotto: string;
   phone: string;

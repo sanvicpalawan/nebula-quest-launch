@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
-import { Upload, X, Image as ImageIcon } from 'lucide-react';
+import { Upload, X, Image as ImageIcon, Images } from 'lucide-react';
 import { useSiteContent } from '../../context/SiteContentContext';
-import { uploadSiteImage } from '../../lib/site.functions';
+import { listSiteImages, uploadSiteImage } from '../../lib/site.functions';
 
 interface ImageUploadFieldProps {
   label: string;
@@ -21,6 +21,9 @@ export const ImageUploadField: React.FC<ImageUploadFieldProps> = ({
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { adminPasskey } = useSiteContent();
   const [uploading, setUploading] = useState(false);
+  const [showStorage, setShowStorage] = useState(false);
+  const [storageImages, setStorageImages] = useState<Array<{ name: string; url: string }>>([]);
+  const [loadingStorage, setLoadingStorage] = useState(false);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -69,6 +72,25 @@ export const ImageUploadField: React.FC<ImageUploadFieldProps> = ({
     }
   };
 
+  const handleBrowseStorage = async () => {
+    if (!adminPasskey) {
+      alert('Please sign in again before browsing saved images.');
+      return;
+    }
+    const nextOpen = !showStorage;
+    setShowStorage(nextOpen);
+    if (!nextOpen || storageImages.length > 0) return;
+    setLoadingStorage(true);
+    try {
+      setStorageImages(await listSiteImages({ data: { passkey: adminPasskey } }));
+    } catch (err) {
+      console.error('Could not load saved images:', err);
+      alert('Saved images could not be loaded. Please try again.');
+    } finally {
+      setLoadingStorage(false);
+    }
+  };
+
   return (
     <div className="space-y-2">
       <label className="block text-xs font-semibold text-stone-700 uppercase tracking-wider">
@@ -98,7 +120,7 @@ export const ImageUploadField: React.FC<ImageUploadFieldProps> = ({
       ) : null}
 
       {/* Input controls */}
-      <div className="flex items-center space-x-2">
+      <div className="flex flex-col sm:flex-row sm:items-center gap-2">
         <div className="relative flex-1">
           <input
             type="text"
@@ -121,13 +143,50 @@ export const ImageUploadField: React.FC<ImageUploadFieldProps> = ({
         <button
           type="button"
           onClick={handleTriggerUpload}
-          className="inline-flex items-center space-x-1.5 px-3 py-2 border border-stone-300 hover:border-stone-800 bg-stone-50 hover:bg-stone-100 text-stone-800 text-xs font-medium rounded-md transition-colors cursor-pointer shrink-0"
+          disabled={uploading}
+          className="inline-flex items-center justify-center space-x-1.5 px-3 py-2 border border-stone-300 hover:border-stone-800 bg-stone-50 hover:bg-stone-100 text-stone-800 text-xs font-medium rounded-md transition-colors cursor-pointer shrink-0 disabled:opacity-60"
           title="Upload from device"
         >
           <Upload className="w-3.5 h-3.5 text-stone-600" />
           <span>{uploading ? 'Uploading…' : 'Upload Image'}</span>
         </button>
+        <button
+          type="button"
+          onClick={() => void handleBrowseStorage()}
+          className="inline-flex items-center justify-center space-x-1.5 px-3 py-2 border border-stone-300 hover:border-stone-800 bg-stone-50 hover:bg-stone-100 text-stone-800 text-xs font-medium rounded-md transition-colors cursor-pointer shrink-0"
+          title="Choose an image already saved in storage"
+        >
+          <Images className="w-3.5 h-3.5 text-stone-600" />
+          <span>Saved Images</span>
+        </button>
       </div>
+
+      {showStorage && (
+        <div className="rounded-md border border-stone-200 bg-stone-50 p-3">
+          {loadingStorage ? (
+            <p className="text-xs text-stone-600">Loading saved images…</p>
+          ) : storageImages.length === 0 ? (
+            <p className="text-xs text-stone-600">No saved images found.</p>
+          ) : (
+            <div className="grid grid-cols-3 sm:grid-cols-5 gap-2 max-h-64 overflow-y-auto">
+              {storageImages.map((image) => (
+                <button
+                  key={image.name}
+                  type="button"
+                  onClick={() => {
+                    onChange(image.url);
+                    setShowStorage(false);
+                  }}
+                  className="aspect-square border border-stone-200 bg-white rounded overflow-hidden hover:border-stone-700 focus:outline-none focus:ring-2 focus:ring-red-800"
+                  title={image.name}
+                >
+                  <img src={image.url} alt={image.name} className="w-full h-full object-contain bg-transparent" />
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
 
       {helperText && (
         <p className="text-[11px] text-stone-500 font-light flex items-center gap-1">

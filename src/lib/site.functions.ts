@@ -154,3 +154,20 @@ export const uploadSiteImage = createServerFn({ method: "POST" })
     if (error) throw new Error(error.message);
     return { url: `/api/public/site-image/${path}` };
   });
+
+export const listSiteImages = createServerFn({ method: "POST" })
+  .inputValidator((data) => z.object({ passkey: z.string() }).parse(data))
+  .handler(async ({ data }) => {
+    checkPasskey(data.passkey);
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { data: files, error } = await supabaseAdmin.storage
+      .from("site-images")
+      .list("", { limit: 100, sortBy: { column: "created_at", order: "desc" } });
+    if (error) throw new Error(error.message);
+    return (files ?? [])
+      .filter((file) => file.name && file.metadata)
+      .map((file) => ({
+        name: file.name,
+        url: `/api/public/site-image/${encodeURIComponent(file.name)}`,
+      }));
+  });
