@@ -7,12 +7,16 @@ import {
   GOOGLE_MAPS_DIRECTIONS_URL,
   TRAVEL_TIMES,
 } from '../data/jayceeData';
+import { useSiteContent } from '../context/SiteContentContext';
 
 interface LocationSectionProps {
   onOpenMapModal?: () => void;
 }
 
 export const LocationSection: React.FC<LocationSectionProps> = ({ onOpenMapModal }) => {
+  const { content } = useSiteContent();
+  const storefrontImage = content.location.storefrontImage;
+
   return (
     <section id="location" className="py-20 md:py-28 bg-white dark:bg-[#141212] border-t border-[#F5F5F4] dark:border-[#262322] transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
