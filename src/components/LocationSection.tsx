@@ -21,7 +21,7 @@ export const LocationSection: React.FC<LocationSectionProps> = ({ onOpenMapModal
           {/* Left Column: Real Store Front Facade Image */}
           <div className="lg:col-span-6 relative aspect-[4/3] rounded-lg overflow-hidden bg-[#F5F5F4] dark:bg-[#23201F] shadow-xs">
             <img
-              src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80"
+              src="ea4eb4db5?auto=format&fit=crop&w=1200&q=80"
               alt="JayCee Trading and Services storefront at B.M. Road, Puerto Princesa"
               loading="lazy"
               className="w-full h-full object-cover object-center"

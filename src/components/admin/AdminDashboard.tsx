@@ -871,7 +871,7 @@ export const AdminDashboard: React.FC = () => {
                           id: `cat-${Date.now()}`,
                           name: 'New Category',
                           subTitle: 'Premium specialty selection',
-                          image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80',
+                          image: 'd76694265947?auto=format&fit=crop&w=600&q=80',
                         };
                         updateContent((prev) => ({
                           ...prev,
@@ -974,7 +974,7 @@ export const AdminDashboard: React.FC = () => {
                           badge: 'NEW ARRIVAL',
                           title: 'Specialty Selection',
                           subtitle: 'Direct from suppliers',
-                          image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80',
+                          image: 'd76694265947?auto=format&fit=crop&w=1200&q=80',
                           linkText: 'Explore range',
                         };
                         updateContent((prev) => ({
@@ -1096,7 +1096,7 @@ export const AdminDashboard: React.FC = () => {
                           description: 'Tell your story about local sourcing, partnerships, or specialty items.',
                           ctaText: 'Explore more',
                           ctaType: 'link',
-                          image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80',
+                          image: 'ea4eb4db5?auto=format&fit=crop&w=1200&q=80',
                           imageOnRight: content.editorialStories.length % 2 === 1,
                         };
                         updateContent((prev) => ({
@@ -1269,7 +1269,7 @@ export const AdminDashboard: React.FC = () => {
                           id: `ess-${Date.now()}`,
                           title: 'New Essential',
                           subTitle: 'Premium selection',
-                          image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80',
+                          image: 'd76694265947?auto=format&fit=crop&w=800&q=80',
                         };
                         updateContent((prev) => ({
                           ...prev,
@@ -1694,7 +1694,7 @@ export const AdminDashboard: React.FC = () => {
                             ...prev.ribbonImages,
                             {
                               id: `ribbon-${Date.now()}`,
-                              url: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80',
+                              url: 'd76694265947?auto=format&fit=crop&w=600&q=80',
                               alt: 'Culinary dish preview',
                             },
                           ],
@@ -1777,7 +1777,7 @@ export const AdminDashboard: React.FC = () => {
                           content:
                             'Introduce upcoming deliveries, special product tastings, or partner promotions directly here.',
                           imageUrl:
-                            'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80',
+                            'd76694265947?auto=format&fit=crop&w=1200&q=80',
                           imagePosition: 'right',
                           ctaText: 'Learn More',
                           ctaUrl: '#',
