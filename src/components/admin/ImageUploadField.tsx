@@ -29,9 +29,9 @@ export const ImageUploadField: React.FC<ImageUploadFieldProps> = ({
     const file = e.target.files?.[0];
     if (!file) return;
 
-    // Check size limit (e.g. 5MB)
-    if (file.size > 5 * 1024 * 1024) {
-      alert('File size should be under 5MB for optimal browser performance.');
+    // Check size limit (15MB — must match the storage bucket file_size_limit)
+    if (file.size > 15 * 1024 * 1024) {
+      alert('File size should be under 15MB for optimal browser performance.');
       return;
     }
 

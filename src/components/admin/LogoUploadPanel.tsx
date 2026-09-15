@@ -40,9 +40,9 @@ export const LogoUploadPanel: React.FC<LogoUploadPanelProps> = ({
       return;
     }
 
-    // Check size limit
-    if (file.size > 5 * 1024 * 1024) {
-      alert('File size should be under 5MB.');
+    // Check size limit (15MB — must match the storage bucket file_size_limit)
+    if (file.size > 15 * 1024 * 1024) {
+      alert('File size should be under 15MB.');
       return;
     }
 
