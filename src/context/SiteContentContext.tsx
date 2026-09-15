@@ -39,6 +39,10 @@ function mergeContent(parsed: any): SiteContentState {
           header: {
             ...DEFAULT_SITE_CONTENT.header,
             ...(parsed.header || {}),
+            logoUrl:
+              typeof parsed.header?.logoUrl === 'string'
+                ? parsed.header.logoUrl.trim()
+                : DEFAULT_SITE_CONTENT.header.logoUrl,
             navLinks:
               Array.isArray(parsed.header?.navLinks) && parsed.header.navLinks.length > 0
                 ? parsed.header.navLinks

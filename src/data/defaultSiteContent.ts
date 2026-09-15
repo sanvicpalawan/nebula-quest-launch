@@ -23,6 +23,7 @@ export const DEFAULT_SITE_CONTENT: SiteContentState = {
     fontFamilyBody: 'Plus Jakarta Sans',
   },
   header: {
+    logoUrl: '',
     topBarText: 'Puerto Princesa, Palawan',
     topBarMotto: 'Serving local kitchens since 2017',
     phone: PHONE_NUMBER,

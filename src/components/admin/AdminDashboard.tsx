@@ -76,7 +76,7 @@ export const AdminDashboard: React.FC = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex overflow-hidden bg-black/60 backdrop-blur-xs animate-in fade-in">
+    <div className="admin-dashboard fixed inset-0 z-50 flex overflow-hidden bg-black/60 backdrop-blur-xs animate-in fade-in">
       <div className="w-full h-full flex flex-col bg-white overflow-hidden shadow-2xl">
         {/* Top App Bar */}
         <header className="bg-[#1C1917] text-white px-6 py-4 flex items-center justify-between border-b border-stone-800 shrink-0">
@@ -518,6 +518,18 @@ export const AdminDashboard: React.FC = () => {
                       Edit the top utility banner, telephone links, online store CTA, and navigation links.
                     </p>
                   </div>
+
+                  <ImageUploadField
+                    label="Site Logo"
+                    value={content.header.logoUrl}
+                    onChange={(url) =>
+                      updateContent((prev) => ({
+                        ...prev,
+                        header: { ...prev.header, logoUrl: url },
+                      }))
+                    }
+                    helperText="Upload a transparent PNG, WebP, or SVG, or choose one already saved. This logo is used in the header and footer on every screen size."
+                  />
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>

@@ -23,7 +23,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenWholesale }) => {
           {/* Brand Info with 3-click trigger */}
           <div className="md:col-span-4 lg:col-span-4 space-y-4">
             <LogoClickHandler id="footer-brand-logo" className="inline-block">
-              <JayCeeLogo size="md" variant="full" className="items-start" />
+              <JayCeeLogo size="md" variant="full" className="items-start" src={content.header.logoUrl} />
             </LogoClickHandler>
             <p className="text-xs sm:text-sm text-[#78716C] dark:text-[#A8A29E] font-light max-w-xs pt-2 whitespace-pre-line">
               {content.footer?.tagline || 'Quality food. Personal service.\nProudly Palawan.'}

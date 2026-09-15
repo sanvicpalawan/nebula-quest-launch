@@ -5,6 +5,7 @@ interface JayCeeLogoProps {
   size?: 'sm' | 'md' | 'lg' | 'xl';
   variant?: 'full' | 'compact' | 'icon-only';
   inverted?: boolean;
+  src?: string;
 }
 
 export const JayCeeLogo: React.FC<JayCeeLogoProps> = ({
@@ -12,6 +13,7 @@ export const JayCeeLogo: React.FC<JayCeeLogoProps> = ({
   size = 'md',
   variant = 'full',
   inverted = false,
+  src,
 }) => {
   // Dimensions for different sizes
   const config = {
@@ -23,6 +25,25 @@ export const JayCeeLogo: React.FC<JayCeeLogoProps> = ({
 
   // Unique IDs for SVG gradient definitions to prevent collisions
   const uniquePrefix = React.useId().replace(/:/g, '');
+
+  if (src?.trim()) {
+    const imageSizes = {
+      sm: 'h-8 w-[7.5rem]',
+      md: 'h-14 w-[10rem]',
+      lg: 'h-16 w-[12rem]',
+      xl: 'h-20 w-[15rem]',
+    }[size];
+
+    return (
+      <div className={`inline-flex items-center justify-center bg-transparent ${className}`}>
+        <img
+          src={src}
+          alt="JayCee Trading & Services"
+          className={`${imageSizes} block object-contain bg-transparent`}
+        />
+      </div>
+    );
+  }
 
   return (
     <div
