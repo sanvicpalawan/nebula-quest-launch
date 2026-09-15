@@ -36,7 +36,7 @@ const MarqueeRow: React.FC<{ reverse?: boolean }> = ({ reverse }) => {
       {doubled.map((logo, i) => (
         <div
           key={`${logo.alt}-${i}`}
-          className="flex h-10 min-w-[90px] shrink-0 items-center justify-center md:h-14 md:min-w-[130px] grayscale hover:grayscale-0 opacity-70 dark:opacity-85 hover:opacity-100 dark:brightness-110 transition-all duration-300"
+          className="flex h-10 min-w-[90px] shrink-0 items-center justify-center md:h-14 md:min-w-[130px] dark:brightness-110"
           title={logo.alt}
         >
           <img
