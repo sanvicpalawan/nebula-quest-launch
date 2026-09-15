@@ -99,7 +99,7 @@ export const EVERYDAY_ESSENTIALS = [
     id: 'ess-3',
     title: 'Baking & pantry',
     subTitle: 'Baking essentials · Canned goods',
-    image: 'rmat&fit=crop&w=800&q=80',
+    image: '',
   },
 ];
 
@@ -170,7 +170,7 @@ export const RIBBON_IMAGES = [
     alt: 'Golden crispy french fries',
   },
   {
-    url: 'rmat&fit=crop&w=600&q=80',
+    url: '',
     alt: 'Baking pastry dough and flour',
   },
 ];
