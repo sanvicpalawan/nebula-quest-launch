@@ -1,8 +1,16 @@
 import React from 'react';
-import { ArrowUpRight, ArrowUp, Instagram, MapPin } from 'lucide-react';
+import { ArrowUpRight, ArrowUp, Facebook, Instagram, MapPin } from 'lucide-react';
+import { TikTokIcon } from './icons/TikTokIcon';
 import { LogoDisplay } from './LogoDisplay';
 import { LogoClickHandler } from './LogoClickHandler';
 import { useSiteContent } from '../context/SiteContentContext';
+import type { SocialPlatform } from '../types/siteContent';
+
+const SOCIAL_META: Record<SocialPlatform, { label: string; Icon: React.ComponentType<{ className?: string }> }> = {
+  facebook: { label: 'Facebook', Icon: Facebook },
+  instagram: { label: 'Instagram', Icon: Instagram },
+  tiktok: { label: 'TikTok', Icon: TikTokIcon },
+};
 
 interface FooterProps {
   onOpenWholesale?: () => void;
@@ -15,13 +23,15 @@ export const Footer: React.FC<FooterProps> = ({ onOpenWholesale }) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const socialLinks = (content.footer?.socialLinks || []).filter((link) => link.url?.trim());
+
   return (
-    <footer id="contact" className="bg-white dark:bg-[#121110] border-t border-[#E7E5E4] dark:border-[#262322] text-[#1C1917] dark:text-[#F5F5F4] pt-16 pb-12 transition-colors">
+    <footer id="contact" className="bg-white dark:bg-[#121110] border-t border-[#E7E5E4] dark:border-[#262322] text-[#1C1917] dark:text-[#F5F5F4] pt-10 pb-8 md:pt-16 md:pb-12 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Main Footer Content Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-12 mb-16">
+        {/* Main Footer Content Grid — 2 columns on phones/tablets for a uniform, compact layout */}
+        <div className="grid grid-cols-2 md:grid-cols-12 gap-x-6 gap-y-8 md:gap-10 lg:gap-12 mb-10 md:mb-16">
           {/* Brand Info with 3-click trigger */}
-          <div className="md:col-span-4 lg:col-span-4 space-y-4">
+          <div className="col-span-2 md:col-span-4 lg:col-span-4 space-y-4">
             <LogoClickHandler id="footer-brand-logo" className="inline-block">
               <LogoDisplay 
                 size="md" 
@@ -32,16 +42,36 @@ export const Footer: React.FC<FooterProps> = ({ onOpenWholesale }) => {
             <p className="text-xs sm:text-sm text-[#78716C] dark:text-[#A8A29E] font-light max-w-xs pt-2 whitespace-pre-line">
               {content.footer?.tagline || 'Quality food. Personal service.\nProudly Palawan.'}
             </p>
-            <div className="pt-2">
-              <a
-                href={content.footer?.instagramUrl || 'https://instagram.com'}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center space-x-1.5 text-xs text-[#78716C] dark:text-[#A8A29E] hover:text-[#1C1917] dark:hover:text-white transition-colors"
-              >
-                <Instagram className="w-3.5 h-3.5 text-[#A8A29E] dark:text-[#78716C]" />
-                <span>{content.footer?.instagramHandle || '@jaycee.tradingservices'}</span>
-              </a>
+            <div className="pt-2 flex items-center gap-2">
+              {socialLinks.length > 0 ? (
+                socialLinks.map((link) => {
+                  const meta = SOCIAL_META[link.platform] || SOCIAL_META.facebook;
+                  const Icon = meta.Icon;
+                  return (
+                    <a
+                      key={link.id}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title={`${meta.label} — JayCee Trading & Services`}
+                      aria-label={`${meta.label} — JayCee Trading & Services`}
+                      className="inline-flex items-center justify-center w-9 h-9 rounded-full border border-[#E7E5E4] dark:border-[#292524] text-[#78716C] dark:text-[#A8A29E] hover:text-white hover:bg-[#991B1B] hover:border-[#991B1B] transition-colors"
+                    >
+                      <Icon className="w-4 h-4" />
+                    </a>
+                  );
+                })
+              ) : (
+                <a
+                  href={content.footer?.instagramUrl || 'https://instagram.com'}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center space-x-1.5 text-xs text-[#78716C] dark:text-[#A8A29E] hover:text-[#1C1917] dark:hover:text-white transition-colors"
+                >
+                  <Instagram className="w-3.5 h-3.5 text-[#A8A29E] dark:text-[#78716C]" />
+                  <span>{content.footer?.instagramHandle || '@jaycee.tradingservices'}</span>
+                </a>
+              )}
             </div>
           </div>
 
@@ -106,7 +136,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenWholesale }) => {
           </div>
 
           {/* Come Find Us */}
-          <div className="md:col-span-3 lg:col-span-3 space-y-2.5">
+          <div className="col-span-2 md:col-span-3 lg:col-span-3 space-y-2.5">
             <h4 className="text-xs font-semibold tracking-wider text-[#1C1917] dark:text-white uppercase mb-4">
               Come find us
             </h4>

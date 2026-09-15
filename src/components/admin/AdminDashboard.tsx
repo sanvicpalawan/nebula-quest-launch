@@ -23,6 +23,7 @@ import {
 import { useSiteContent } from '../../context/SiteContentContext';
 import { ImageUploadField } from './ImageUploadField';
 import { EnquiriesPanel } from './EnquiriesPanel';
+import { SocialLinksEditor } from './SocialLinksEditor';
 import type {
   CategoryItem,
   FeaturedRangeItem,
@@ -710,6 +711,22 @@ export const AdminDashboard: React.FC = () => {
                         </div>
                       ))}
                     </div>
+                  </div>
+
+                  {/* Social Media Links (shared — rendered as icons in the footer) */}
+                  <div className="pt-4 border-t border-stone-200">
+                    <p className="text-[11px] text-stone-400 mb-3">
+                      These icons appear in the site footer. Only links with a URL are shown.
+                    </p>
+                    <SocialLinksEditor
+                      links={content.footer?.socialLinks || []}
+                      onChange={(socialLinks) =>
+                        updateContent((prev) => ({
+                          ...prev,
+                          footer: { ...prev.footer, socialLinks },
+                        }))
+                      }
+                    />
                   </div>
                 </div>
               )}
@@ -2025,37 +2042,15 @@ export const AdminDashboard: React.FC = () => {
                       />
                     </div>
 
-                    <div>
-                      <label className="block text-xs font-semibold text-stone-700 mb-1">
-                        Instagram Handle
-                      </label>
-                      <input
-                        type="text"
-                        value={content.footer?.instagramHandle || ''}
-                        onChange={(e) =>
+                    <div className="sm:col-span-2">
+                      <SocialLinksEditor
+                        links={content.footer?.socialLinks || []}
+                        onChange={(socialLinks) =>
                           updateContent((prev) => ({
                             ...prev,
-                            footer: { ...prev.footer, instagramHandle: e.target.value },
+                            footer: { ...prev.footer, socialLinks },
                           }))
                         }
-                        className="w-full text-xs px-3 py-2 border border-stone-300 rounded-md font-mono"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-xs font-semibold text-stone-700 mb-1">
-                        Instagram Profile URL
-                      </label>
-                      <input
-                        type="text"
-                        value={content.footer?.instagramUrl || ''}
-                        onChange={(e) =>
-                          updateContent((prev) => ({
-                            ...prev,
-                            footer: { ...prev.footer, instagramUrl: e.target.value },
-                          }))
-                        }
-                        className="w-full text-xs px-3 py-2 border border-stone-300 rounded-md font-mono"
                       />
                     </div>
 

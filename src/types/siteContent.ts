@@ -149,6 +149,14 @@ export interface FooterLinkItem {
   href: string;
 }
 
+export type SocialPlatform = 'facebook' | 'instagram' | 'tiktok';
+
+export interface SocialLinkItem {
+  id: string;
+  platform: SocialPlatform;
+  url: string;
+}
+
 export interface FooterConfig {
   tagline: string;
   instagramHandle: string;
@@ -167,6 +175,7 @@ export interface FooterConfig {
   termsText: string;
   exploreLinks?: FooterLinkItem[];
   productRanges?: FooterLinkItem[];
+  socialLinks?: SocialLinkItem[];
 }
 
 export interface CustomSectionItem {

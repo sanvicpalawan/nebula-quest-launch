@@ -184,6 +184,11 @@ export const DEFAULT_SITE_CONTENT: SiteContentState = {
     tagline: 'Quality food. Personal service.\nProudly Palawan.',
     instagramHandle: '@jaycee.tradingservices',
     instagramUrl: 'https://instagram.com',
+    socialLinks: [
+      { id: 'soc-facebook', platform: 'facebook', url: '' },
+      { id: 'soc-instagram', platform: 'instagram', url: 'https://instagram.com' },
+      { id: 'soc-tiktok', platform: 'tiktok', url: '' },
+    ],
     email: 'info@jayceetrading.com',
     phone: PHONE_NUMBER,
     phoneTel: PHONE_TEL,
