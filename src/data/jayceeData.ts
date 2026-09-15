@@ -11,35 +11,35 @@ export const CATEGORIES: ProductCategory[] = [
     id: 'meats',
     name: 'Meats',
     subTitle: 'Beef · Pork · Specialty cuts',
-    image: 'https://images.unsplash.com/photo-1603048588665-791ca8aea617?auto=format&fit=crop&w=800&q=80',
+    image: '',
     count: '32 items',
   },
   {
     id: 'seafood',
     name: 'Seafood',
     subTitle: 'Fish fillets · Shellfish',
-    image: 'https://images.unsplash.com/photo-1534939561126-855b8675edd7?auto=format&fit=crop&w=800&q=80',
+    image: '',
     count: '24 items',
   },
   {
     id: 'dairy',
     name: 'Dairy & Cheese',
     subTitle: 'Milk · Cream · Yogurt · Cheese',
-    image: 'https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?auto=format&fit=crop&w=800&q=80',
+    image: '',
     count: '18 items',
   },
   {
     id: 'sausages',
     name: 'Sausages & Cold Cuts',
     subTitle: 'Deli meats · Bacon · Sausages',
-    image: 'https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?auto=format&fit=crop&w=800&q=80',
+    image: '',
     count: '20 items',
   },
   {
     id: 'frozen',
     name: 'Frozen & Fries',
     subTitle: 'Fries · Hash browns · Appetizers',
-    image: 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=800&q=80',
+    image: '',
     count: '15 items',
   },
 ];
@@ -50,7 +50,7 @@ export const FEATURED_RANGES: FeaturedRange[] = [
     badge: 'SELECTED CUTS',
     title: 'Imported & specialty meats',
     subtitle: 'Wagyu, Angus, pork cuts & artisanal poultry curated for high-temperature sear and unmatched tenderness.',
-    image: 'https://images.unsplash.com/photo-1603048588665-791ca8aea617?auto=format&fit=crop&w=1200&q=80',
+    image: '',
     linkText: 'Explore the range',
   },
   {
@@ -58,7 +58,7 @@ export const FEATURED_RANGES: FeaturedRange[] = [
     badge: 'FROM THE SEA',
     title: 'Frozen seafood',
     subtitle: 'Flash-frozen salmon, seabass, prawns and scallops preserving cold-ocean flavor and texture.',
-    image: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=1200&q=80',
+    image: '',
     linkText: 'Explore the range',
   },
   {
@@ -66,7 +66,7 @@ export const FEATURED_RANGES: FeaturedRange[] = [
     badge: 'KITCHEN FAVOURITES',
     title: 'Dairy & cheese',
     subtitle: 'Imported cheddar, gouda, mozzarella, whipping creams and European cultured butters.',
-    image: 'https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?auto=format&fit=crop&w=1200&q=80',
+    image: '',
     linkText: 'Explore the range',
   },
 ];
@@ -87,19 +87,19 @@ export const EVERYDAY_ESSENTIALS = [
     id: 'ess-1',
     title: 'Sausages & cold cuts',
     subTitle: 'Deli meats · Bacon · Sausages',
-    image: 'https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?auto=format&fit=crop&w=800&q=80',
+    image: '',
   },
   {
     id: 'ess-2',
     title: 'Frozen essentials',
     subTitle: 'Fries · Hash browns · Appetizers',
-    image: 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=800&q=80',
+    image: '',
   },
   {
     id: 'ess-3',
     title: 'Baking & pantry',
     subTitle: 'Baking essentials · Canned goods',
-    image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80',
+    image: '',
   },
 ];
 
@@ -150,27 +150,27 @@ export const FAQS: FAQItem[] = [
 
 export const RIBBON_IMAGES = [
   {
-    url: 'https://images.unsplash.com/photo-1603048588665-791ca8aea617?auto=format&fit=crop&w=600&q=80',
+    url: '',
     alt: 'Prime marbled steak cuts',
   },
   {
-    url: 'https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?auto=format&fit=crop&w=600&q=80',
+    url: '',
     alt: 'Artisan cheeses and milk pitcher',
   },
   {
-    url: 'https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?auto=format&fit=crop&w=600&q=80',
+    url: '',
     alt: 'Sizzling deli sausages in pan',
   },
   {
-    url: 'https://images.unsplash.com/photo-1534939561126-855b8675edd7?auto=format&fit=crop&w=600&q=80',
+    url: '',
     alt: 'Gourmet plated seafood fish dish',
   },
   {
-    url: 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=600&q=80',
+    url: '',
     alt: 'Golden crispy french fries',
   },
   {
-    url: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80',
+    url: '',
     alt: 'Baking pastry dough and flour',
   },
 ];

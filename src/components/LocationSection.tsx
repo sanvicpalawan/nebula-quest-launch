@@ -7,12 +7,16 @@ import {
   GOOGLE_MAPS_DIRECTIONS_URL,
   TRAVEL_TIMES,
 } from '../data/jayceeData';
+import { useSiteContent } from '../context/SiteContentContext';
 
 interface LocationSectionProps {
   onOpenMapModal?: () => void;
 }
 
 export const LocationSection: React.FC<LocationSectionProps> = ({ onOpenMapModal }) => {
+  const { content } = useSiteContent();
+  const storefrontImage = content.location.storefrontImage;
+
   return (
     <section id="location" className="py-20 md:py-28 bg-white dark:bg-[#141212] border-t border-[#F5F5F4] dark:border-[#262322] transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -20,12 +24,15 @@ export const LocationSection: React.FC<LocationSectionProps> = ({ onOpenMapModal
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center mb-16 md:mb-24">
           {/* Left Column: Real Store Front Facade Image */}
           <div className="lg:col-span-6 relative aspect-[4/3] rounded-lg overflow-hidden bg-[#F5F5F4] dark:bg-[#23201F] shadow-xs">
-            <img
-              src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80"
-              alt="JayCee Trading and Services storefront at B.M. Road, Puerto Princesa"
-              loading="lazy"
-              className="w-full h-full object-cover object-center"
-            />
+            {storefrontImage?.trim() ? (
+              <img
+                src={storefrontImage}
+                alt="JayCee Trading and Services storefront at B.M. Road, Puerto Princesa"
+                loading="lazy"
+                className="w-full h-full object-cover object-center"
+              />
+            ) : null}
+
             {/* Subtle brand tag in image */}
             <div className="absolute top-4 left-4 bg-black/75 backdrop-blur-xs text-white text-[10px] font-medium tracking-wider uppercase px-2.5 py-1 rounded">
               B.M. Road Storefront

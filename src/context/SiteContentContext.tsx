@@ -77,33 +77,33 @@ function mergeContent(parsed: any): SiteContentState {
           categories: (parsed.categories?.length ? parsed.categories : DEFAULT_SITE_CONTENT.categories).map(
             (c: any, idx: number) => ({
               ...c,
-              image: c.image?.trim() || DEFAULT_SITE_CONTENT.categories[idx]?.image || 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80',
+              image: c.image?.trim() || DEFAULT_SITE_CONTENT.categories[idx]?.image || '',
             })
           ),
           featuredRanges: (parsed.featuredRanges?.length ? parsed.featuredRanges : DEFAULT_SITE_CONTENT.featuredRanges).map(
             (f: any, idx: number) => ({
               ...f,
-              image: f.image?.trim() || DEFAULT_SITE_CONTENT.featuredRanges[idx]?.image || 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80',
+              image: f.image?.trim() || DEFAULT_SITE_CONTENT.featuredRanges[idx]?.image || '',
             })
           ),
           partners: parsed.partners?.length ? parsed.partners : DEFAULT_SITE_CONTENT.partners,
           editorialStories: (parsed.editorialStories?.length ? parsed.editorialStories : DEFAULT_SITE_CONTENT.editorialStories).map(
             (s: any, idx: number) => ({
               ...s,
-              image: s.image?.trim() || DEFAULT_SITE_CONTENT.editorialStories[idx]?.image || 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80',
+              image: s.image?.trim() || DEFAULT_SITE_CONTENT.editorialStories[idx]?.image || '',
             })
           ),
           essentials: (parsed.essentials?.length ? parsed.essentials : DEFAULT_SITE_CONTENT.essentials).map(
             (e: any, idx: number) => ({
               ...e,
-              image: e.image?.trim() || DEFAULT_SITE_CONTENT.essentials[idx]?.image || 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80',
+              image: e.image?.trim() || DEFAULT_SITE_CONTENT.essentials[idx]?.image || '',
             })
           ),
           faqs: parsed.faqs?.length ? parsed.faqs : DEFAULT_SITE_CONTENT.faqs,
           ribbonImages: (parsed.ribbonImages?.length ? parsed.ribbonImages : DEFAULT_SITE_CONTENT.ribbonImages).map(
             (r: any, idx: number) => ({
               ...r,
-              url: r.url?.trim() || DEFAULT_SITE_CONTENT.ribbonImages[idx]?.url || 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80',
+              url: r.url?.trim() || DEFAULT_SITE_CONTENT.ribbonImages[idx]?.url || '',
             })
           ),
           customSections: parsed.customSections || [],

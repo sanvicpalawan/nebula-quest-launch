@@ -37,9 +37,10 @@ export const ImageUploadField: React.FC<ImageUploadFieldProps> = ({
       const result = uploadEvent.target?.result;
       if (typeof result !== 'string') return;
       if (!adminPasskey) {
-        onChange(result);
+        alert('Please sign in again before uploading images.');
         return;
       }
+
       setUploading(true);
       try {
         const { url } = await uploadSiteImage({
