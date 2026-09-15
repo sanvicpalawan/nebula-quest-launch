@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Menu, X, ArrowUpRight, Moon, Sun, Phone, ShieldCheck } from 'lucide-react';
-import { JayCeeLogo } from './JayCeeLogo';
+import { LogoDisplay } from './LogoDisplay';
 import { LogoClickHandler } from './LogoClickHandler';
 import { useSiteContent } from '../context/SiteContentContext';
 
@@ -53,7 +53,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenWholesale }) => {
 
           {/* Center Brand Identity / Logo with 3-click Admin handler */}
           <LogoClickHandler id="brand-logo-home" className="flex items-center justify-center group focus:outline-none">
-            <JayCeeLogo size="md" variant="full" src={content.header.logoUrl} />
+            <LogoDisplay 
+              size="md" 
+              src={content.header.logoUrl}
+              isDarkMode={isDarkMode}
+            />
           </LogoClickHandler>
 
           {/* Desktop Right Nav Links & Actions */}
@@ -82,7 +86,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenWholesale }) => {
               <button
                 type="button"
                 onClick={openAdminPanel}
-                className="inline-flex items-center space-x-1 text-xs bg-amber-50 dark:bg-amber-950/50 text-amber-900 dark:text-amber-300 border border-amber-300 dark:border-amber-800 px-2 py-1 rounded hover:bg-amber-100 dark:hover:bg-amber-900/40 transition-colors"
+                className="inline-flex items-center space-x-1 text-xs bg-amber-50 dark:bg-amber-950/50 text-amber-900 dark:text-amber-300 border border-amber-300 dark:border-amber-800 px-2 py-1 rounded"
                 title="Open Admin Backoffice"
               >
                 <ShieldCheck className="w-3.5 h-3.5 text-amber-700 dark:text-amber-400" />
@@ -150,7 +154,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenWholesale }) => {
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div id="mobile-navigation-drawer" className="md:hidden border-t border-[#E7E5E4] dark:border-[#262322] bg-white dark:bg-[#181615] px-4 pt-3 pb-6 space-y-3 animate-in fade-in slide-in-from-top-4 duration-200">
+        <div id="mobile-navigation-drawer" className="md:hidden border-t border-[#E7E5E4] dark:border-[#262322] bg-white dark:bg-[#181615] px-4 pt-3 pb-6 space-y-3 animate-in fade-in slide-in-from-top-2">
           <div className="grid grid-cols-2 gap-2 pb-3 border-b border-[#F5F5F4] dark:border-[#262322]">
             {allLinks.map((item) => (
               <a
@@ -192,7 +196,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenWholesale }) => {
             )}
             <button
               onClick={toggleDarkMode}
-              className="flex items-center text-xs text-[#78716C] dark:text-[#D6D3D1] px-2.5 py-1.5 bg-[#F5F5F4] dark:bg-[#23201F] hover:bg-[#E7E5E4] dark:hover:bg-[#2C2826] rounded transition-colors cursor-pointer"
+              className="flex items-center text-xs text-[#78716C] dark:text-[#D6D3D1] px-2.5 py-1.5 bg-[#F5F5F4] dark:bg-[#23201F] hover:bg-[#E7E5E4] dark:hover:bg-[#2C2826] rounded transition-colors"
             >
               {isDarkMode ? <Sun className="w-3.5 h-3.5 mr-1 text-amber-400" /> : <Moon className="w-3.5 h-3.5 mr-1" />}
               <span>{isDarkMode ? 'Light mode' : 'Dark mode'}</span>
@@ -215,4 +219,3 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenWholesale }) => {
     </header>
   );
 };
-
