@@ -1,8 +1,12 @@
 import React from 'react';
 import { ArrowUpRight } from 'lucide-react';
-import { EVERYDAY_ESSENTIALS, ORDER_ONLINE_URL } from '../data/jayceeData';
+import { useSiteContent } from '../context/SiteContentContext';
 
 export const EssentialsGrid: React.FC = () => {
+  const { content } = useSiteContent();
+  const essentials = content.essentials;
+  const ORDER_ONLINE_URL = content.header.orderOnlineUrl;
+
   return (
     <section id="essentials" className="py-16 md:py-24 bg-white dark:bg-[#141212] border-t border-[#F5F5F4] dark:border-[#262322] transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -31,10 +35,10 @@ export const EssentialsGrid: React.FC = () => {
 
         {/* 3 Column Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-          {EVERYDAY_ESSENTIALS.map((item, idx) => (
+          {essentials.map((item, idx) => (
             <a
               key={item.id}
-              href={ORDER_ONLINE_URL}
+              href={item.linkUrl?.trim() || ORDER_ONLINE_URL}
               target="_blank"
               rel="noopener noreferrer"
               id={`essential-card-${idx}`}
