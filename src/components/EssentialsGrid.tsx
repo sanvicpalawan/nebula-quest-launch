@@ -35,7 +35,7 @@ export const EssentialsGrid: React.FC = () => {
 
         {/* 3 Column Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-          {EVERYDAY_ESSENTIALS.map((item, idx) => (
+          {essentials.map((item, idx) => (
             <a
               key={item.id}
               href={ORDER_ONLINE_URL}
