@@ -1,8 +1,12 @@
 import React from 'react';
 import { ArrowUpRight } from 'lucide-react';
-import { EVERYDAY_ESSENTIALS, ORDER_ONLINE_URL } from '../data/jayceeData';
+import { useSiteContent } from '../context/SiteContentContext';
 
 export const EssentialsGrid: React.FC = () => {
+  const { content } = useSiteContent();
+  const essentials = content.essentials;
+  const ORDER_ONLINE_URL = content.header.orderOnlineUrl;
+
   return (
     <section id="essentials" className="py-16 md:py-24 bg-white dark:bg-[#141212] border-t border-[#F5F5F4] dark:border-[#262322] transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
