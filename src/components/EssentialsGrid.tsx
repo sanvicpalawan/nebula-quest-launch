@@ -38,7 +38,7 @@ export const EssentialsGrid: React.FC = () => {
           {essentials.map((item, idx) => (
             <a
               key={item.id}
-              href={ORDER_ONLINE_URL}
+              href={item.linkUrl?.trim() || ORDER_ONLINE_URL}
               target="_blank"
               rel="noopener noreferrer"
               id={`essential-card-${idx}`}
