@@ -230,7 +230,7 @@ export const JayCeeLogo: React.FC<JayCeeLogoProps> = ({
           >
             <span className="text-[#F59E0B]">JAY</span>
             <span className="text-[#DC2626]">C</span>
-            <span className={inverted ? 'text-white' : 'text-[#111827] dark:text-white'}>EE</span>
+            <span className={inverted ? 'text-white' : 'text-[#111827]'}>EE</span>
           </div>
 
           {/* Slanted Parallelogram Banner: TRADING AND SERVICES */}
@@ -243,7 +243,7 @@ export const JayCeeLogo: React.FC<JayCeeLogoProps> = ({
           >
             <div
               className={`-skew-x-12 ${
-                inverted ? 'bg-white text-black' : 'bg-black text-white dark:bg-white dark:text-black'
+                inverted ? 'bg-white text-black' : 'bg-black text-white'
               } ${config.bannerPad} shadow-2xs`}
             >
               <div

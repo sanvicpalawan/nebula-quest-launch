@@ -4,14 +4,14 @@ import { ORDER_ONLINE_URL } from '../data/jayceeData';
 
 export const PreFooterCTA: React.FC = () => {
   return (
-    <section className="py-16 md:py-20 bg-white dark:bg-[#141212] border-t border-[#E7E5E4] dark:border-[#262322] transition-colors">
+    <section className="py-16 md:py-20 bg-white border-t border-[#E7E5E4] transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div>
-            <span className="text-xs font-semibold tracking-[0.2em] text-[#78716C] dark:text-[#A8A29E] uppercase block mb-2">
+            <span className="text-xs font-semibold tracking-[0.2em] text-[#78716C] uppercase block mb-2">
               YOUR NEXT ORDER STARTS HERE
             </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-[#1C1917] dark:text-white tracking-tight leading-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-[#1C1917] tracking-tight leading-tight">
               Let&apos;s keep your <span className="italic font-normal">kitchen supplied.</span>
             </h2>
           </div>

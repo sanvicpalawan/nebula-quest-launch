@@ -6,7 +6,7 @@ export const FeaturedRanges: React.FC = () => {
   const { content } = useSiteContent();
 
   return (
-    <section id="featured-ranges" className="w-full bg-[#FAFAFA] dark:bg-[#121110] pb-16 md:pb-24 transition-colors">
+    <section id="featured-ranges" className="w-full bg-[#FAFAFA] pb-16 md:pb-24 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6">
           {(content.featuredRanges || []).map((item, index) => (

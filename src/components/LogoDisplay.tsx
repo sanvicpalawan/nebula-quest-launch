@@ -4,20 +4,18 @@ interface LogoDisplayProps {
   className?: string;
   size?: 'sm' | 'md' | 'lg' | 'xl';
   src?: string;
-  isDarkMode?: boolean;
   variant?: 'full' | 'compact' | 'icon-only';
 }
 
 /**
  * LogoDisplay - Unified logo component for header, footer, and admin
- * Handles transparent PNGs/SVGs with dark/light mode contrast
+ * Handles transparent PNGs/SVGs (light background)
  * Ensures consistent display across all devices
  */
 export const LogoDisplay: React.FC<LogoDisplayProps> = ({
   className = '',
   size = 'md',
   src,
-  isDarkMode = false,
   variant = 'full',
 }) => {
   const sizeConfig = {
@@ -42,11 +40,7 @@ export const LogoDisplay: React.FC<LogoDisplayProps> = ({
           flex items-center justify-center
           rounded-lg
           transition-all duration-200
-          ${
-            isDarkMode
-              ? 'bg-gradient-to-br from-[#1a1a1a]/0 to-[#2d2d2d]/0'
-              : 'bg-gradient-to-br from-white/0 to-gray-50/0'
-          }
+          bg-gradient-to-br from-white/0 to-gray-50/0
         `}
       >
         <img
@@ -56,7 +50,7 @@ export const LogoDisplay: React.FC<LogoDisplayProps> = ({
             ${sizeConfig.height} ${sizeConfig.width}
             block object-contain
             bg-transparent
-            ${isDarkMode ? 'brightness-110 contrast-110' : 'brightness-100'}
+            brightness-100
             drop-shadow-sm
             transition-all duration-300
             hover:drop-shadow-md

@@ -65,7 +65,7 @@ export const CustomSectionsRenderer: React.FC = () => {
           <section
             key={section.id}
             id={`custom-section-${section.id}`}
-            className="py-16 md:py-24 bg-white dark:bg-[#141212] border-t border-stone-100 dark:border-[#262322] transition-colors"
+            className="py-16 md:py-24 bg-white border-t border-stone-100 transition-colors"
           >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div
@@ -76,14 +76,14 @@ export const CustomSectionsRenderer: React.FC = () => {
                 {/* Content */}
                 <div className={isImageRight ? 'order-1' : 'order-2 md:order-1'}>
                   {section.eyebrow && (
-                    <span className="text-xs font-semibold tracking-[0.2em] text-[#78716C] dark:text-[#A8A29E] uppercase block mb-3">
+                    <span className="text-xs font-semibold tracking-[0.2em] text-[#78716C] uppercase block mb-3">
                       {section.eyebrow}
                     </span>
                   )}
-                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-stone-900 dark:text-white leading-tight mb-4">
+                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-stone-900 leading-tight mb-4">
                     {section.title}
                   </h2>
-                  <p className="text-sm sm:text-base text-stone-600 dark:text-[#D6D3D1] leading-relaxed mb-6 font-light">
+                  <p className="text-sm sm:text-base text-stone-600 leading-relaxed mb-6 font-light">
                     {section.content}
                   </p>
                   {section.ctaText && (
@@ -103,7 +103,7 @@ export const CustomSectionsRenderer: React.FC = () => {
                   <div
                     className={`${
                       isImageRight ? 'order-2' : 'order-1 md:order-2'
-                    } relative aspect-[4/3] rounded-lg overflow-hidden bg-stone-100 dark:bg-stone-800 shadow-xs`}
+                    } relative aspect-[4/3] rounded-lg overflow-hidden bg-stone-100 shadow-xs`}
                   >
                     <img
                       src={section.imageUrl}

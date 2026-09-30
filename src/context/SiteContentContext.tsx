@@ -4,7 +4,6 @@ import { DEFAULT_SITE_CONTENT } from '../data/defaultSiteContent';
 import { getSiteContent, saveSiteContent, verifyPasskey } from '../lib/site.functions';
 
 const AUTH_KEY = 'jaycee_admin_auth_v1';
-const THEME_MODE_KEY = 'jaycee_theme_mode_v1';
 
 interface SiteContentContextType {
   content: SiteContentState;
@@ -20,8 +19,6 @@ interface SiteContentContextType {
   isAdminPanelOpen: boolean;
   openAdminPanel: () => void;
   closeAdminPanel: () => void;
-  isDarkMode: boolean;
-  toggleDarkMode: () => void;
   isSaving: boolean;
 }
 
@@ -141,36 +138,6 @@ export const SiteContentProvider: React.FC<{ children: React.ReactNode }> = ({ c
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isAdminPanelOpen, setIsAdminPanelOpen] = useState(false);
 
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
-    try {
-      const savedMode = localStorage.getItem(THEME_MODE_KEY);
-      if (savedMode !== null) {
-        return savedMode === 'dark';
-      }
-      return typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    } catch {
-      return false;
-    }
-  });
-
-  // Sync dark mode class on document.documentElement
-  useEffect(() => {
-    try {
-      localStorage.setItem(THEME_MODE_KEY, isDarkMode ? 'dark' : 'light');
-    } catch (e) {
-      console.error('Failed to save theme mode to localStorage:', e);
-    }
-    const root = document.documentElement;
-    if (isDarkMode) {
-      root.classList.add('dark');
-    } else {
-      root.classList.remove('dark');
-    }
-  }, [isDarkMode]);
-
-  const toggleDarkMode = () => {
-    setIsDarkMode((prev) => !prev);
-  };
 
   // Load the shared content saved in the cloud
   useEffect(() => {
@@ -296,8 +263,6 @@ export const SiteContentProvider: React.FC<{ children: React.ReactNode }> = ({ c
         isAdminPanelOpen,
         openAdminPanel,
         closeAdminPanel,
-        isDarkMode,
-        toggleDarkMode,
         isSaving,
       }}
     >

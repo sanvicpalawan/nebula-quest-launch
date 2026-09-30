@@ -82,7 +82,7 @@ export const CategoryDetailModal: React.FC<CategoryDetailModalProps> = ({ catego
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-in fade-in duration-200">
       <div
-        className="relative w-full max-w-xl bg-white dark:bg-[#1C1917] rounded-xl shadow-2xl overflow-hidden text-[#1C1917] dark:text-[#F5F5F4] border border-transparent dark:border-[#2E2B29]"
+        className="relative w-full max-w-xl bg-white rounded-xl shadow-2xl overflow-hidden text-[#1C1917] border border-transparent"
         role="dialog"
         aria-modal="true"
       >
@@ -112,26 +112,26 @@ export const CategoryDetailModal: React.FC<CategoryDetailModalProps> = ({ catego
         </div>
 
         <div className="p-6 sm:p-7 space-y-5">
-          <p className="text-xs sm:text-sm text-[#57534E] dark:text-[#D6D3D1] leading-relaxed font-light">
+          <p className="text-xs sm:text-sm text-[#57534E] leading-relaxed font-light">
             {currentDetails.description}
           </p>
 
           <div>
-            <span className="text-xs font-semibold tracking-wider text-[#1C1917] dark:text-white uppercase block mb-2.5">
+            <span className="text-xs font-semibold tracking-wider text-[#1C1917] uppercase block mb-2.5">
               Available Cuts & Varieties
             </span>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {currentDetails.items.map((item) => (
-                <div key={item} className="flex items-center space-x-2 text-xs text-[#44403C] dark:text-[#D6D3D1]">
-                  <Check className="w-3.5 h-3.5 text-[#991B1B] dark:text-[#F87171] shrink-0" />
+                <div key={item} className="flex items-center space-x-2 text-xs text-[#44403C]">
+                  <Check className="w-3.5 h-3.5 text-[#991B1B] shrink-0" />
                   <span>{item}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="pt-4 border-t border-[#E7E5E4] dark:border-[#2E2B29] flex flex-col sm:flex-row items-center justify-between gap-3">
-            <span className="text-xs text-[#78716C] dark:text-[#A8A29E] text-center sm:text-left">
+          <div className="pt-4 border-t border-[#E7E5E4] flex flex-col sm:flex-row items-center justify-between gap-3">
+            <span className="text-xs text-[#78716C] text-center sm:text-left">
               Current stock and live pricing available online
             </span>
             <a

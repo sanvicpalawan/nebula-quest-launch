@@ -36,7 +36,7 @@ const MarqueeRow: React.FC<{ reverse?: boolean }> = ({ reverse }) => {
       {doubled.map((logo, i) => (
         <div
           key={`${logo.alt}-${i}`}
-          className="flex h-10 min-w-[90px] shrink-0 items-center justify-center md:h-14 md:min-w-[130px] dark:brightness-110"
+          className="flex h-10 min-w-[90px] shrink-0 items-center justify-center md:h-14 md:min-w-[130px]"
           title={logo.alt}
         >
           <img
@@ -53,30 +53,30 @@ const MarqueeRow: React.FC<{ reverse?: boolean }> = ({ reverse }) => {
 
 export const PartnerLogos: React.FC = () => {
   return (
-    <section id="partners" className="py-14 md:py-18 bg-white dark:bg-[#141212] border-y border-[#F5F5F4] dark:border-[#262322] transition-colors">
+    <section id="partners" className="py-14 md:py-18 bg-white border-y border-[#F5F5F4] transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="flex flex-col items-center justify-center text-center relative mb-10">
-          <span className="text-[11px] font-semibold tracking-[0.25em] text-[#78716C] dark:text-[#A8A29E] uppercase block mb-1">
+          <span className="text-[11px] font-semibold tracking-[0.25em] text-[#78716C] uppercase block mb-1">
             IN GOOD COMPANY
           </span>
-          <h2 className="text-xl sm:text-2xl font-serif text-[#1C1917] dark:text-white font-normal">
+          <h2 className="text-xl sm:text-2xl font-serif text-[#1C1917] font-normal">
             Trusted by Palawan&apos;s leading kitchens.
           </h2>
 
           {/* Subtle audio / ambient indicator symbol from design */}
-          <div className="absolute right-0 top-1 hidden md:block text-[#A8A29E] dark:text-[#78716C]" title="Verified local partner network">
+          <div className="absolute right-0 top-1 hidden md:block text-[#A8A29E]" title="Verified local partner network">
             <Volume2 className="w-4 h-4" />
           </div>
         </div>
       </div>
 
       {/* Motion logo marquee — background matches the section (light/dark) so it reads as one surface */}
-      <div className="partner-marquee-track relative flex overflow-hidden bg-white dark:bg-[#141212]">
+      <div className="partner-marquee-track relative flex overflow-hidden bg-white">
         <MarqueeRow />
       </div>
-      <div className="h-6 md:h-8 bg-white dark:bg-[#141212]" />
-      <div className="partner-marquee-track relative flex overflow-hidden bg-white dark:bg-[#141212]">
+      <div className="h-6 md:h-8 bg-white" />
+      <div className="partner-marquee-track relative flex overflow-hidden bg-white">
         <MarqueeRow reverse />
       </div>
     </section>

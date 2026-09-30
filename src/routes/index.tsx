@@ -54,7 +54,7 @@ function MainSite() {
   const handleOpenMap = () => setMapModalOpen(true);
 
   return (
-    <div className="min-h-screen bg-[#FAFAFA] dark:bg-[#121110] text-[#1C1917] dark:text-[#F5F5F4] font-sans antialiased selection:bg-[#991B1B] selection:text-white flex flex-col justify-between transition-colors duration-200">
+    <div className="min-h-screen bg-[#FAFAFA] text-[#1C1917] font-sans antialiased selection:bg-[#991B1B] selection:text-white flex flex-col justify-between transition-colors duration-200">
       <TopBar />
       <Navbar onOpenWholesale={handleOpenWholesale} />
 

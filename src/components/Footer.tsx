@@ -17,7 +17,7 @@ interface FooterProps {
 }
 
 export const Footer: React.FC<FooterProps> = ({ onOpenWholesale }) => {
-  const { content, openLoginModal, isAdminLoggedIn, openAdminPanel, isDarkMode } = useSiteContent();
+  const { content, openLoginModal, isAdminLoggedIn, openAdminPanel } = useSiteContent();
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -26,7 +26,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenWholesale }) => {
   const socialLinks = (content.footer?.socialLinks || []).filter((link) => link.url?.trim());
 
   return (
-    <footer id="contact" className="bg-white dark:bg-[#121110] border-t border-[#E7E5E4] dark:border-[#262322] text-[#1C1917] dark:text-[#F5F5F4] pt-10 pb-8 md:pt-16 md:pb-12 transition-colors">
+    <footer id="contact" className="bg-white border-t border-[#E7E5E4] text-[#1C1917] pt-10 pb-8 md:pt-16 md:pb-12 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Footer Content Grid — 2 columns on phones/tablets for a uniform, compact layout */}
         <div className="grid grid-cols-2 md:grid-cols-12 gap-x-6 gap-y-8 md:gap-10 lg:gap-12 mb-10 md:mb-16">
@@ -36,10 +36,9 @@ export const Footer: React.FC<FooterProps> = ({ onOpenWholesale }) => {
               <LogoDisplay 
                 size="md" 
                 src={content.header.logoUrl}
-                isDarkMode={isDarkMode}
               />
             </LogoClickHandler>
-            <p className="text-xs sm:text-sm text-[#78716C] dark:text-[#A8A29E] font-light max-w-xs pt-2 whitespace-pre-line">
+            <p className="text-xs sm:text-sm text-[#78716C] font-light max-w-xs pt-2 whitespace-pre-line">
               {content.footer?.tagline || 'Quality food. Personal service.\nProudly Palawan.'}
             </p>
             <div className="pt-2 flex items-center gap-2">
@@ -55,7 +54,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenWholesale }) => {
                       rel="noopener noreferrer"
                       title={`${meta.label} — JayCee Trading & Services`}
                       aria-label={`${meta.label} — JayCee Trading & Services`}
-                      className="inline-flex items-center justify-center w-9 h-9 rounded-full border border-[#E7E5E4] dark:border-[#292524] text-[#78716C] dark:text-[#A8A29E] hover:text-white hover:bg-[#991B1B] hover:border-[#991B1B] transition-colors"
+                      className="inline-flex items-center justify-center w-9 h-9 rounded-full border border-[#E7E5E4] text-[#78716C] hover:text-white hover:bg-[#991B1B] hover:border-[#991B1B] transition-colors"
                     >
                       <Icon className="w-4 h-4" />
                     </a>
@@ -66,9 +65,9 @@ export const Footer: React.FC<FooterProps> = ({ onOpenWholesale }) => {
                   href={content.footer?.instagramUrl || 'https://instagram.com'}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center space-x-1.5 text-xs text-[#78716C] dark:text-[#A8A29E] hover:text-[#1C1917] dark:hover:text-white transition-colors"
+                  className="inline-flex items-center space-x-1.5 text-xs text-[#78716C] hover:text-[#1C1917] transition-colors"
                 >
-                  <Instagram className="w-3.5 h-3.5 text-[#A8A29E] dark:text-[#78716C]" />
+                  <Instagram className="w-3.5 h-3.5 text-[#A8A29E]" />
                   <span>{content.footer?.instagramHandle || '@jaycee.tradingservices'}</span>
                 </a>
               )}
@@ -77,7 +76,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenWholesale }) => {
 
           {/* Explore Links */}
           <div className="md:col-span-2 lg:col-span-2">
-            <h4 className="text-xs font-semibold tracking-wider text-[#1C1917] dark:text-white uppercase mb-4">
+            <h4 className="text-xs font-semibold tracking-wider text-[#1C1917] uppercase mb-4">
               Explore
             </h4>
             <ul className="space-y-2.5">
@@ -98,7 +97,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenWholesale }) => {
                         onOpenWholesale();
                       }
                     }}
-                    className="text-xs sm:text-sm text-[#78716C] dark:text-[#A8A29E] hover:text-[#991B1B] dark:hover:text-[#F87171] transition-colors"
+                    className="text-xs sm:text-sm text-[#78716C] hover:text-[#991B1B] transition-colors"
                   >
                     {link.label}
                   </a>
@@ -109,7 +108,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenWholesale }) => {
 
           {/* Product Range */}
           <div className="md:col-span-3 lg:col-span-3">
-            <h4 className="text-xs font-semibold tracking-wider text-[#1C1917] dark:text-white uppercase mb-4">
+            <h4 className="text-xs font-semibold tracking-wider text-[#1C1917] uppercase mb-4">
               Product range
             </h4>
             <ul className="space-y-2.5">
@@ -126,7 +125,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenWholesale }) => {
                     href={range.href || content.header?.orderOnlineUrl || '#'}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs sm:text-sm text-[#78716C] dark:text-[#A8A29E] hover:text-[#991B1B] dark:hover:text-[#F87171] transition-colors inline-flex items-center group"
+                    className="text-xs sm:text-sm text-[#78716C] hover:text-[#991B1B] transition-colors inline-flex items-center group"
                   >
                     <span>{range.label}</span>
                   </a>
@@ -137,23 +136,23 @@ export const Footer: React.FC<FooterProps> = ({ onOpenWholesale }) => {
 
           {/* Come Find Us */}
           <div className="col-span-2 md:col-span-3 lg:col-span-3 space-y-2.5">
-            <h4 className="text-xs font-semibold tracking-wider text-[#1C1917] dark:text-white uppercase mb-4">
+            <h4 className="text-xs font-semibold tracking-wider text-[#1C1917] uppercase mb-4">
               Come find us
             </h4>
-            <p className="text-xs sm:text-sm text-[#78716C] dark:text-[#A8A29E] font-light leading-relaxed">
+            <p className="text-xs sm:text-sm text-[#78716C] font-light leading-relaxed">
               {content.footer?.address || 'National Highway, Brgy. San Pedro, Puerto Princesa, Palawan'}
             </p>
-            <p className="text-xs sm:text-sm text-[#1C1917] dark:text-[#F5F5F4] font-medium">
-              <a href={content.header?.phoneTel || 'tel:+639171234567'} className="hover:text-[#991B1B] dark:hover:text-[#F87171] transition-colors">
+            <p className="text-xs sm:text-sm text-[#1C1917] font-medium">
+              <a href={content.header?.phoneTel || 'tel:+639171234567'} className="hover:text-[#991B1B] transition-colors">
                 {content.header?.phone || '+63 917 123 4567'}
               </a>
             </p>
-            <p className="text-xs sm:text-sm text-[#78716C] dark:text-[#A8A29E]">
-              <a href={`mailto:${content.footer?.email || 'info@jayceetrading.com'}`} className="hover:text-[#1C1917] dark:hover:text-white">
+            <p className="text-xs sm:text-sm text-[#78716C]">
+              <a href={`mailto:${content.footer?.email || 'info@jayceetrading.com'}`} className="hover:text-[#1C1917]">
                 {content.footer?.email || 'info@jayceetrading.com'}
               </a>
             </p>
-            <div className="pt-1 text-xs text-[#78716C] dark:text-[#A8A29E] font-light">
+            <div className="pt-1 text-xs text-[#78716C] font-light">
               <p>{content.footer?.openingHoursWeekday || content.footer?.hours || 'Monday–Saturday 8am–5pm'}</p>
               <p>{content.footer?.openingHoursWeekend || content.footer?.closedDay || 'Closed Sunday'}</p>
             </div>
@@ -163,7 +162,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenWholesale }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 id="footer-get-directions-link"
-                className="inline-flex items-center space-x-1.5 text-xs font-medium text-[#1C1917] dark:text-white hover:text-[#991B1B] dark:hover:text-[#F87171] transition-colors"
+                className="inline-flex items-center space-x-1.5 text-xs font-medium text-[#1C1917] hover:text-[#991B1B] transition-colors"
               >
                 <span>Get Directions</span>
                 <MapPin className="w-3.5 h-3.5" />
@@ -173,21 +172,21 @@ export const Footer: React.FC<FooterProps> = ({ onOpenWholesale }) => {
         </div>
 
         {/* Bottom Legal & Copyright Bar */}
-        <div className="pt-8 border-t border-[#E7E5E4] dark:border-[#262322] flex flex-col sm:flex-row items-center justify-between text-[11px] sm:text-xs text-[#A8A29E] dark:text-[#78716C] gap-4">
+        <div className="pt-8 border-t border-[#E7E5E4] flex flex-col sm:flex-row items-center justify-between text-[11px] sm:text-xs text-[#A8A29E] gap-4">
           <p>{content.footer?.copyrightText || '© 2026 JayCee Trading & Services. All rights reserved.'}</p>
 
           <div className="flex items-center space-x-6">
-            <a href="#privacy" className="hover:text-[#57534E] dark:hover:text-[#D6D3D1] transition-colors">
+            <a href="#privacy" className="hover:text-[#57534E] transition-colors">
               Privacy
             </a>
-            <a href="#terms" className="hover:text-[#57534E] dark:hover:text-[#D6D3D1] transition-colors">
+            <a href="#terms" className="hover:text-[#57534E] transition-colors">
               Terms
             </a>
             {/* Direct discrete admin button for convenient access */}
             <button
               onClick={isAdminLoggedIn ? openAdminPanel : openLoginModal}
               id="footer-admin-access-btn"
-              className="text-[#A8A29E] dark:text-[#78716C] hover:text-[#78716C] dark:hover:text-[#A8A29E] transition-colors cursor-pointer text-[10px]"
+              className="text-[#A8A29E] hover:text-[#78716C] transition-colors cursor-pointer text-[10px]"
               title="Admin Portal (Triple-click Logo or click here with passkey 5309)"
             >
               Backoffice
@@ -195,7 +194,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenWholesale }) => {
             <button
               onClick={scrollToTop}
               id="footer-back-to-top-btn"
-              className="inline-flex items-center space-x-1 hover:text-[#1C1917] dark:hover:text-white transition-colors cursor-pointer"
+              className="inline-flex items-center space-x-1 hover:text-[#1C1917] transition-colors cursor-pointer"
             >
               <span>Back to top</span>
               <ArrowUp className="w-3.5 h-3.5" />
