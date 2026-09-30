@@ -112,7 +112,7 @@ export const AdminDashboard: React.FC = () => {
             <button
               type="button"
               onClick={closeAdminPanel}
-              className="inline-flex items-center space-x-1.5 bg-[#8B1D24] hover:bg-[#74151B] text-white px-2.5 md:px-3.5 py-1.5 rounded text-xs font-medium transition-all shadow whitespace-nowrap"
+              className="inline-flex items-center space-x-1.5 bg-[#A3161F] hover:bg-[#7E1119] text-white px-2.5 md:px-3.5 py-1.5 rounded text-xs font-medium transition-all shadow whitespace-nowrap"
             >
               <Eye className="w-3.5 h-3.5" />
               <span>Preview Site</span>
@@ -477,8 +477,9 @@ export const AdminDashboard: React.FC = () => {
                         }
                         className="w-full text-xs px-3 py-2 border border-stone-300 rounded-md bg-white"
                       >
-                        <option value="Cormorant Garamond">Cormorant Garamond (Editorial Serif - Default)</option>
+                        <option value="Fraunces">Fraunces (Modern Premium Serif - Default)</option>
                         <option value="Playfair Display">Playfair Display (Luxury High-Contrast)</option>
+                        <option value="Cormorant Garamond">Cormorant Garamond (Editorial Serif)</option>
                         <option value="Cinzel">Cinzel (Classical Engraved)</option>
                         <option value="Plus Jakarta Sans">Plus Jakarta Sans (Modern Geometric Clean)</option>
                         <option value="System Serif">Classic Georgia Serif</option>
@@ -502,8 +503,8 @@ export const AdminDashboard: React.FC = () => {
                         }
                         className="w-full text-xs px-3 py-2 border border-stone-300 rounded-md bg-white"
                       >
-                        <option value="Plus Jakarta Sans">Plus Jakarta Sans (Crisp Modern - Default)</option>
-                        <option value="Inter">Inter (Ultra-Neutral Modern)</option>
+                        <option value="Inter">Inter (Ultra-Neutral Modern - Default)</option>
+                        <option value="Plus Jakarta Sans">Plus Jakarta Sans (Crisp Modern)</option>
                         <option value="Roboto">Roboto (Clean Sans)</option>
                         <option value="System Sans">System Native Sans</option>
                       </select>
@@ -653,7 +654,7 @@ export const AdminDashboard: React.FC = () => {
                             },
                           }))
                         }
-                        className="inline-flex items-center space-x-1 text-xs text-[#8B1D24] font-medium hover:underline cursor-pointer"
+                        className="inline-flex items-center space-x-1 text-xs text-[#A3161F] font-medium hover:underline cursor-pointer"
                       >
                         <Plus className="w-3.5 h-3.5" />
                         <span>Add Nav Item</span>
@@ -934,7 +935,7 @@ export const AdminDashboard: React.FC = () => {
                           categories: [...prev.categories, newCat],
                         }));
                       }}
-                      className="inline-flex items-center space-x-1 px-3 py-1.5 bg-[#8B1D24] text-white rounded text-xs font-medium cursor-pointer shadow-xs"
+                      className="inline-flex items-center space-x-1 px-3 py-1.5 bg-[#A3161F] text-white rounded text-xs font-medium cursor-pointer shadow-xs"
                     >
                       <Plus className="w-3.5 h-3.5" />
                       <span>Add Category</span>
@@ -1038,7 +1039,7 @@ export const AdminDashboard: React.FC = () => {
                           featuredRanges: [...prev.featuredRanges, newCard],
                         }));
                       }}
-                      className="inline-flex items-center space-x-1 px-3 py-1.5 bg-[#8B1D24] text-white rounded text-xs font-medium cursor-pointer"
+                      className="inline-flex items-center space-x-1 px-3 py-1.5 bg-[#A3161F] text-white rounded text-xs font-medium cursor-pointer"
                     >
                       <Plus className="w-3.5 h-3.5" />
                       <span>Add Card</span>
@@ -1160,7 +1161,7 @@ export const AdminDashboard: React.FC = () => {
                           editorialStories: [...prev.editorialStories, newStory],
                         }));
                       }}
-                      className="inline-flex items-center space-x-1 px-3 py-1.5 bg-[#8B1D24] text-white rounded text-xs font-medium cursor-pointer"
+                      className="inline-flex items-center space-x-1 px-3 py-1.5 bg-[#A3161F] text-white rounded text-xs font-medium cursor-pointer"
                     >
                       <Plus className="w-3.5 h-3.5" />
                       <span>Add Story Row</span>
@@ -1332,7 +1333,7 @@ export const AdminDashboard: React.FC = () => {
                           essentials: [...prev.essentials, newEss],
                         }));
                       }}
-                      className="inline-flex items-center space-x-1 px-3 py-1.5 bg-[#8B1D24] text-white rounded text-xs font-medium cursor-pointer"
+                      className="inline-flex items-center space-x-1 px-3 py-1.5 bg-[#A3161F] text-white rounded text-xs font-medium cursor-pointer"
                     >
                       <Plus className="w-3.5 h-3.5" />
                       <span>Add Essential</span>
@@ -1666,7 +1667,7 @@ export const AdminDashboard: React.FC = () => {
                           faqs: [...prev.faqs, newFaq],
                         }));
                       }}
-                      className="inline-flex items-center space-x-1 px-3 py-1.5 bg-[#8B1D24] text-white rounded text-xs font-medium cursor-pointer"
+                      className="inline-flex items-center space-x-1 px-3 py-1.5 bg-[#A3161F] text-white rounded text-xs font-medium cursor-pointer"
                     >
                       <Plus className="w-3.5 h-3.5" />
                       <span>Add FAQ</span>
@@ -1756,7 +1757,7 @@ export const AdminDashboard: React.FC = () => {
                           ],
                         }));
                       }}
-                      className="inline-flex items-center space-x-1 px-3 py-1.5 bg-[#8B1D24] text-white rounded text-xs font-medium cursor-pointer"
+                      className="inline-flex items-center space-x-1 px-3 py-1.5 bg-[#A3161F] text-white rounded text-xs font-medium cursor-pointer"
                     >
                       <Plus className="w-3.5 h-3.5" />
                       <span>Add Ribbon Photo</span>
@@ -1843,7 +1844,7 @@ export const AdminDashboard: React.FC = () => {
                           customSections: [...prev.customSections, newSection],
                         }));
                       }}
-                      className="inline-flex items-center space-x-1.5 px-4 py-2 bg-[#8B1D24] text-white rounded-lg text-xs font-semibold shadow transition-all cursor-pointer"
+                      className="inline-flex items-center space-x-1.5 px-4 py-2 bg-[#A3161F] text-white rounded-lg text-xs font-semibold shadow transition-all cursor-pointer"
                     >
                       <Plus className="w-4 h-4" />
                       <span>Create New Section</span>
@@ -2164,7 +2165,7 @@ export const AdminDashboard: React.FC = () => {
                             },
                           }))
                         }
-                        className="inline-flex items-center space-x-1 text-xs text-[#8B1D24] font-medium hover:underline cursor-pointer"
+                        className="inline-flex items-center space-x-1 text-xs text-[#A3161F] font-medium hover:underline cursor-pointer"
                       >
                         <Plus className="w-3.5 h-3.5" />
                         <span>Add Link</span>

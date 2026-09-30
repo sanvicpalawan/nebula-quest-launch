@@ -123,7 +123,7 @@ export const CategoryDetailModal: React.FC<CategoryDetailModalProps> = ({ catego
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {currentDetails.items.map((item) => (
                 <div key={item} className="flex items-center space-x-2 text-xs text-[#44403C]">
-                  <Check className="w-3.5 h-3.5 text-[#991B1B] shrink-0" />
+                  <Check className="w-3.5 h-3.5 text-[#A3161F] shrink-0" />
                   <span>{item}</span>
                 </div>
               ))}
@@ -138,7 +138,7 @@ export const CategoryDetailModal: React.FC<CategoryDetailModalProps> = ({ catego
               href={ORDER_ONLINE_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 bg-[#8B1D24] hover:bg-[#74151B] text-white px-5 py-2.5 rounded-md text-xs sm:text-sm font-medium transition-colors"
+              className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 bg-[#A3161F] hover:bg-[#7E1119] text-white px-5 py-2.5 rounded-md text-xs sm:text-sm font-medium transition-colors"
             >
               <span>Order in Online Store</span>
               <ArrowUpRight className="w-4 h-4" />

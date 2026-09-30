@@ -1,34 +1,45 @@
 import React from 'react';
 import { ArrowUpRight } from 'lucide-react';
-import { ORDER_ONLINE_URL } from '../data/jayceeData';
+import { useSiteContent } from '../context/SiteContentContext';
+import { Reveal } from './Reveal';
 
 export const PreFooterCTA: React.FC = () => {
-  return (
-    <section className="py-16 md:py-20 bg-white border-t border-[#E7E5E4] transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <div>
-            <span className="text-xs font-semibold tracking-[0.2em] text-[#78716C] uppercase block mb-2">
-              YOUR NEXT ORDER STARTS HERE
-            </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-[#1C1917] tracking-tight leading-tight">
-              Let&apos;s keep your <span className="italic font-normal">kitchen supplied.</span>
-            </h2>
-          </div>
+  const { content } = useSiteContent();
+  const preFooter = content.preFooter;
 
-          <div className="shrink-0">
-            <a
-              href={ORDER_ONLINE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              id="prefooter-order-online-btn"
-              className="inline-flex items-center space-x-2 bg-[#8B1D24] hover:bg-[#74151B] text-white px-6 py-3.5 rounded-md text-sm font-medium transition-all shadow-sm active:scale-[0.98]"
-            >
-              <span>Order Online</span>
-              <ArrowUpRight className="w-4 h-4 stroke-[2.2]" />
-            </a>
+  return (
+    <section className="py-20 md:py-28 bg-[#F6F1EA] transition-colors">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Reveal>
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">
+            <div>
+              <span className="text-xs font-semibold tracking-[0.24em] text-[#6E6257] uppercase block mb-3">
+                {preFooter?.eyebrow}
+              </span>
+              <h2
+                className="text-4xl sm:text-5xl lg:text-6xl text-[#141211] tracking-tight leading-[1.05] font-semibold"
+                style={{ fontFamily: 'var(--dynamic-heading-font)' }}
+              >
+                {preFooter?.title}{' '}
+                <span className="italic">{preFooter?.titleItalic}</span>
+              </h2>
+            </div>
+
+            <div className="shrink-0">
+              <a
+                href={preFooter?.buttonUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                id="prefooter-order-online-btn"
+                style={{ backgroundColor: content.theme.primaryColor }}
+                className="inline-flex items-center space-x-2 text-white px-8 py-4 rounded-full text-sm font-semibold transition-all shadow-xl shadow-black/15 active:scale-[0.98] hover:brightness-110"
+              >
+                <span>{preFooter?.buttonText}</span>
+                <ArrowUpRight className="w-4 h-4 stroke-[2.2]" />
+              </a>
+            </div>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

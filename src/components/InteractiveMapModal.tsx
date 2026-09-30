@@ -20,7 +20,7 @@ export const InteractiveMapModal: React.FC<InteractiveMapModalProps> = ({ isOpen
         {/* Header */}
         <div className="p-4 sm:p-5 border-b border-[#E7E5E4] flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <MapPin className="w-5 h-5 text-[#991B1B]" />
+            <MapPin className="w-5 h-5 text-[#A3161F]" />
             <div>
               <h3 className="text-base sm:text-lg font-serif font-medium text-[#1C1917]">
                 JayCee Trading & Services — B.M. Road Store
@@ -57,7 +57,7 @@ export const InteractiveMapModal: React.FC<InteractiveMapModalProps> = ({ isOpen
             href={GOOGLE_MAPS_DIRECTIONS_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center space-x-1.5 bg-[#8B1D24] text-white px-4 py-2 rounded-md font-medium hover:bg-[#74151B] transition-colors"
+            className="inline-flex items-center space-x-1.5 bg-[#A3161F] text-white px-4 py-2 rounded-md font-medium hover:bg-[#7E1119] transition-colors"
           >
             <Navigation className="w-3.5 h-3.5" />
             <span>Open in Google Maps App</span>

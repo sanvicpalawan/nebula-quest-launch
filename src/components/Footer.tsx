@@ -26,22 +26,30 @@ export const Footer: React.FC<FooterProps> = ({ onOpenWholesale }) => {
   const socialLinks = (content.footer?.socialLinks || []).filter((link) => link.url?.trim());
 
   return (
-    <footer id="contact" className="bg-white border-t border-[#E7E5E4] text-[#1C1917] pt-10 pb-8 md:pt-16 md:pb-12 transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Main Footer Content Grid — 2 columns on phones/tablets for a uniform, compact layout */}
-        <div className="grid grid-cols-2 md:grid-cols-12 gap-x-6 gap-y-8 md:gap-10 lg:gap-12 mb-10 md:mb-16">
-          {/* Brand Info with 3-click trigger */}
+    <footer
+      id="contact"
+      className="relative bg-[#141211] text-white overflow-hidden pt-14 pb-24 md:pt-20 md:pb-14 transition-colors"
+    >
+      {/* Faint oversized logo watermark */}
+      <img
+        src="/jaycee-logo.svg"
+        alt=""
+        aria-hidden="true"
+        className="pointer-events-none absolute -bottom-16 -right-12 w-[380px] md:w-[540px] opacity-[0.06] select-none"
+      />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Main footer content grid */}
+        <div className="grid grid-cols-2 md:grid-cols-12 gap-x-6 gap-y-10 md:gap-10 lg:gap-12 mb-12 md:mb-16">
+          {/* Brand info with 3-click trigger */}
           <div className="col-span-2 md:col-span-4 lg:col-span-4 space-y-4">
             <LogoClickHandler id="footer-brand-logo" className="inline-block">
-              <LogoDisplay 
-                size="md" 
-                src={content.header.logoUrl}
-              />
+              <LogoDisplay size="lg" src={content.header.logoUrl?.trim() || '/jaycee-logo.svg'} />
             </LogoClickHandler>
-            <p className="text-xs sm:text-sm text-[#78716C] font-light max-w-xs pt-2 whitespace-pre-line">
+            <p className="text-[13px] sm:text-sm text-white/55 font-light max-w-xs pt-1 whitespace-pre-line leading-relaxed">
               {content.footer?.tagline || 'Quality food. Personal service.\nProudly Palawan.'}
             </p>
-            <div className="pt-2 flex items-center gap-2">
+            <div className="pt-2 flex items-center gap-2.5">
               {socialLinks.length > 0 ? (
                 socialLinks.map((link) => {
                   const meta = SOCIAL_META[link.platform] || SOCIAL_META.facebook;
@@ -54,7 +62,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenWholesale }) => {
                       rel="noopener noreferrer"
                       title={`${meta.label} — JayCee Trading & Services`}
                       aria-label={`${meta.label} — JayCee Trading & Services`}
-                      className="inline-flex items-center justify-center w-9 h-9 rounded-full border border-[#E7E5E4] text-[#78716C] hover:text-white hover:bg-[#991B1B] hover:border-[#991B1B] transition-colors"
+                      className="inline-flex items-center justify-center w-9 h-9 rounded-full border border-white/20 text-white/60 hover:text-white hover:bg-[#A3161F] hover:border-[#A3161F] transition-colors"
                     >
                       <Icon className="w-4 h-4" />
                     </a>
@@ -65,21 +73,21 @@ export const Footer: React.FC<FooterProps> = ({ onOpenWholesale }) => {
                   href={content.footer?.instagramUrl || 'https://instagram.com'}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center space-x-1.5 text-xs text-[#78716C] hover:text-[#1C1917] transition-colors"
+                  className="inline-flex items-center space-x-1.5 text-[13px] text-white/55 hover:text-white transition-colors"
                 >
-                  <Instagram className="w-3.5 h-3.5 text-[#A8A29E]" />
+                  <Instagram className="w-3.5 h-3.5 text-[#C9A227]" />
                   <span>{content.footer?.instagramHandle || '@jaycee.tradingservices'}</span>
                 </a>
               )}
             </div>
           </div>
 
-          {/* Explore Links */}
+          {/* Explore links */}
           <div className="md:col-span-2 lg:col-span-2">
-            <h4 className="text-xs font-semibold tracking-wider text-[#1C1917] uppercase mb-4">
+            <h4 className="text-[11px] font-semibold tracking-[0.22em] text-[#C9A227] uppercase mb-5">
               Explore
             </h4>
-            <ul className="space-y-2.5">
+            <ul className="space-y-3">
               {(content.footer?.exploreLinks || [
                 { id: 'f-exp-1', label: 'Products', href: '#selection' },
                 { id: 'f-exp-2', label: 'Wholesale', href: '#wholesale' },
@@ -97,7 +105,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenWholesale }) => {
                         onOpenWholesale();
                       }
                     }}
-                    className="text-xs sm:text-sm text-[#78716C] hover:text-[#991B1B] transition-colors"
+                    className="text-sm text-white/60 hover:text-white transition-colors"
                   >
                     {link.label}
                   </a>
@@ -106,12 +114,12 @@ export const Footer: React.FC<FooterProps> = ({ onOpenWholesale }) => {
             </ul>
           </div>
 
-          {/* Product Range */}
+          {/* Product range */}
           <div className="md:col-span-3 lg:col-span-3">
-            <h4 className="text-xs font-semibold tracking-wider text-[#1C1917] uppercase mb-4">
+            <h4 className="text-[11px] font-semibold tracking-[0.22em] text-[#C9A227] uppercase mb-5">
               Product range
             </h4>
-            <ul className="space-y-2.5">
+            <ul className="space-y-3">
               {(content.footer?.productRanges || [
                 { id: 'f-rng-1', label: 'Meats', href: content.header?.orderOnlineUrl || 'https://jayceetrading.com' },
                 { id: 'f-rng-2', label: 'Seafood', href: content.header?.orderOnlineUrl || 'https://jayceetrading.com' },
@@ -125,7 +133,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenWholesale }) => {
                     href={range.href || content.header?.orderOnlineUrl || '#'}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs sm:text-sm text-[#78716C] hover:text-[#991B1B] transition-colors inline-flex items-center group"
+                    className="text-sm text-white/60 hover:text-white transition-colors inline-flex items-center group"
                   >
                     <span>{range.label}</span>
                   </a>
@@ -134,25 +142,25 @@ export const Footer: React.FC<FooterProps> = ({ onOpenWholesale }) => {
             </ul>
           </div>
 
-          {/* Come Find Us */}
-          <div className="col-span-2 md:col-span-3 lg:col-span-3 space-y-2.5">
-            <h4 className="text-xs font-semibold tracking-wider text-[#1C1917] uppercase mb-4">
+          {/* Come find us */}
+          <div className="col-span-2 md:col-span-3 lg:col-span-3 space-y-3">
+            <h4 className="text-[11px] font-semibold tracking-[0.22em] text-[#C9A227] uppercase mb-5">
               Come find us
             </h4>
-            <p className="text-xs sm:text-sm text-[#78716C] font-light leading-relaxed">
+            <p className="text-sm text-white/60 font-light leading-relaxed">
               {content.footer?.address || 'National Highway, Brgy. San Pedro, Puerto Princesa, Palawan'}
             </p>
-            <p className="text-xs sm:text-sm text-[#1C1917] font-medium">
-              <a href={content.header?.phoneTel || 'tel:+639171234567'} className="hover:text-[#991B1B] transition-colors">
+            <p className="text-sm text-white font-semibold">
+              <a href={content.header?.phoneTel || 'tel:+639171234567'} className="hover:text-[#C9A227] transition-colors">
                 {content.header?.phone || '+63 917 123 4567'}
               </a>
             </p>
-            <p className="text-xs sm:text-sm text-[#78716C]">
-              <a href={`mailto:${content.footer?.email || 'info@jayceetrading.com'}`} className="hover:text-[#1C1917]">
+            <p className="text-sm text-white/60">
+              <a href={`mailto:${content.footer?.email || 'info@jayceetrading.com'}`} className="hover:text-white transition-colors">
                 {content.footer?.email || 'info@jayceetrading.com'}
               </a>
             </p>
-            <div className="pt-1 text-xs text-[#78716C] font-light">
+            <div className="pt-1 text-[13px] text-white/50 font-light">
               <p>{content.footer?.openingHoursWeekday || content.footer?.hours || 'Monday–Saturday 8am–5pm'}</p>
               <p>{content.footer?.openingHoursWeekend || content.footer?.closedDay || 'Closed Sunday'}</p>
             </div>
@@ -162,39 +170,39 @@ export const Footer: React.FC<FooterProps> = ({ onOpenWholesale }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 id="footer-get-directions-link"
-                className="inline-flex items-center space-x-1.5 text-xs font-medium text-[#1C1917] hover:text-[#991B1B] transition-colors"
+                className="inline-flex items-center space-x-1.5 text-[13px] font-semibold text-white/70 hover:text-white transition-colors"
               >
                 <span>Get Directions</span>
-                <MapPin className="w-3.5 h-3.5" />
+                <MapPin className="w-3.5 h-3.5 text-[#C9A227]" />
               </a>
             </div>
           </div>
         </div>
 
-        {/* Bottom Legal & Copyright Bar */}
-        <div className="pt-8 border-t border-[#E7E5E4] flex flex-col sm:flex-row items-center justify-between text-[11px] sm:text-xs text-[#A8A29E] gap-4">
+        {/* Bottom legal & copyright bar */}
+        <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between text-[12px] text-white/40 gap-4">
           <p>{content.footer?.copyrightText || '© 2026 JayCee Trading & Services. All rights reserved.'}</p>
 
           <div className="flex items-center space-x-6">
-            <a href="#privacy" className="hover:text-[#57534E] transition-colors">
+            <a href="#privacy" className="hover:text-white/80 transition-colors">
               Privacy
             </a>
-            <a href="#terms" className="hover:text-[#57534E] transition-colors">
+            <a href="#terms" className="hover:text-white/80 transition-colors">
               Terms
             </a>
-            {/* Direct discrete admin button for convenient access */}
+            {/* Direct discrete admin button */}
             <button
               onClick={isAdminLoggedIn ? openAdminPanel : openLoginModal}
               id="footer-admin-access-btn"
-              className="text-[#A8A29E] hover:text-[#78716C] transition-colors cursor-pointer text-[10px]"
-              title="Admin Portal (Triple-click Logo or click here with passkey 5309)"
+              className="text-white/35 hover:text-white/70 transition-colors cursor-pointer text-[11px]"
+              title="Admin Portal (Triple-click Logo or click here)"
             >
               Backoffice
             </button>
             <button
               onClick={scrollToTop}
               id="footer-back-to-top-btn"
-              className="inline-flex items-center space-x-1 hover:text-[#1C1917] transition-colors cursor-pointer"
+              className="inline-flex items-center space-x-1 hover:text-white transition-colors cursor-pointer"
             >
               <span>Back to top</span>
               <ArrowUp className="w-3.5 h-3.5" />

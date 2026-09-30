@@ -1,86 +1,81 @@
 import React from 'react';
 import { Snowflake, PackageCheck, Truck, HeartHandshake } from 'lucide-react';
+import { useSiteContent } from '../context/SiteContentContext';
+import { Reveal } from './Reveal';
+
+const PILLAR_ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
+  Snowflake,
+  PackageCheck,
+  Truck,
+  HeartHandshake,
+};
 
 export const CompanyStory: React.FC = () => {
-  const pillars = [
-    {
-      icon: Snowflake,
-      title: 'Proper cold storage',
-      description: 'Care for temperature-sensitive products.',
-    },
-    {
-      icon: PackageCheck,
-      title: 'Careful packing',
-      description: 'Attention to every order, big or small.',
-    },
-    {
-      icon: Truck,
-      title: 'Local delivery',
-      description: 'Delivery arrangements across Palawan.',
-    },
-    {
-      icon: HeartHandshake,
-      title: 'Personal service',
-      description: 'A knowledgeable team, a phone call away.',
-    },
-  ];
+  const { content } = useSiteContent();
+  const story = content.companyStory;
+
+  const pillars = (story?.pillars || []).map((pillar) => ({
+    ...pillar,
+    Icon: PILLAR_ICONS[pillar.iconName] || PackageCheck,
+  }));
 
   return (
-    <section id="story-detail" className="py-20 md:py-28 bg-[#FAFAFA] border-t border-[#F5F5F4] transition-colors">
+    <section id="story-detail" className="py-20 md:py-28 bg-[#F6F1EA] transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Story Two-Column Grid */}
+        {/* Story two-column grid */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 items-start">
-          {/* Left Column: 2017 Badge */}
-          <div className="md:col-span-4 lg:col-span-3 flex flex-col justify-start">
-            <span className="text-xs font-semibold tracking-[0.2em] text-[#78716C] uppercase block mb-3">
-              LOCALLY ROOTED
+          {/* Left column: year badge */}
+          <Reveal className="md:col-span-4 lg:col-span-3">
+            <span className="text-xs font-semibold tracking-[0.24em] text-[#6E6257] uppercase block mb-3">
+              {story?.eyebrow || 'Locally rooted'}
             </span>
-            <div className="font-serif italic text-6xl sm:text-7xl lg:text-8xl text-[#991B1B] font-normal leading-none tracking-tight my-2">
-              2017
+            <div
+              className="text-7xl sm:text-8xl lg:text-9xl text-[#A3161F] font-semibold leading-none tracking-tight my-2"
+              style={{ fontFamily: 'var(--dynamic-heading-font)' }}
+            >
+              {story?.year || '2017'}
             </div>
-            <p className="text-xs text-[#78716C] font-light mt-1">
-              Where our story began.
-            </p>
-          </div>
+            <p className="text-[13px] text-[#6E6257] font-light mt-2">{story?.yearLabel}</p>
+          </Reveal>
 
-          {/* Right Column: Narrative */}
-          <div className="md:col-span-8 lg:col-span-9 max-w-3xl">
-            <span className="text-xs font-semibold tracking-[0.2em] text-[#78716C] uppercase block mb-2">
-              JAYCEE TRADING & SERVICES
+          {/* Right column: narrative */}
+          <Reveal delay={120} className="md:col-span-8 lg:col-span-9 max-w-3xl">
+            <span className="text-xs font-semibold tracking-[0.24em] text-[#6E6257] uppercase block mb-3">
+              {story?.brandHeading}
             </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-[#1C1917] tracking-tight leading-tight mb-6">
-              A family passion. <br />
-              A Palawan story.
+            <h2
+              className="text-4xl sm:text-5xl lg:text-6xl text-[#141211] tracking-tight leading-[1.05] mb-7 font-semibold whitespace-pre-line"
+              style={{ fontFamily: 'var(--dynamic-heading-font)' }}
+            >
+              {story?.title}
             </h2>
-            <p className="text-sm sm:text-base text-[#57534E] font-light leading-relaxed mb-6">
-              Founded in 2017 by siblings with a shared passion for global food culture, JayCee brings
-              local and imported food products to Palawan. From frozen goods and premium meats to dairy
-              and pantry staples, we help homes and businesses keep their kitchens supplied.
+            <p className="text-[17px] text-[#6E6257] font-light leading-relaxed mb-7">
+              {story?.paragraph}
             </p>
-            <p className="text-base sm:text-lg font-serif italic text-[#1C1917]">
-              Good products. Familiar personal service.
+            <p
+              className="text-xl sm:text-2xl font-medium italic text-[#141211] border-l-2 border-[#C9A227] pl-5"
+              style={{ fontFamily: 'var(--dynamic-heading-font)' }}
+            >
+              {story?.tagline}
             </p>
-          </div>
+          </Reveal>
         </div>
 
-        {/* 4 Feature Pillars */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-6 pt-16 md:pt-20 mt-16 border-t border-[#E7E5E4]">
-          {pillars.map((pillar) => {
-            const Icon = pillar.icon;
-            return (
-              <div key={pillar.title} className="flex flex-col space-y-2.5">
-                <div className="w-8 h-8 rounded-full bg-[#F5F5F4] flex items-center justify-center text-[#991B1B]">
-                  <Icon className="w-4 h-4 stroke-[1.8]" />
+        {/* 4 feature pillars */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-6 pt-16 md:pt-20 mt-16 border-t border-[#E4D9C9]">
+          {pillars.map((pillar, idx) => (
+            <Reveal key={pillar.id} delay={idx * 90}>
+              <div className="flex flex-col space-y-3">
+                <div className="w-10 h-10 rounded-full bg-[#141211] flex items-center justify-center text-[#C9A227]">
+                  <pillar.Icon className="w-4.5 h-4.5 stroke-[1.6]" />
                 </div>
-                <h3 className="text-sm font-semibold text-[#1C1917] pt-1">
-                  {pillar.title}
-                </h3>
-                <p className="text-xs text-[#78716C] leading-relaxed font-light">
+                <h3 className="text-base font-semibold text-[#141211] pt-1">{pillar.title}</h3>
+                <p className="text-[14px] text-[#6E6257] leading-relaxed font-light">
                   {pillar.description}
                 </p>
               </div>
-            );
-          })}
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>

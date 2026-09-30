@@ -16,11 +16,11 @@ import {
 
 export const DEFAULT_SITE_CONTENT: SiteContentState = {
   theme: {
-    primaryColor: '#8B1D24',
-    primaryHoverColor: '#74151B',
-    accentColor: '#991B1B',
-    fontFamilyHeading: 'Cormorant Garamond',
-    fontFamilyBody: 'Plus Jakarta Sans',
+    primaryColor: '#A3161F',
+    primaryHoverColor: '#7E1119',
+    accentColor: '#C9A227',
+    fontFamilyHeading: 'Fraunces',
+    fontFamilyBody: 'Inter',
   },
   header: {
     logoUrl: '',
@@ -47,7 +47,7 @@ export const DEFAULT_SITE_CONTENT: SiteContentState = {
     subtext: 'Imported meats, frozen seafood, dairy and kitchen essentials. Selected with care for the homes and hospitality kitchens of Palawan.',
     exploreBtnText: 'Explore Products',
     wholesaleBtnText: 'Wholesale Enquiry',
-    bgImageUrl: '',
+    bgImageUrl: '/hero-meat.jpg',
     statusBarLeft: 'Frozen goods. Warm, personal service.',
     statusBarRight: 'For your home. For your business.',
   },

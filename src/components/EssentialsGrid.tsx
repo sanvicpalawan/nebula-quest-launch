@@ -1,6 +1,8 @@
 import React from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { useSiteContent } from '../context/SiteContentContext';
+import { ImageOrPlaceholder } from './ImageOrPlaceholder';
+import { Reveal } from './Reveal';
 
 export const EssentialsGrid: React.FC = () => {
   const { content } = useSiteContent();
@@ -8,61 +10,68 @@ export const EssentialsGrid: React.FC = () => {
   const ORDER_ONLINE_URL = content.header.orderOnlineUrl;
 
   return (
-    <section id="essentials" className="py-16 md:py-24 bg-white border-t border-[#F5F5F4] transition-colors">
+    <section id="essentials" className="py-20 md:py-28 bg-white transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 md:mb-12">
-          <div>
-            <span className="text-xs font-semibold tracking-[0.2em] text-[#78716C] uppercase block mb-2">
-              KEEP YOUR KITCHEN READY
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-serif text-[#1C1917] tracking-tight">
-              The everyday essentials.
-            </h2>
-          </div>
+        <Reveal>
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 md:mb-14">
+            <div>
+              <span className="text-xs font-semibold tracking-[0.24em] text-[#6E6257] uppercase block mb-3">
+                Keep your kitchen ready
+              </span>
+              <h2
+                className="text-4xl sm:text-5xl text-[#141211] tracking-tight font-semibold"
+                style={{ fontFamily: 'var(--dynamic-heading-font)' }}
+              >
+                The everyday essentials.
+              </h2>
+            </div>
 
-          <a
-            href={ORDER_ONLINE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            id="essentials-explore-all-link"
-            className="mt-4 sm:mt-0 inline-flex items-center text-xs sm:text-sm font-medium text-[#78716C] hover:text-[#991B1B] transition-colors"
-          >
-            <span>Explore all products</span>
-            <ArrowUpRight className="w-3.5 h-3.5 ml-1" />
-          </a>
-        </div>
-
-        {/* 3 Column Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-          {essentials.map((item, idx) => (
             <a
-              key={item.id}
-              href={item.linkUrl?.trim() || ORDER_ONLINE_URL}
+              href={ORDER_ONLINE_URL}
               target="_blank"
               rel="noopener noreferrer"
-              id={`essential-card-${idx}`}
-              className="group block focus:outline-none"
+              id="essentials-explore-all-link"
+              className="mt-5 sm:mt-0 inline-flex items-center text-sm font-semibold text-[#6E6257] hover:text-[#A3161F] transition-colors shrink-0"
             >
-              <div className="relative aspect-[16/10] rounded-md overflow-hidden bg-[#F5F5F4] mb-3.5">
-                {item.image?.trim() ? (
-                  <img
+              <span>Explore all products</span>
+              <ArrowUpRight className="w-4 h-4 ml-1" />
+            </a>
+          </div>
+        </Reveal>
+
+        {/* 3 column cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+          {essentials.map((item, idx) => (
+            <Reveal key={item.id} delay={idx * 100}>
+              <a
+                href={item.linkUrl?.trim() || ORDER_ONLINE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                id={`essential-card-${idx}`}
+                className="group block focus:outline-none"
+              >
+                <div className="relative aspect-[16/10] rounded-2xl overflow-hidden ring-1 ring-black/5 mb-4 group-hover:shadow-xl group-hover:shadow-black/15 transition-shadow">
+                  <ImageOrPlaceholder
                     src={item.image}
                     alt={item.title}
-                    loading="lazy"
-                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
+                    className="absolute inset-0"
+                    imgClassName="group-hover:scale-105 transition-transform duration-700 ease-out"
+                    watermarkClassName="w-1/3 max-w-[110px]"
                   />
-                ) : null}
-                <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors" />
-              </div>
+                </div>
 
-              <h3 className="text-lg font-semibold text-[#1C1917] group-hover:text-[#991B1B] transition-colors">
-                {item.title}
-              </h3>
-              <p className="text-xs text-[#78716C] mt-1">
-                {item.subTitle}
-              </p>
-            </a>
+                <h3
+                  className="text-xl font-semibold text-[#141211] group-hover:text-[#A3161F] transition-colors"
+                  style={{ fontFamily: 'var(--dynamic-heading-font)' }}
+                >
+                  {item.title}
+                </h3>
+                <p className="text-[13px] text-[#6E6257] mt-1 font-light tracking-wide">
+                  {item.subTitle}
+                </p>
+              </a>
+            </Reveal>
           ))}
         </div>
       </div>

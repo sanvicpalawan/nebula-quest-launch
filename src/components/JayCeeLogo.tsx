@@ -100,11 +100,11 @@ export const JayCeeLogo: React.FC<JayCeeLogoProps> = ({
             <stop offset="0%" stopColor="#F87171" />
             <stop offset="25%" stopColor="#EF4444" />
             <stop offset="70%" stopColor="#DC2626" />
-            <stop offset="100%" stopColor="#991B1B" />
+            <stop offset="100%" stopColor="#A3161F" />
           </linearGradient>
 
           <linearGradient id={`${uniquePrefix}-redBevel`} x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#991B1B" />
+            <stop offset="0%" stopColor="#A3161F" />
             <stop offset="50%" stopColor="#7F1D1D" />
             <stop offset="100%" stopColor="#450A0A" />
           </linearGradient>

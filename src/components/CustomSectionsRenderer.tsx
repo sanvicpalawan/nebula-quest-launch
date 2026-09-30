@@ -20,7 +20,7 @@ export const CustomSectionsRenderer: React.FC = () => {
             <section
               key={section.id}
               id={`custom-section-${section.id}`}
-              className="relative py-24 md:py-32 w-full bg-[#141212] text-white overflow-hidden"
+              className="relative py-28 md:py-32 w-full bg-[#141211] text-white overflow-hidden"
             >
               <div className="absolute inset-0 z-0">
                 {section.imageUrl?.trim() ? (
@@ -36,21 +36,21 @@ export const CustomSectionsRenderer: React.FC = () => {
 
               <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl">
                 {section.eyebrow && (
-                  <span className="text-xs font-semibold tracking-[0.2em] text-[#D6D3D1] uppercase block mb-3">
+                  <span className="text-xs font-semibold tracking-[0.24em] text-[#C9A227] uppercase block mb-3">
                     {section.eyebrow}
                   </span>
                 )}
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-white mb-6">
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-white mb-6 tracking-tight">
                   {section.title}
                 </h2>
-                <p className="text-base text-stone-300 leading-relaxed font-light mb-8">
+                <p className="text-[17px] text-white/60 leading-relaxed font-light mb-8">
                   {section.content}
                 </p>
                 {section.ctaText && (
                   <a
                     href={section.ctaUrl || '#'}
                     style={{ backgroundColor: content.theme.primaryColor }}
-                    className="inline-flex items-center space-x-2 text-white px-6 py-3.5 rounded-md font-medium text-sm transition-all shadow-md active:scale-95"
+                    className="inline-flex items-center space-x-2 text-white px-7 py-3.5 rounded-full font-semibold text-sm transition-all shadow-md active:scale-95"
                   >
                     <span>{section.ctaText}</span>
                     <ArrowUpRight className="w-4 h-4 stroke-[2.2]" />
@@ -65,7 +65,7 @@ export const CustomSectionsRenderer: React.FC = () => {
           <section
             key={section.id}
             id={`custom-section-${section.id}`}
-            className="py-16 md:py-24 bg-white border-t border-stone-100 transition-colors"
+            className="py-20 md:py-28 bg-white transition-colors"
           >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div
@@ -76,21 +76,21 @@ export const CustomSectionsRenderer: React.FC = () => {
                 {/* Content */}
                 <div className={isImageRight ? 'order-1' : 'order-2 md:order-1'}>
                   {section.eyebrow && (
-                    <span className="text-xs font-semibold tracking-[0.2em] text-[#78716C] uppercase block mb-3">
+                    <span className="text-xs font-semibold tracking-[0.24em] text-[#6E6257] uppercase block mb-3">
                       {section.eyebrow}
                     </span>
                   )}
-                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-stone-900 leading-tight mb-4">
+                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-[#141211] leading-tight mb-4 tracking-tight">
                     {section.title}
                   </h2>
-                  <p className="text-sm sm:text-base text-stone-600 leading-relaxed mb-6 font-light">
+                  <p className="text-[17px] text-[#6E6257] leading-relaxed mb-6 font-light">
                     {section.content}
                   </p>
                   {section.ctaText && (
                     <a
                       href={section.ctaUrl || '#'}
                       style={{ backgroundColor: content.theme.primaryColor }}
-                      className="inline-flex items-center space-x-2 text-white px-5 py-3 rounded-md text-sm font-medium transition-all shadow-sm active:scale-95"
+                      className="inline-flex items-center space-x-2 text-white px-6 py-3 rounded-full text-sm font-semibold transition-all shadow-sm active:scale-95"
                     >
                       <span>{section.ctaText}</span>
                       <ArrowUpRight className="w-4 h-4 stroke-[2.2]" />
@@ -103,7 +103,7 @@ export const CustomSectionsRenderer: React.FC = () => {
                   <div
                     className={`${
                       isImageRight ? 'order-2' : 'order-1 md:order-2'
-                    } relative aspect-[4/3] rounded-lg overflow-hidden bg-stone-100 shadow-xs`}
+                    } relative aspect-[4/3] rounded-lg overflow-hidden bg-[#141211] shadow-xs`}
                   >
                     <img
                       src={section.imageUrl}

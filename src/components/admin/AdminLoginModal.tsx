@@ -33,7 +33,7 @@ export const AdminLoginModal: React.FC = () => {
         {/* Header with Dark Red Accent */}
         <div className="bg-[#1C1917] px-6 py-5 text-white flex items-center justify-between border-b border-stone-800">
           <div className="flex items-center space-x-2.5">
-            <div className="w-8 h-8 rounded-full bg-[#8B1D24] flex items-center justify-center text-white">
+            <div className="w-8 h-8 rounded-full bg-[#A3161F] flex items-center justify-center text-white">
               <Lock className="w-4 h-4" />
             </div>
             <div>
@@ -68,7 +68,7 @@ export const AdminLoginModal: React.FC = () => {
                   setPasskey(e.target.value);
                   setError(null);
                 }}
-                className="w-full pl-9 pr-3 py-2.5 border border-stone-300 bg-white text-stone-900 rounded-lg text-lg tracking-widest font-mono text-center focus:ring-2 focus:ring-[#8B1D24] focus:border-transparent outline-none"
+                className="w-full pl-9 pr-3 py-2.5 border border-stone-300 bg-white text-stone-900 rounded-lg text-lg tracking-widest font-mono text-center focus:ring-2 focus:ring-[#A3161F] focus:border-transparent outline-none"
               />
             </div>
           </div>
@@ -94,7 +94,7 @@ export const AdminLoginModal: React.FC = () => {
             </button>
             <button
               type="submit"
-              className="w-1/2 py-2.5 px-4 bg-[#8B1D24] hover:bg-[#74151B] text-white text-xs font-medium rounded-lg shadow transition-all cursor-pointer"
+              className="w-1/2 py-2.5 px-4 bg-[#A3161F] hover:bg-[#7E1119] text-white text-xs font-medium rounded-lg shadow transition-all cursor-pointer"
             >
               {checking ? 'Checking…' : 'Unlock Dashboard'}
             </button>

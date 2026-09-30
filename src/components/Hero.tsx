@@ -1,6 +1,7 @@
 import React from 'react';
-import { ArrowUpRight, ArrowRight, ArrowDown } from 'lucide-react';
+import { ArrowUpRight, ArrowDown } from 'lucide-react';
 import { useSiteContent } from '../context/SiteContentContext';
+import { ImageOrPlaceholder } from './ImageOrPlaceholder';
 
 interface HeroProps {
   onExploreProducts?: () => void;
@@ -21,96 +22,102 @@ export const Hero: React.FC<HeroProps> = ({ onExploreProducts, onWholesaleEnquir
     }
   };
 
+  const heroLogo = content.header.logoUrl?.trim() || '/jaycee-logo.svg';
+
   return (
-    <section id="hero" className="relative min-h-[580px] lg:min-h-[660px] w-full bg-[#141212] text-white overflow-hidden flex flex-col justify-between">
-      {/* Background imagery with balanced photographic lighting */}
+    <section
+      id="hero"
+      className="relative min-h-[100svh] w-full bg-[#141211] text-white overflow-hidden flex flex-col justify-end"
+    >
+      {/* Background imagery with slow cinematic zoom */}
       <div className="absolute inset-0 z-0">
-        {content.hero.bgImageUrl?.trim() ? (
-          <img
-            src={content.hero.bgImageUrl}
-            alt="Culinary meat cuts and preparation"
-            referrerPolicy="no-referrer"
-            className="w-full h-full object-cover object-center scale-105 transition-transform duration-1000 brightness-100 contrast-105"
-          />
-        ) : null}
-        {/* Directional scrim: darker on left behind text, transparent on right so culinary imagery is clearly visible */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/40 to-transparent md:from-black/75 md:via-black/25 md:to-transparent pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#141212]/75 via-transparent to-black/20 pointer-events-none" />
+        <ImageOrPlaceholder
+          src={content.hero.bgImageUrl}
+          alt="Premium meat cuts and culinary preparation"
+          className="w-full h-full"
+          imgClassName="hero-zoom"
+          watermarkClassName="w-[340px] max-w-[60%]"
+        />
+        {/* Dark gradient overlay for legibility */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#141211]/85 via-[#141211]/45 to-[#141211]/15 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#141211] via-[#141211]/25 to-[#141211]/60 pointer-events-none" />
       </div>
 
-      {/* Main Hero Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 w-full my-auto">
-        <div className="max-w-2xl">
-          {/* Eyebrow badge */}
-          <div className="inline-flex items-center space-x-2 border-b border-white/25 pb-1 mb-6">
-            <span className="text-[11px] sm:text-xs font-semibold tracking-[0.2em] text-[#D6D3D1] uppercase">
+      {/* Main hero content */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-36 pb-14 md:pt-40 md:pb-20">
+        {/* Oversized logo lockup above the headline */}
+        <img
+          src={heroLogo}
+          alt="JayCee Trading & Services"
+          className="h-[110px] w-auto md:h-[130px] object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.45)] mb-8 md:mb-10"
+        />
+
+        <div className="max-w-4xl">
+          {/* Eyebrow */}
+          <div className="inline-flex items-center gap-3 mb-5 md:mb-7">
+            <span className="h-px w-10 bg-[#C9A227]" />
+            <span className="text-[11px] sm:text-xs font-semibold tracking-[0.24em] text-[#C9A227] uppercase">
               {content.hero.eyebrow}
             </span>
           </div>
 
-          {/* Heading with italic highlight */}
+          {/* Headline */}
           <h1
-            className="text-4xl sm:text-5xl md:text-6xl font-normal tracking-tight leading-[1.08] text-white"
+            className="font-semibold text-white tracking-tight leading-[0.98] text-[clamp(3rem,8vw,7rem)]"
             style={{ fontFamily: 'var(--dynamic-heading-font)' }}
           >
             {content.hero.headlinePart1} <br />
             {content.hero.headlinePart2} <br />
-            <span className="italic font-normal text-[#F5F5F4]">
-              {content.hero.headlineItalic}
-            </span>
+            <span className="italic font-medium text-white/90">{content.hero.headlineItalic}</span>
           </h1>
 
-          {/* Subtext description */}
-          <p className="mt-6 text-base sm:text-lg text-[#D6D3D1] font-light leading-relaxed max-w-xl">
+          {/* Subtext */}
+          <p className="mt-7 text-[17px] sm:text-lg text-white/70 font-light leading-relaxed max-w-xl">
             {content.hero.subtext}
           </p>
 
-          {/* Call-to-actions */}
-          <div className="mt-8 sm:mt-10 flex flex-wrap items-center gap-4">
-            <button
+          {/* Pill CTAs */}
+          <div className="mt-9 sm:mt-11 flex flex-wrap items-center gap-4">
+            <a
+              href={content.header.orderOnlineUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               id="hero-explore-products-btn"
-              onClick={scrollToSelection}
               style={{ backgroundColor: content.theme.primaryColor }}
-              className="inline-flex items-center space-x-2 text-white px-6 py-3.5 rounded-md font-medium text-sm transition-all shadow-lg active:scale-[0.98] cursor-pointer"
+              className="inline-flex items-center space-x-2 text-white px-8 py-4 rounded-full font-semibold text-sm transition-all shadow-xl shadow-black/30 active:scale-[0.98] hover:brightness-110 cursor-pointer"
             >
-              <span>{content.hero.exploreBtnText}</span>
+              <span>{content.header.orderOnlineButtonText}</span>
               <ArrowUpRight className="w-4 h-4 stroke-[2.2]" />
-            </button>
+            </a>
 
             <button
               id="hero-wholesale-enquiry-btn"
               onClick={onWholesaleEnquiry}
-              className="inline-flex items-center space-x-2 border border-white/40 hover:border-white hover:bg-white/10 text-white px-6 py-3.5 rounded-md font-medium text-sm transition-all cursor-pointer"
+              className="inline-flex items-center space-x-2 border border-white/35 hover:border-white hover:bg-white/10 text-white px-8 py-4 rounded-full font-semibold text-sm transition-all cursor-pointer backdrop-blur-[2px]"
             >
               <span>{content.hero.wholesaleBtnText}</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowUpRight className="w-4 h-4" />
+            </button>
+
+            <button
+              onClick={scrollToSelection}
+              id="hero-scroll-indicator-btn"
+              className="inline-flex items-center space-x-2 text-[13px] font-medium text-white/60 hover:text-white transition-colors ml-1 cursor-pointer"
+            >
+              <span>{content.hero.exploreBtnText}</span>
+              <ArrowDown className="w-3.5 h-3.5 animate-bounce" />
             </button>
           </div>
         </div>
       </div>
 
-      {/* Bottom Status Bar in Hero */}
-      <div className="relative z-10 border-t border-white/10 bg-black/40 backdrop-blur-sm py-4 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto flex items-center justify-between text-xs text-[#A8A29E]">
-          <div className="font-light tracking-wide">
-            {content.hero.statusBarLeft}
-          </div>
-
-          <button
-            onClick={scrollToSelection}
-            id="hero-scroll-indicator-btn"
-            className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center hover:border-white/50 text-white/80 hover:text-white transition-colors cursor-pointer"
-            aria-label="Scroll to selection"
-          >
-            <ArrowDown className="w-3.5 h-3.5 animate-bounce" />
-          </button>
-
-          <div className="font-light tracking-wide text-right">
-            {content.hero.statusBarRight}
-          </div>
+      {/* Bottom status bar */}
+      <div className="relative z-10 border-t border-white/10 bg-black/30 backdrop-blur-sm py-4 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto flex items-center justify-between text-xs text-white/50 font-light tracking-wide">
+          <div>{content.hero.statusBarLeft}</div>
+          <div className="hidden sm:block text-right">{content.hero.statusBarRight}</div>
         </div>
       </div>
     </section>
   );
 };
-

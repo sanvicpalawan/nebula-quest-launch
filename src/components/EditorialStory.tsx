@@ -1,6 +1,8 @@
 import React from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { useSiteContent } from '../context/SiteContentContext';
+import { ImageOrPlaceholder } from './ImageOrPlaceholder';
+import { Reveal } from './Reveal';
 
 interface EditorialStoryProps {
   onOpenWholesale?: () => void;
@@ -10,37 +12,42 @@ export const EditorialStory: React.FC<EditorialStoryProps> = ({ onOpenWholesale 
   const { content } = useSiteContent();
 
   return (
-    <section id="story" className="py-20 md:py-28 bg-[#FAFAFA] transition-colors">
+    <section id="story" className="py-20 md:py-28 bg-[#F6F1EA] transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16 md:mb-24">
-          <span className="text-xs font-semibold tracking-[0.2em] text-[#78716C] uppercase block mb-3">
-            FROM OUR SHELVES TO YOUR KITCHEN
-          </span>
-          <h2
-            className="text-3xl sm:text-5xl text-[#1C1917] tracking-tight leading-tight"
-            style={{ fontFamily: 'var(--dynamic-heading-font)' }}
-          >
-            Good food. <span className="italic">Great company.</span>
-          </h2>
-          <p className="mt-4 text-sm sm:text-base text-[#78716C] font-light">
-            For the everyday. The special occasion. And every service in between.
-          </p>
-        </div>
+        {/* Section header */}
+        <Reveal>
+          <div className="text-center max-w-2xl mx-auto mb-16 md:mb-24">
+            <span className="text-xs font-semibold tracking-[0.24em] text-[#6E6257] uppercase block mb-3">
+              From our shelves to your kitchen
+            </span>
+            <h2
+              className="text-4xl sm:text-5xl md:text-6xl text-[#141211] tracking-tight leading-[1.05] font-semibold"
+              style={{ fontFamily: 'var(--dynamic-heading-font)' }}
+            >
+              Good food. <span className="italic">Great company.</span>
+            </h2>
+            <p className="mt-5 text-[17px] text-[#6E6257] font-light">
+              For the everyday. The special occasion. And every service in between.
+            </p>
+          </div>
+        </Reveal>
 
-        {/* Staggered Editorial Feature Rows from context */}
+        {/* Staggered editorial feature rows */}
         <div className="space-y-20 md:space-y-28">
           {(content.editorialStories || []).map((story, idx) => {
             const isImageRight = story.imageOnRight;
 
             const renderCta = () => {
+              const ctaClass =
+                'inline-flex items-center space-x-1.5 text-[15px] font-semibold text-[#141211] hover:text-[#A3161F] transition-colors';
+
               if (story.ctaType === 'wholesale') {
                 return (
                   <button
                     type="button"
                     id={`story-btn-${idx}`}
                     onClick={onOpenWholesale}
-                    className="inline-flex items-center space-x-1.5 text-sm font-semibold text-[#1C1917] hover:text-[#991B1B] transition-colors cursor-pointer"
+                    className={`${ctaClass} cursor-pointer`}
                   >
                     <span>{story.ctaText}</span>
                     <ArrowUpRight className="w-4 h-4" />
@@ -50,11 +57,7 @@ export const EditorialStory: React.FC<EditorialStoryProps> = ({ onOpenWholesale 
 
               if (story.ctaType === 'phone') {
                 return (
-                  <a
-                    href={content.header.phoneTel}
-                    id={`story-link-${idx}`}
-                    className="inline-flex items-center space-x-1.5 text-sm font-semibold text-[#1C1917] hover:text-[#991B1B] transition-colors"
-                  >
+                  <a href={content.header.phoneTel} id={`story-link-${idx}`} className={ctaClass}>
                     <span>{story.ctaText}</span>
                     <ArrowUpRight className="w-4 h-4" />
                   </a>
@@ -67,7 +70,7 @@ export const EditorialStory: React.FC<EditorialStoryProps> = ({ onOpenWholesale 
                   target="_blank"
                   rel="noopener noreferrer"
                   id={`story-link-${idx}`}
-                  className="inline-flex items-center space-x-1.5 text-sm font-semibold text-[#1C1917] hover:text-[#991B1B] transition-colors"
+                  className={ctaClass}
                 >
                   <span>{story.ctaText}</span>
                   <ArrowUpRight className="w-4 h-4" />
@@ -80,44 +83,41 @@ export const EditorialStory: React.FC<EditorialStoryProps> = ({ onOpenWholesale 
                 key={story.id}
                 className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center"
               >
-                {/* Image Column */}
-                <div
-                  className={`${
-                    isImageRight ? 'order-1 md:order-2' : ''
-                  } relative aspect-[4/3] rounded-lg overflow-hidden bg-[#F5F5F4] shadow-xs`}
+                {/* Image column */}
+                <Reveal
+                  className={`${isImageRight ? 'order-1 md:order-2' : ''}`}
                 >
-                  {story.image?.trim() ? (
-                    <img
+                  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden ring-1 ring-black/5 shadow-xl shadow-black/10">
+                    <ImageOrPlaceholder
                       src={story.image}
-                      alt={story.title}
-                      loading="lazy"
-                      className="w-full h-full object-cover object-center"
+                      alt={story.headline.replace(/\n/g, ' ')}
+                      className="absolute inset-0"
+                      watermarkClassName="w-1/3 max-w-[120px]"
                     />
-                  ) : null}
-                </div>
+                  </div>
+                </Reveal>
 
-                {/* Content Column */}
-                <div
+                {/* Content column */}
+                <Reveal
+                  delay={120}
                   className={`${
-                    isImageRight
-                      ? 'order-2 md:order-1 md:pr-4 lg:pr-8'
-                      : 'md:pl-4 lg:pl-8'
+                    isImageRight ? 'order-2 md:order-1 md:pr-4 lg:pr-8' : 'md:pl-4 lg:pl-8'
                   }`}
                 >
-                  <span className="text-xs font-semibold tracking-[0.2em] text-[#A8A29E] uppercase block mb-3">
+                  <span className="text-xs font-semibold tracking-[0.24em] text-[#C9A227] uppercase block mb-4">
                     {story.stepNumber}
                   </span>
                   <h3
-                    className="text-2xl sm:text-3xl lg:text-4xl text-[#1C1917] leading-tight mb-4 whitespace-pre-line"
+                    className="text-3xl sm:text-4xl lg:text-5xl text-[#141211] leading-[1.08] mb-5 whitespace-pre-line font-semibold tracking-tight"
                     style={{ fontFamily: 'var(--dynamic-heading-font)' }}
                   >
                     {story.headline}
                   </h3>
-                  <p className="text-sm sm:text-base text-[#57534E] leading-relaxed mb-6 font-light max-w-md">
+                  <p className="text-[17px] text-[#6E6257] leading-relaxed mb-7 font-light max-w-md">
                     {story.description}
                   </p>
                   {renderCta()}
-                </div>
+                </Reveal>
               </div>
             );
           })}
@@ -126,4 +126,3 @@ export const EditorialStory: React.FC<EditorialStoryProps> = ({ onOpenWholesale 
     </section>
   );
 };
-

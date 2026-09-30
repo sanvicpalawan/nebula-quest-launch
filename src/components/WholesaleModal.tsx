@@ -76,7 +76,7 @@ export const WholesaleModal: React.FC<WholesaleModalProps> = ({ isOpen, onClose 
             </p>
             <div className="p-3 bg-[#FAFAFA] rounded-lg border border-[#E7E5E4] text-xs text-[#78716C] mb-6">
               For urgent kitchen orders, you can also reach us directly at{' '}
-              <a href={PHONE_TEL} className="font-semibold text-[#991B1B] hover:underline">
+              <a href={PHONE_TEL} className="font-semibold text-[#A3161F] hover:underline">
                 {PHONE_NUMBER}
               </a>
             </div>
@@ -114,7 +114,7 @@ export const WholesaleModal: React.FC<WholesaleModalProps> = ({ isOpen, onClose 
                     value={formData.businessName}
                     onChange={(e) => setFormData({ ...formData, businessName: e.target.value })}
                     placeholder="e.g. El Nido Beach Resort"
-                    className="w-full px-3 py-2 text-xs sm:text-sm border border-[#D6D3D1] rounded-md focus:outline-none focus:ring-1 focus:ring-[#991B1B] bg-white text-[#1C1917]"
+                    className="w-full px-3 py-2 text-xs sm:text-sm border border-[#D6D3D1] rounded-md focus:outline-none focus:ring-1 focus:ring-[#A3161F] bg-white text-[#1C1917]"
                   />
                 </div>
 
@@ -128,7 +128,7 @@ export const WholesaleModal: React.FC<WholesaleModalProps> = ({ isOpen, onClose 
                     value={formData.contactPerson}
                     onChange={(e) => setFormData({ ...formData, contactPerson: e.target.value })}
                     placeholder="Head Chef / Purchasing Officer"
-                    className="w-full px-3 py-2 text-xs sm:text-sm border border-[#D6D3D1] rounded-md focus:outline-none focus:ring-1 focus:ring-[#991B1B] bg-white text-[#1C1917]"
+                    className="w-full px-3 py-2 text-xs sm:text-sm border border-[#D6D3D1] rounded-md focus:outline-none focus:ring-1 focus:ring-[#A3161F] bg-white text-[#1C1917]"
                   />
                 </div>
               </div>
@@ -144,7 +144,7 @@ export const WholesaleModal: React.FC<WholesaleModalProps> = ({ isOpen, onClose 
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="purchasing@hospitality.com"
-                    className="w-full px-3 py-2 text-xs sm:text-sm border border-[#D6D3D1] rounded-md focus:outline-none focus:ring-1 focus:ring-[#991B1B] bg-white text-[#1C1917]"
+                    className="w-full px-3 py-2 text-xs sm:text-sm border border-[#D6D3D1] rounded-md focus:outline-none focus:ring-1 focus:ring-[#A3161F] bg-white text-[#1C1917]"
                   />
                 </div>
 
@@ -158,7 +158,7 @@ export const WholesaleModal: React.FC<WholesaleModalProps> = ({ isOpen, onClose 
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     placeholder="0917 XXX XXXX"
-                    className="w-full px-3 py-2 text-xs sm:text-sm border border-[#D6D3D1] rounded-md focus:outline-none focus:ring-1 focus:ring-[#991B1B] bg-white text-[#1C1917]"
+                    className="w-full px-3 py-2 text-xs sm:text-sm border border-[#D6D3D1] rounded-md focus:outline-none focus:ring-1 focus:ring-[#A3161F] bg-white text-[#1C1917]"
                   />
                 </div>
               </div>
@@ -175,7 +175,7 @@ export const WholesaleModal: React.FC<WholesaleModalProps> = ({ isOpen, onClose 
                       businessType: e.target.value as WholesaleInquiry['businessType'],
                     })
                   }
-                  className="w-full px-3 py-2 text-xs sm:text-sm border border-[#D6D3D1] rounded-md focus:outline-none focus:ring-1 focus:ring-[#991B1B] bg-white text-[#1C1917]"
+                  className="w-full px-3 py-2 text-xs sm:text-sm border border-[#D6D3D1] rounded-md focus:outline-none focus:ring-1 focus:ring-[#A3161F] bg-white text-[#1C1917]"
                 >
                   <option value="hotel">Hotel / Boutique Lodge</option>
                   <option value="resort">Island Resort</option>
@@ -195,14 +195,14 @@ export const WholesaleModal: React.FC<WholesaleModalProps> = ({ isOpen, onClose 
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   placeholder="Specify cuts (e.g. Ribeye, Striploin, Salmon fillets, Dairy block), estimated quantities, and delivery location..."
-                  className="w-full px-3 py-2 text-xs sm:text-sm border border-[#D6D3D1] rounded-md focus:outline-none focus:ring-1 focus:ring-[#991B1B] bg-white text-[#1C1917]"
+                  className="w-full px-3 py-2 text-xs sm:text-sm border border-[#D6D3D1] rounded-md focus:outline-none focus:ring-1 focus:ring-[#A3161F] bg-white text-[#1C1917]"
                 />
               </div>
 
               <div className="pt-2 flex items-center justify-between">
                 <a
                   href={PHONE_TEL}
-                  className="inline-flex items-center text-xs text-[#78716C] hover:text-[#991B1B]"
+                  className="inline-flex items-center text-xs text-[#78716C] hover:text-[#A3161F]"
                 >
                   <Phone className="w-3.5 h-3.5 mr-1" />
                   <span>Call directly: {PHONE_NUMBER}</span>
@@ -211,7 +211,7 @@ export const WholesaleModal: React.FC<WholesaleModalProps> = ({ isOpen, onClose 
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="inline-flex items-center space-x-2 bg-[#8B1D24] hover:bg-[#74151B] text-white px-5 py-2.5 rounded-md text-xs sm:text-sm font-medium transition-colors shadow-sm disabled:opacity-50"
+                  className="inline-flex items-center space-x-2 bg-[#A3161F] hover:bg-[#7E1119] text-white px-5 py-2.5 rounded-md text-xs sm:text-sm font-medium transition-colors shadow-sm disabled:opacity-50"
                 >
                   <Send className="w-3.5 h-3.5" />
                   <span>{submitting ? 'Submitting...' : 'Send Enquiry'}</span>

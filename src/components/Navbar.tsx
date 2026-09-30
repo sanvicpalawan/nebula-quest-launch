@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Menu, X, ArrowUpRight, Phone, ShieldCheck } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Menu, X, ArrowUpRight, Phone, ShieldCheck, MapPin } from 'lucide-react';
 import { LogoDisplay } from './LogoDisplay';
 import { LogoClickHandler } from './LogoClickHandler';
 import { useSiteContent } from '../context/SiteContentContext';
@@ -8,9 +8,38 @@ interface NavbarProps {
   onOpenWholesale?: () => void;
 }
 
+/** Brand lockup: logo mark + bold wordmark + small-caps descriptor */
+const BrandLockup: React.FC<{ logoUrl: string }> = ({ logoUrl }) => (
+  <span className="flex items-center gap-3">
+    <LogoDisplay size="nav" src={logoUrl} className="shrink-0" />
+    <span className="flex flex-col items-start leading-none">
+      <span
+        className="text-[22px] md:text-[26px] font-bold text-white tracking-tight"
+        style={{ fontFamily: 'var(--dynamic-heading-font)' }}
+      >
+        jayCee
+      </span>
+      <span className="mt-1 text-[8.5px] md:text-[9.5px] font-semibold tracking-[0.32em] uppercase text-[#C9A227] whitespace-nowrap">
+        Trading &amp; Services
+      </span>
+    </span>
+  </span>
+);
+
 export const Navbar: React.FC<NavbarProps> = ({ onOpenWholesale }) => {
   const { content, isAdminLoggedIn, openAdminPanel } = useSiteContent();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  const logoUrl = content.header.logoUrl?.trim() || '/jaycee-logo.svg';
+  const glass = scrolled || mobileMenuOpen;
 
   // Split nav links into left and right groups
   const allLinks = content.header?.navLinks?.length
@@ -27,116 +56,159 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenWholesale }) => {
   const navLinksLeft = allLinks.slice(0, midPoint);
   const navLinksRight = allLinks.slice(midPoint);
 
+  const linkClass =
+    'text-[13px] font-medium text-white/75 hover:text-white transition-colors py-1 cursor-pointer tracking-wide';
+
   return (
-    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-[#E7E5E4] transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          {/* Desktop Left Nav Links */}
-          <nav className="hidden md:flex items-center space-x-8" aria-label="Main navigation left">
-            {navLinksLeft.map((item) => (
-              <a
-                key={item.id}
-                href={item.href}
-                id={`nav-link-${item.label.toLowerCase().replace(/\s+/g, '-')}`}
-                onClick={(e) => {
-                  if (item.href === '#wholesale' && onOpenWholesale) {
-                    e.preventDefault();
-                    onOpenWholesale();
-                  }
-                }}
-                className="text-sm font-medium text-[#44403C] hover:text-[#991B1B] transition-colors py-1 cursor-pointer"
-              >
-                {item.label}
-              </a>
-            ))}
-          </nav>
+    <header className="fixed top-0 inset-x-0 z-50">
+      {/* Utility row — visible over the hero, collapses on scroll */}
+      <div
+        className={`overflow-hidden transition-all duration-500 ease-out ${
+          glass ? 'max-h-0 opacity-0' : 'max-h-10 opacity-100'
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-2.5 flex items-center justify-between text-[11px] text-white/55">
+          <span className="inline-flex items-center gap-1.5 font-medium">
+            <MapPin className="w-3 h-3 text-[#C9A227]" />
+            {content.header.topBarText}
+          </span>
+          <span className="hidden sm:block">{content.header.topBarMotto}</span>
+          <span className="inline-flex items-center gap-1.5">
+            <span className="hidden md:inline">Orders &amp; enquiries ·</span>
+            <a
+              href={content.header.phoneTel}
+              id="top-hotline-link"
+              className="font-semibold text-white/80 hover:text-white transition-colors"
+            >
+              {content.header.phone}
+            </a>
+          </span>
+        </div>
+      </div>
 
-          {/* Center Brand Identity / Logo with 3-click Admin handler */}
-          <LogoClickHandler id="brand-logo-home" className="flex items-center justify-center group focus:outline-none">
-            <LogoDisplay 
-              size="md" 
-              src={content.header.logoUrl}
-            />
-          </LogoClickHandler>
-
-          {/* Desktop Right Nav Links & Actions */}
-          <div className="hidden md:flex items-center space-x-6">
-            <nav className="flex items-center space-x-6" aria-label="Main navigation right">
-              {navLinksRight.map((item) => (
+      {/* Main nav — transparent over hero, charcoal glass on scroll */}
+      <div
+        className={`transition-all duration-500 ease-out ${
+          glass
+            ? 'bg-[#141211]/85 backdrop-blur-xl border-b border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.25)]'
+            : 'bg-transparent border-b border-transparent'
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-[72px] md:h-[84px]">
+            {/* Desktop left nav links */}
+            <nav className="hidden lg:flex items-center space-x-7 flex-1" aria-label="Main navigation left">
+              {navLinksLeft.map((item) => (
                 <a
                   key={item.id}
                   href={item.href}
-                  id={`nav-link-${item.label.toLowerCase()}`}
+                  id={`nav-link-${item.label.toLowerCase().replace(/\s+/g, '-')}`}
                   onClick={(e) => {
                     if (item.href === '#wholesale' && onOpenWholesale) {
                       e.preventDefault();
                       onOpenWholesale();
                     }
                   }}
-                  className="text-sm font-medium text-[#44403C] hover:text-[#991B1B] transition-colors py-1 cursor-pointer"
+                  className={linkClass}
                 >
                   {item.label}
                 </a>
               ))}
             </nav>
 
-            {/* Quick Admin Indicator if logged in */}
-            {isAdminLoggedIn && (
-              <button
-                type="button"
-                onClick={openAdminPanel}
-                className="inline-flex items-center space-x-1 text-xs bg-amber-50 text-amber-900 border border-amber-300 px-2 py-1 rounded"
-                title="Open Admin Backoffice"
+            {/* Brand lockup with 3-click Admin handler */}
+            <LogoClickHandler id="brand-logo-home" className="flex items-center justify-center focus:outline-none">
+              <BrandLockup logoUrl={logoUrl} />
+            </LogoClickHandler>
+
+            {/* Desktop right nav links & actions */}
+            <div className="hidden lg:flex items-center space-x-7 flex-1 justify-end">
+              <nav className="flex items-center space-x-7" aria-label="Main navigation right">
+                {navLinksRight.map((item) => (
+                  <a
+                    key={item.id}
+                    href={item.href}
+                    id={`nav-link-${item.label.toLowerCase()}`}
+                    onClick={(e) => {
+                      if (item.href === '#wholesale' && onOpenWholesale) {
+                        e.preventDefault();
+                        onOpenWholesale();
+                      }
+                    }}
+                    className={linkClass}
+                  >
+                    {item.label}
+                  </a>
+                ))}
+              </nav>
+
+              {/* Quick Admin Indicator if logged in */}
+              {isAdminLoggedIn && (
+                <button
+                  type="button"
+                  onClick={openAdminPanel}
+                  className="inline-flex items-center space-x-1 text-xs bg-[#C9A227]/15 text-[#C9A227] border border-[#C9A227]/40 px-2 py-1 rounded"
+                  title="Open Admin Backoffice"
+                >
+                  <ShieldCheck className="w-3.5 h-3.5" />
+                  <span>Admin</span>
+                </button>
+              )}
+
+              {/* Order Online CTA */}
+              <a
+                href={content.header.orderOnlineUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                id="header-order-online-btn"
+                style={{ backgroundColor: content.theme.primaryColor }}
+                className="inline-flex items-center space-x-1.5 text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-all shadow-lg shadow-black/20 active:scale-[0.98] hover:brightness-110"
               >
-                <ShieldCheck className="w-3.5 h-3.5 text-amber-700" />
-                <span>Admin</span>
+                <span>{content.header.orderOnlineButtonText}</span>
+                <ArrowUpRight className="w-4 h-4 stroke-[2.2]" />
+              </a>
+            </div>
+
+            {/* Mobile actions */}
+            <div className="flex items-center lg:hidden space-x-2.5">
+              <a
+                href={content.header.phoneTel}
+                id="mobile-nav-call-btn"
+                aria-label="Call us"
+                className="p-2 text-white/80 hover:text-white rounded-md transition-colors"
+              >
+                <Phone className="w-5 h-5" />
+              </a>
+              <a
+                href={content.header.orderOnlineUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                id="mobile-header-order-btn"
+                style={{ backgroundColor: content.theme.primaryColor }}
+                className="inline-flex items-center space-x-1 text-white text-xs font-semibold px-3.5 py-2 rounded-full"
+              >
+                <span>{content.header.orderOnlineButtonText}</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </a>
+              <button
+                id="mobile-menu-toggle-btn"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="p-2 text-white hover:text-white focus:outline-none rounded-md"
+                aria-label="Toggle menu"
+                aria-expanded={mobileMenuOpen}
+              >
+                {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </button>
-            )}
-
-
-            {/* Order Online CTA Button */}
-            <a
-              href={content.header.orderOnlineUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              id="header-order-online-btn"
-              style={{ backgroundColor: content.theme.primaryColor }}
-              className="inline-flex items-center space-x-1.5 text-white text-sm font-medium px-4 py-2.5 rounded-md transition-all shadow-sm active:scale-[0.98]"
-            >
-              <span>{content.header.orderOnlineButtonText}</span>
-              <ArrowUpRight className="w-4 h-4 stroke-[2.2]" />
-            </a>
-          </div>
-
-          {/* Mobile menu trigger */}
-          <div className="flex items-center md:hidden space-x-2">
-            <a
-              href={content.header.orderOnlineUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              id="mobile-header-order-btn"
-              style={{ backgroundColor: content.theme.primaryColor }}
-              className="inline-flex items-center space-x-1 text-white text-xs font-medium px-3 py-1.5 rounded-md"
-            >
-              <span>Order</span>
-              <ArrowUpRight className="w-3.5 h-3.5" />
-            </a>
-            <button
-              id="mobile-menu-toggle-btn"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-[#44403C] hover:text-black focus:outline-none rounded-md"
-              aria-label="Toggle menu"
-            >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Mobile Drawer Menu */}
-      {mobileMenuOpen && (
-        <div id="mobile-navigation-drawer" className="md:hidden border-t border-[#E7E5E4] bg-white px-4 pt-3 pb-6 space-y-3 animate-in fade-in slide-in-from-top-2">
-          <div className="grid grid-cols-2 gap-2 pb-3 border-b border-[#F5F5F4]">
+        {/* Mobile Drawer Menu */}
+        {mobileMenuOpen && (
+          <div
+            id="mobile-navigation-drawer"
+            className="lg:hidden border-t border-white/10 bg-[#141211]/95 backdrop-blur-xl px-4 pt-4 pb-6 space-y-1 animate-in fade-in slide-in-from-top-2"
+          >
             {allLinks.map((item) => (
               <a
                 key={item.id}
@@ -148,48 +220,38 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenWholesale }) => {
                     onOpenWholesale();
                   }
                 }}
-                className="px-3 py-2 text-sm font-medium text-[#44403C] hover:text-[#991B1B] hover:bg-[#F5F5F4] rounded-md transition-colors"
+                className="flex items-center justify-between px-3 py-3.5 text-base font-medium text-white/85 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
               >
-                {item.label}
+                <span>{item.label}</span>
+                <ArrowUpRight className="w-4 h-4 text-[#C9A227]" />
               </a>
             ))}
-          </div>
 
-          <div className="flex items-center justify-between pt-1">
-            <a
-              href={content.header.phoneTel}
-              className="flex items-center text-xs text-[#78716C] hover:text-[#991B1B]"
-            >
-              <Phone className="w-3.5 h-3.5 mr-1.5" />
-              <span>{content.header.phone}</span>
-            </a>
-            {isAdminLoggedIn && (
-              <button
-                type="button"
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  openAdminPanel();
-                }}
-                className="text-xs text-amber-700 font-semibold px-2 py-1 bg-amber-50 rounded"
+            <div className="flex items-center justify-between pt-4 mt-2 border-t border-white/10">
+              <a
+                href={content.header.phoneTel}
+                className="inline-flex items-center text-sm text-white/70 hover:text-white transition-colors"
               >
-                Admin Panel
-              </button>
-            )}
+                <Phone className="w-4 h-4 mr-1.5 text-[#C9A227]" />
+                {content.header.phone}
+              </a>
+              {isAdminLoggedIn && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    openAdminPanel();
+                  }}
+                  className="inline-flex items-center text-xs font-semibold text-[#C9A227] px-2.5 py-1.5 bg-[#C9A227]/15 border border-[#C9A227]/40 rounded"
+                >
+                  <ShieldCheck className="w-3.5 h-3.5 mr-1" />
+                  Admin
+                </button>
+              )}
+            </div>
           </div>
-
-          <a
-            href={content.header.orderOnlineUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            id="mobile-drawer-order-online-btn"
-            style={{ backgroundColor: content.theme.primaryColor }}
-            className="w-full flex items-center justify-center space-x-2 text-white py-3 rounded-md font-medium text-sm shadow-sm"
-          >
-            <span>Open Online Store</span>
-            <ArrowUpRight className="w-4 h-4" />
-          </a>
-        </div>
-      )}
+        )}
+      </div>
     </header>
   );
 };

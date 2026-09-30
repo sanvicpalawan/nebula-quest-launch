@@ -1,5 +1,4 @@
 import React, { useMemo } from 'react';
-import { Volume2 } from 'lucide-react';
 
 import bestWestern from '../assets/clients/best-western.png';
 import astoria from '../assets/clients/astoria.png';
@@ -23,27 +22,23 @@ const CLIENT_LOGOS: ClientLogo[] = [
   { src: nccc, alt: 'NCCC Supermarket' },
 ];
 
-const MarqueeRow: React.FC<{ reverse?: boolean }> = ({ reverse }) => {
+const MarqueeRow: React.FC = () => {
   // Duplicate the set so the scroll loop is seamless.
   const doubled = useMemo(() => [...CLIENT_LOGOS, ...CLIENT_LOGOS], []);
 
   return (
-    <div
-      className={`partner-marquee-row flex shrink-0 items-center gap-10 md:gap-16 px-4 md:px-6${
-        reverse ? ' reverse' : ''
-      }`}
-    >
+    <div className="partner-marquee-row flex shrink-0 items-center gap-14 md:gap-20 px-7 md:px-10">
       {doubled.map((logo, i) => (
         <div
           key={`${logo.alt}-${i}`}
-          className="flex h-10 min-w-[90px] shrink-0 items-center justify-center md:h-14 md:min-w-[130px]"
+          className="flex h-10 w-auto shrink-0 items-center justify-center"
           title={logo.alt}
         >
           <img
             src={logo.src}
             alt={logo.alt}
             loading="lazy"
-            className="max-h-full max-w-[110px] md:max-w-[150px] w-auto h-auto object-contain"
+            className="h-10 w-auto object-contain grayscale opacity-55 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
           />
         </div>
       ))}
@@ -53,31 +48,23 @@ const MarqueeRow: React.FC<{ reverse?: boolean }> = ({ reverse }) => {
 
 export const PartnerLogos: React.FC = () => {
   return (
-    <section id="partners" className="py-14 md:py-18 bg-white border-y border-[#F5F5F4] transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="flex flex-col items-center justify-center text-center relative mb-10">
-          <span className="text-[11px] font-semibold tracking-[0.25em] text-[#78716C] uppercase block mb-1">
-            IN GOOD COMPANY
-          </span>
-          <h2 className="text-xl sm:text-2xl font-serif text-[#1C1917] font-normal">
-            Trusted by Palawan&apos;s leading kitchens.
-          </h2>
-
-          {/* Subtle audio / ambient indicator symbol from design */}
-          <div className="absolute right-0 top-1 hidden md:block text-[#A8A29E]" title="Verified local partner network">
-            <Volume2 className="w-4 h-4" />
-          </div>
-        </div>
+    <section id="partners" className="py-14 md:py-16 bg-[#141211] text-white border-b border-white/10 transition-colors">
+      {/* Section header */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10 flex flex-col items-center justify-center text-center">
+        <span className="text-[11px] font-semibold tracking-[0.28em] text-[#C9A227] uppercase block mb-2">
+          In good company
+        </span>
+        <h2
+          className="text-xl sm:text-2xl font-medium text-white/90"
+          style={{ fontFamily: 'var(--dynamic-heading-font)' }}
+        >
+          Trusted by Palawan&apos;s leading kitchens.
+        </h2>
       </div>
 
-      {/* Motion logo marquee — background matches the section (light/dark) so it reads as one surface */}
-      <div className="partner-marquee-track relative flex overflow-hidden bg-white">
+      {/* Single grayscale logo marquee on the charcoal band */}
+      <div className="partner-marquee-track relative flex overflow-hidden">
         <MarqueeRow />
-      </div>
-      <div className="h-6 md:h-8 bg-white" />
-      <div className="partner-marquee-track relative flex overflow-hidden bg-white">
-        <MarqueeRow reverse />
       </div>
     </section>
   );

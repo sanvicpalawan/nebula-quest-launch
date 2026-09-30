@@ -53,7 +53,7 @@ export const SocialLinksEditor: React.FC<SocialLinksEditorProps> = ({ links, onC
         <button
           type="button"
           onClick={handleAdd}
-          className="inline-flex items-center space-x-1 text-xs text-[#8B1D24] font-medium hover:underline cursor-pointer"
+          className="inline-flex items-center space-x-1 text-xs text-[#A3161F] font-medium hover:underline cursor-pointer"
         >
           <Plus className="w-3.5 h-3.5" />
           <span>Add Social Link</span>

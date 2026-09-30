@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 
-import { TopBar } from "../components/TopBar";
 import { Navbar } from "../components/Navbar";
 import { Hero } from "../components/Hero";
 import { CategorySelection } from "../components/CategorySelection";
@@ -10,12 +9,14 @@ import { PartnerLogos } from "../components/PartnerLogos";
 import { EditorialStory } from "../components/EditorialStory";
 import { EssentialsGrid } from "../components/EssentialsGrid";
 import { CompanyStory } from "../components/CompanyStory";
+import { StatsBand } from "../components/StatsBand";
 import { LocationSection } from "../components/LocationSection";
 import { FAQSection } from "../components/FAQSection";
 import { OnlineStoreBanner } from "../components/OnlineStoreBanner";
 import { FoodRibbon } from "../components/FoodRibbon";
 import { PreFooterCTA } from "../components/PreFooterCTA";
 import { Footer } from "../components/Footer";
+import { MobileOrderBar } from "../components/MobileOrderBar";
 import { WholesaleModal } from "../components/WholesaleModal";
 import { InteractiveMapModal } from "../components/InteractiveMapModal";
 import { CategoryDetailModal } from "../components/CategoryDetailModal";
@@ -54,8 +55,7 @@ function MainSite() {
   const handleOpenMap = () => setMapModalOpen(true);
 
   return (
-    <div className="min-h-screen bg-[#FAFAFA] text-[#1C1917] font-sans antialiased selection:bg-[#991B1B] selection:text-white flex flex-col justify-between transition-colors duration-200">
-      <TopBar />
+    <div className="min-h-screen bg-[#F6F1EA] text-[#141211] font-sans antialiased flex flex-col">
       <Navbar onOpenWholesale={handleOpenWholesale} />
 
       <main className="flex-1">
@@ -67,6 +67,7 @@ function MainSite() {
         <CustomSectionsRenderer />
         <EssentialsGrid />
         <CompanyStory />
+        <StatsBand />
         <LocationSection onOpenMapModal={handleOpenMap} />
         <FAQSection />
         <OnlineStoreBanner />
@@ -90,6 +91,7 @@ function MainSite() {
       {isAdminPanelOpen && <AdminDashboard />}
 
       <BackToTop />
+      <MobileOrderBar />
     </div>
   );
 }

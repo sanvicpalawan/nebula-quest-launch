@@ -3,20 +3,18 @@
 @import "tw-animate-css";
 
 /*
- * Design system definition.
+ * JayCee design system — light-only, premium food-supply brand.
  *
- * The @theme inline block maps CSS custom properties to Tailwind utility
- * classes (e.g. --color-primary -> bg-primary, text-primary).
+ * Palette:
+ *   charcoal #141211 · cream #F6F1EA · brand red #A3161F (CTAs only) · muted gold #C9A227
  *
- * The :root block defines the actual color values using oklch.
- * All colors MUST use oklch format.
- *
- * Dark mode has been removed: the site is always light.
- *
- * To add a new semantic color:
- * 1. Add the variable to :root (light value)
- * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ * Type: headings Fraunces / Playfair Display (600), body Inter.
  */
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-serif: "Fraunces", "Playfair Display", Georgia, serif;
+}
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -46,6 +44,10 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
   --color-ring-offset-background: var(--background);
+  --color-charcoal: var(--charcoal);
+  --color-cream: var(--cream);
+  --color-brand: var(--brand-red);
+  --color-gold: var(--gold);
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);
@@ -63,44 +65,49 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.984 0.003 247.858);
-  --sidebar-foreground: oklch(0.129 0.042 264.695);
-  --sidebar-primary: oklch(0.208 0.042 265.755);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.968 0.007 247.896);
-  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
-  --sidebar-border: oklch(0.929 0.013 255.508);
-  --sidebar-ring: oklch(0.704 0.04 256.788);
-  --admin-field-background: oklch(1 0 0);
-  --admin-field-foreground: oklch(0.18 0.01 60);
-  --admin-field-placeholder: oklch(0.55 0.01 60);
-  --admin-field-border: oklch(0.82 0.01 60);
-}
+  --charcoal: #141211;
+  --cream: #F6F1EA;
+  --brand-red: #A3161F;
+  --brand-red-hover: #7E1119;
+  --gold: #C9A227;
 
+  --background: #F6F1EA;
+  --foreground: #141211;
+  --card: #FFFFFF;
+  --card-foreground: #141211;
+  --popover: #FFFFFF;
+  --popover-foreground: #141211;
+  --primary: #A3161F;
+  --primary-foreground: #FFF8F0;
+  --secondary: #EFE7DB;
+  --secondary-foreground: #141211;
+  --muted: #EFE7DB;
+  --muted-foreground: #6E6257;
+  --accent: #EFE7DB;
+  --accent-foreground: #141211;
+  --destructive: #A3161F;
+  --destructive-foreground: #FFF8F0;
+  --border: #E4D9C9;
+  --input: #E4D9C9;
+  --ring: #A3161F;
+  --chart-1: #A3161F;
+  --chart-2: #C9A227;
+  --chart-3: #6E6257;
+  --chart-4: #141211;
+  --chart-5: #EFE7DB;
+  --sidebar: #F6F1EA;
+  --sidebar-foreground: #141211;
+  --sidebar-primary: #A3161F;
+  --sidebar-primary-foreground: #FFF8F0;
+  --sidebar-accent: #EFE7DB;
+  --sidebar-accent-foreground: #141211;
+  --sidebar-border: #E4D9C9;
+  --sidebar-ring: #A3161F;
+  --admin-field-background: #FFFFFF;
+  --admin-field-foreground: #141211;
+  --admin-field-placeholder: #6E6257;
+  --admin-field-border: #E4D9C9;
+}
 
 @keyframes marquee-left {
   from { transform: translateX(0); }
@@ -110,6 +117,29 @@
 @keyframes marquee-right {
   from { transform: translateX(-100%); }
   to { transform: translateX(0); }
+}
+
+/* Slow cinematic zoom for the hero photograph */
+@keyframes hero-slow-zoom {
+  from { transform: scale(1.02); }
+  to { transform: scale(1.12); }
+}
+
+.hero-zoom {
+  animation: hero-slow-zoom 18s ease-out forwards;
+}
+
+/* Fade-up reveal on scroll (driven by <Reveal/>) */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
 }
 
 @layer components {
@@ -135,15 +165,15 @@
       animation-duration: 20s;
     }
   }
-
-  @media (prefers-reduced-motion: reduce) {
-    .partner-marquee-row {
-      animation: none;
-    }
-  }
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Keep anchor targets clear of the fixed glass navbar */
+    scroll-padding-top: 92px;
+  }
+
   * {
     border-color: var(--color-border);
   }
@@ -151,6 +181,30 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background-color: var(--brand-red);
+    color: #fff;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-zoom {
+    animation: none;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .partner-marquee-row {
+    animation: none;
   }
 }
 
@@ -174,3 +228,4 @@
     opacity: 1;
   }
 }
+

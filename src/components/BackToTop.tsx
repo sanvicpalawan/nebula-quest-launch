@@ -41,7 +41,7 @@ export const BackToTop: React.FC = () => {
 
   return (
     <div
-      className={`fixed bottom-6 right-6 z-40 sm:bottom-8 sm:right-8 transition-all duration-300 ease-out ${
+      className={`fixed bottom-24 right-4 z-40 md:bottom-8 md:right-8 transition-all duration-300 ease-out ${
         isVisible
           ? 'opacity-100 translate-y-0 pointer-events-auto'
           : 'opacity-0 translate-y-4 pointer-events-none'
@@ -53,7 +53,7 @@ export const BackToTop: React.FC = () => {
         onClick={scrollToTop}
         aria-label="Back to top"
         title="Back to top"
-        className="group flex items-center justify-center w-12 h-12 rounded-full bg-[#1C1917] hover:bg-[#8B1D24] text-white shadow-lg shadow-black/20 hover:shadow-xl border border-white/10 transition-all duration-200 active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#8B1D24] focus:ring-offset-2 cursor-pointer"
+        className="group flex items-center justify-center w-12 h-12 rounded-full bg-[#1C1917] hover:bg-[#A3161F] text-white shadow-lg shadow-black/20 hover:shadow-xl border border-white/10 transition-all duration-200 active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#A3161F] focus:ring-offset-2 cursor-pointer"
       >
         <ArrowUp className="w-5 h-5 group-hover:-translate-y-0.5 transition-transform duration-200 stroke-[2.2]" />
       </button>

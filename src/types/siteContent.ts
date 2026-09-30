@@ -1,8 +1,8 @@
 export interface ThemeConfig {
-  primaryColor: string; // e.g. #8B1D24
-  primaryHoverColor: string; // e.g. #74151B
-  accentColor: string; // e.g. #991B1B
-  fontFamilyHeading: 'Cormorant Garamond' | 'Playfair Display' | 'Cinzel' | 'Plus Jakarta Sans' | 'System Serif';
+  primaryColor: string; // e.g. #A3161F
+  primaryHoverColor: string; // e.g. #7E1119
+  accentColor: string; // e.g. #A3161F
+  fontFamilyHeading: 'Fraunces' | 'Playfair Display' | 'Cormorant Garamond' | 'Cinzel' | 'Plus Jakarta Sans' | 'System Serif';
   fontFamilyBody: 'Plus Jakarta Sans' | 'Inter' | 'System Sans' | 'Roboto';
 }
 
