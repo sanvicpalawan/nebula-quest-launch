@@ -84,7 +84,7 @@ export const DEFAULT_SITE_CONTENT: SiteContentState = {
       ctaText: 'Shop for Home',
       ctaType: 'link',
       ctaUrl: ORDER_ONLINE_URL,
-      image: '',
+      image: '/images/mock/story-home.jpg',
       imageOnRight: false,
     },
     {
@@ -96,7 +96,7 @@ export const DEFAULT_SITE_CONTENT: SiteContentState = {
       ctaText: 'Wholesale Enquiry',
       ctaType: 'wholesale',
       ctaUrl: '#wholesale',
-      image: '',
+      image: '/images/mock/range-meats.jpg',
       imageOnRight: true,
     },
     {
@@ -108,7 +108,7 @@ export const DEFAULT_SITE_CONTENT: SiteContentState = {
       ctaText: 'Talk to our team',
       ctaType: 'phone',
       ctaUrl: PHONE_TEL,
-      image: '',
+      image: '/images/mock/storefront.jpg',
       imageOnRight: false,
     },
   ],
@@ -140,7 +140,7 @@ export const DEFAULT_SITE_CONTENT: SiteContentState = {
     subtitle: 'Same great products and personal service, now in a new location.',
     address: STORE_ADDRESS,
     addressNote: 'Continue straight to the end of the road.',
-    storefrontImage: '',
+    storefrontImage: '/images/mock/storefront.jpg',
     storefrontTag: 'B.M. Road Storefront',
     travelTimes: TRAVEL_TIMES.map((t) => ({
       origin: t.origin,

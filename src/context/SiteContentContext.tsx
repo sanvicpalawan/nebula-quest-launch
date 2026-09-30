@@ -57,7 +57,14 @@ function mergeContent(parsed: any): SiteContentState {
                 : DEFAULT_SITE_CONTENT.hero.bgImageUrl,
           },
           companyStory: { ...DEFAULT_SITE_CONTENT.companyStory, ...(parsed.companyStory || {}) },
-          location: { ...DEFAULT_SITE_CONTENT.location, ...(parsed.location || {}) },
+          location: {
+            ...DEFAULT_SITE_CONTENT.location,
+            ...(parsed.location || {}),
+            storefrontImage:
+              typeof parsed.location?.storefrontImage === 'string' && parsed.location.storefrontImage.trim().length > 0
+                ? parsed.location.storefrontImage.trim()
+                : DEFAULT_SITE_CONTENT.location.storefrontImage,
+          },
           onlineStoreBanner: { ...DEFAULT_SITE_CONTENT.onlineStoreBanner, ...(parsed.onlineStoreBanner || {}) },
           preFooter: { ...DEFAULT_SITE_CONTENT.preFooter, ...(parsed.preFooter || {}) },
           footer: {

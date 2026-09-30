@@ -11,35 +11,35 @@ export const CATEGORIES: ProductCategory[] = [
     id: 'meats',
     name: 'Meats',
     subTitle: 'Beef · Pork · Specialty cuts',
-    image: '',
+    image: '/images/mock/cat-meats.jpg',
     count: '32 items',
   },
   {
     id: 'seafood',
     name: 'Seafood',
     subTitle: 'Fish fillets · Shellfish',
-    image: '',
+    image: '/images/mock/cat-seafood.jpg',
     count: '24 items',
   },
   {
     id: 'dairy',
     name: 'Dairy & Cheese',
     subTitle: 'Milk · Cream · Yogurt · Cheese',
-    image: '',
+    image: '/images/mock/cat-dairy.jpg',
     count: '18 items',
   },
   {
     id: 'sausages',
     name: 'Sausages & Cold Cuts',
     subTitle: 'Deli meats · Bacon · Sausages',
-    image: '',
+    image: '/images/mock/cat-sausages.jpg',
     count: '20 items',
   },
   {
     id: 'frozen',
     name: 'Frozen & Fries',
     subTitle: 'Fries · Hash browns · Appetizers',
-    image: '',
+    image: '/images/mock/cat-frozen.jpg',
     count: '15 items',
   },
 ];
@@ -50,7 +50,7 @@ export const FEATURED_RANGES: FeaturedRange[] = [
     badge: 'SELECTED CUTS',
     title: 'Imported & specialty meats',
     subtitle: 'Wagyu, Angus, pork cuts & artisanal poultry curated for high-temperature sear and unmatched tenderness.',
-    image: '',
+    image: '/images/mock/range-meats.jpg',
     linkText: 'Explore the range',
   },
   {
@@ -58,7 +58,7 @@ export const FEATURED_RANGES: FeaturedRange[] = [
     badge: 'FROM THE SEA',
     title: 'Frozen seafood',
     subtitle: 'Flash-frozen salmon, seabass, prawns and scallops preserving cold-ocean flavor and texture.',
-    image: '',
+    image: '/images/mock/range-seafood.jpg',
     linkText: 'Explore the range',
   },
   {
@@ -66,7 +66,7 @@ export const FEATURED_RANGES: FeaturedRange[] = [
     badge: 'KITCHEN FAVOURITES',
     title: 'Dairy & cheese',
     subtitle: 'Imported cheddar, gouda, mozzarella, whipping creams and European cultured butters.',
-    image: '',
+    image: '/images/mock/range-dairy.jpg',
     linkText: 'Explore the range',
   },
 ];
@@ -87,19 +87,19 @@ export const EVERYDAY_ESSENTIALS = [
     id: 'ess-1',
     title: 'Sausages & cold cuts',
     subTitle: 'Deli meats · Bacon · Sausages',
-    image: '',
+    image: '/images/mock/cat-sausages.jpg',
   },
   {
     id: 'ess-2',
     title: 'Frozen essentials',
     subTitle: 'Fries · Hash browns · Appetizers',
-    image: '',
+    image: '/images/mock/cat-frozen.jpg',
   },
   {
     id: 'ess-3',
     title: 'Baking & pantry',
     subTitle: 'Baking essentials · Canned goods',
-    image: '',
+    image: '/images/mock/cat-dairy.jpg',
   },
 ];
 
@@ -150,27 +150,27 @@ export const FAQS: FAQItem[] = [
 
 export const RIBBON_IMAGES = [
   {
-    url: '',
+    url: '/images/mock/cat-meats.jpg',
     alt: 'Prime marbled steak cuts',
   },
   {
-    url: '',
+    url: '/images/mock/cat-dairy.jpg',
     alt: 'Artisan cheeses and milk pitcher',
   },
   {
-    url: '',
+    url: '/images/mock/cat-sausages.jpg',
     alt: 'Sizzling deli sausages in pan',
   },
   {
-    url: '',
+    url: '/images/mock/range-seafood.jpg',
     alt: 'Gourmet plated seafood fish dish',
   },
   {
-    url: '',
+    url: '/images/mock/cat-frozen.jpg',
     alt: 'Golden crispy french fries',
   },
   {
-    url: '',
+    url: '/images/mock/range-dairy.jpg',
     alt: 'Baking pastry dough and flour',
   },
 ];
