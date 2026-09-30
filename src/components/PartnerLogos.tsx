@@ -48,18 +48,15 @@ const MarqueeRow: React.FC = () => {
 
 export const PartnerLogos: React.FC = () => {
   return (
-    <section id="partners" className="py-14 md:py-16 bg-[#141211] text-white border-b border-white/10 transition-colors">
-      {/* Section header */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10 flex flex-col items-center justify-center text-center">
-        <span className="text-[11px] font-semibold tracking-[0.28em] text-[#C9A227] uppercase block mb-2">
+    <section id="partners" className="py-10 md:py-12 bg-[#141211] text-white transition-colors">
+      {/* Thin trust-strip header */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 flex flex-col items-center justify-center text-center">
+        <span className="text-[11px] font-semibold tracking-[0.28em] text-[#C9A227] uppercase block mb-1.5">
           In good company
         </span>
-        <h2
-          className="text-xl sm:text-2xl font-medium text-white/90"
-          style={{ fontFamily: 'var(--dynamic-heading-font)' }}
-        >
+        <p className="text-sm text-white/60 font-light">
           Trusted by Palawan&apos;s leading kitchens.
-        </h2>
+        </p>
       </div>
 
       {/* Single grayscale logo marquee on the charcoal band */}

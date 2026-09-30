@@ -30,7 +30,7 @@ export const CompanyStory: React.FC = () => {
               {story?.eyebrow || 'Locally rooted'}
             </span>
             <div
-              className="text-7xl sm:text-8xl lg:text-9xl text-[#A3161F] font-semibold leading-none tracking-tight my-2"
+              className="text-6xl sm:text-7xl lg:text-8xl text-[#A3161F] font-semibold leading-none tracking-tight my-2"
               style={{ fontFamily: 'var(--dynamic-heading-font)' }}
             >
               {story?.year || '2017'}
@@ -44,7 +44,7 @@ export const CompanyStory: React.FC = () => {
               {story?.brandHeading}
             </span>
             <h2
-              className="text-4xl sm:text-5xl lg:text-6xl text-[#141211] tracking-tight leading-[1.05] mb-7 font-semibold whitespace-pre-line"
+              className="text-[clamp(2rem,3.6vw,3.2rem)] text-[#141211] tracking-tight leading-[1.08] mb-7 font-semibold whitespace-pre-line"
               style={{ fontFamily: 'var(--dynamic-heading-font)' }}
             >
               {story?.title}

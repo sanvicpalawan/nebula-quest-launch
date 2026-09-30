@@ -3,6 +3,7 @@ import { ArrowUpRight } from 'lucide-react';
 import { useSiteContent } from '../context/SiteContentContext';
 import { ImageOrPlaceholder } from './ImageOrPlaceholder';
 import { Reveal } from './Reveal';
+import { SectionHeader } from './SectionHeader';
 
 interface EditorialStoryProps {
   onOpenWholesale?: () => void;
@@ -14,23 +15,15 @@ export const EditorialStory: React.FC<EditorialStoryProps> = ({ onOpenWholesale 
   return (
     <section id="story" className="py-20 md:py-28 bg-[#F6F1EA] transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section header */}
-        <Reveal>
-          <div className="text-center max-w-2xl mx-auto mb-16 md:mb-24">
-            <span className="text-xs font-semibold tracking-[0.24em] text-[#6E6257] uppercase block mb-3">
-              From our shelves to your kitchen
-            </span>
-            <h2
-              className="text-4xl sm:text-5xl md:text-6xl text-[#141211] tracking-tight leading-[1.05] font-semibold"
-              style={{ fontFamily: 'var(--dynamic-heading-font)' }}
-            >
+        <SectionHeader
+          eyebrow="From our shelves to your kitchen"
+          title={
+            <>
               Good food. <span className="italic">Great company.</span>
-            </h2>
-            <p className="mt-5 text-[17px] text-[#6E6257] font-light">
-              For the everyday. The special occasion. And every service in between.
-            </p>
-          </div>
-        </Reveal>
+            </>
+          }
+          description="For the everyday. The special occasion. And every service in between."
+        />
 
         {/* Staggered editorial feature rows */}
         <div className="space-y-20 md:space-y-28">
@@ -108,7 +101,7 @@ export const EditorialStory: React.FC<EditorialStoryProps> = ({ onOpenWholesale 
                     {story.stepNumber}
                   </span>
                   <h3
-                    className="text-3xl sm:text-4xl lg:text-5xl text-[#141211] leading-[1.08] mb-5 whitespace-pre-line font-semibold tracking-tight"
+                    className="text-[clamp(1.7rem,2.8vw,2.6rem)] text-[#141211] leading-[1.12] mb-5 whitespace-pre-line font-semibold tracking-tight"
                     style={{ fontFamily: 'var(--dynamic-heading-font)' }}
                   >
                     {story.headline}

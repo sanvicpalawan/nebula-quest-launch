@@ -9,7 +9,7 @@ export const FoodRibbon: React.FC = () => {
     content.ribbonImages && content.ribbonImages.length > 0 ? content.ribbonImages : RIBBON_IMAGES;
 
   return (
-    <section aria-label="Culinary gallery preview" className="w-full overflow-hidden bg-[#141211] border-t border-white/10">
+    <section aria-label="Culinary gallery preview" className="w-full overflow-hidden bg-[#141211]">
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-0.5">
         {images.map((img, idx) => (
           <a

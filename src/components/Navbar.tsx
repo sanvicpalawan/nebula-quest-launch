@@ -8,24 +8,6 @@ interface NavbarProps {
   onOpenWholesale?: () => void;
 }
 
-/** Brand lockup: logo mark + bold wordmark + small-caps descriptor */
-const BrandLockup: React.FC<{ logoUrl: string }> = ({ logoUrl }) => (
-  <span className="flex items-center gap-3">
-    <LogoDisplay size="nav" src={logoUrl} className="shrink-0" />
-    <span className="flex flex-col items-start leading-none">
-      <span
-        className="text-[22px] md:text-[26px] font-bold text-white tracking-tight"
-        style={{ fontFamily: 'var(--dynamic-heading-font)' }}
-      >
-        jayCee
-      </span>
-      <span className="mt-1 text-[8.5px] md:text-[9.5px] font-semibold tracking-[0.32em] uppercase text-[#C9A227] whitespace-nowrap">
-        Trading &amp; Services
-      </span>
-    </span>
-  </span>
-);
-
 export const Navbar: React.FC<NavbarProps> = ({ onOpenWholesale }) => {
   const { content, isAdminLoggedIn, openAdminPanel } = useSiteContent();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -95,7 +77,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenWholesale }) => {
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-[72px] md:h-[84px]">
+          <div className="flex items-center justify-between h-16 md:h-20">
             {/* Desktop left nav links */}
             <nav className="hidden lg:flex items-center space-x-7 flex-1" aria-label="Main navigation left">
               {navLinksLeft.map((item) => (
@@ -118,7 +100,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenWholesale }) => {
 
             {/* Brand lockup with 3-click Admin handler */}
             <LogoClickHandler id="brand-logo-home" className="flex items-center justify-center focus:outline-none">
-              <BrandLockup logoUrl={logoUrl} />
+              <LogoDisplay size="nav" src={logoUrl} className="shrink-0" />
             </LogoClickHandler>
 
             {/* Desktop right nav links & actions */}

@@ -2,27 +2,19 @@ import React from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { useSiteContent } from '../context/SiteContentContext';
 import { ImageOrPlaceholder } from './ImageOrPlaceholder';
+import { SectionHeader } from './SectionHeader';
 import { Reveal } from './Reveal';
 
 export const FeaturedRanges: React.FC = () => {
   const { content } = useSiteContent();
 
   return (
-    <section id="featured-ranges" className="w-full bg-[#141211] py-20 md:py-28 text-white transition-colors">
+    <section id="featured-ranges" className="w-full bg-white py-20 md:py-28 text-[#141211] transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Reveal>
-          <div className="mb-10 md:mb-14">
-            <span className="text-xs font-semibold tracking-[0.24em] text-[#C9A227] uppercase block mb-3">
-              Featured ranges
-            </span>
-            <h2
-              className="text-4xl sm:text-5xl tracking-tight font-semibold"
-              style={{ fontFamily: 'var(--dynamic-heading-font)' }}
-            >
-              Curated for good kitchens.
-            </h2>
-          </div>
-        </Reveal>
+        <SectionHeader
+          eyebrow="Featured ranges"
+          title="Curated for good kitchens."
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6">
           {(content.featuredRanges || []).map((item, index) => (
@@ -32,7 +24,7 @@ export const FeaturedRanges: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 id={`featured-card-${index}`}
-                className="group relative h-[380px] sm:h-[420px] lg:h-[460px] rounded-2xl overflow-hidden block ring-1 ring-white/10 hover:ring-[#C9A227]/50 hover:shadow-2xl hover:shadow-black/50 transition-all"
+                className="group relative h-[380px] sm:h-[420px] lg:h-[460px] rounded-2xl overflow-hidden block ring-1 ring-black/10 hover:ring-[#C9A227]/60 hover:shadow-2xl hover:shadow-black/30 transition-all"
               >
                 {/* Background image with hover zoom */}
                 <ImageOrPlaceholder

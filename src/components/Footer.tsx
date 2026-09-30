@@ -28,7 +28,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenWholesale }) => {
   return (
     <footer
       id="contact"
-      className="relative bg-[#141211] text-white overflow-hidden pt-14 pb-24 md:pt-20 md:pb-14 transition-colors"
+      className="relative bg-[#141211] text-white overflow-hidden pt-14 pb-24 md:pt-16 md:pb-14 transition-colors border-t border-white/10"
     >
       {/* Faint oversized logo watermark */}
       <img

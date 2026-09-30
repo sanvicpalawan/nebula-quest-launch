@@ -27,7 +27,7 @@ export const FAQSection: React.FC = () => {
               A little local knowledge
             </span>
             <h2
-              className="text-4xl sm:text-5xl text-[#141211] tracking-tight leading-[1.05] mb-5 font-semibold"
+              className="text-[clamp(1.9rem,3.4vw,3rem)] text-[#141211] tracking-tight leading-[1.08] mb-5 font-semibold"
               style={{ fontFamily: 'var(--dynamic-heading-font)' }}
             >
               Good questions. <br />

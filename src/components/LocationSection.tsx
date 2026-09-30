@@ -9,6 +9,7 @@ import {
 import { useSiteContent } from '../context/SiteContentContext';
 import { ImageOrPlaceholder } from './ImageOrPlaceholder';
 import { Reveal } from './Reveal';
+import { SectionHeader } from './SectionHeader';
 
 interface LocationSectionProps {
   onOpenMapModal?: () => void;
@@ -23,22 +24,16 @@ export const LocationSection: React.FC<LocationSectionProps> = ({ onOpenMapModal
     <section id="location" className="py-20 md:py-28 bg-white transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section heading */}
-        <Reveal>
-          <div className="max-w-2xl mb-12 md:mb-16">
-            <span className="text-xs font-semibold tracking-[0.24em] text-[#6E6257] uppercase block mb-3">
-              {location?.eyebrow}
-            </span>
-            <h2
-              className="text-4xl sm:text-5xl lg:text-6xl text-[#141211] tracking-tight leading-[1.05] mb-5 font-semibold whitespace-pre-line"
-              style={{ fontFamily: 'var(--dynamic-heading-font)' }}
-            >
-              {location?.title}
-            </h2>
-            <p className="text-[17px] text-[#6E6257] font-light leading-relaxed">
-              {location?.subtitle}
-            </p>
-          </div>
-        </Reveal>
+        <SectionHeader
+          eyebrow={location?.eyebrow}
+          title={location?.title?.split('\n').map((line, i, arr) => (
+            <React.Fragment key={i}>
+              {line}
+              {i < arr.length - 1 && <br />}
+            </React.Fragment>
+          ))}
+          description={location?.subtitle}
+        />
 
         {/* Big dark map card */}
         <Reveal>

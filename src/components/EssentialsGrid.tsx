@@ -3,6 +3,7 @@ import { ArrowUpRight } from 'lucide-react';
 import { useSiteContent } from '../context/SiteContentContext';
 import { ImageOrPlaceholder } from './ImageOrPlaceholder';
 import { Reveal } from './Reveal';
+import { SectionHeader } from './SectionHeader';
 
 export const EssentialsGrid: React.FC = () => {
   const { content } = useSiteContent();
@@ -12,33 +13,12 @@ export const EssentialsGrid: React.FC = () => {
   return (
     <section id="essentials" className="py-20 md:py-28 bg-white transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <Reveal>
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 md:mb-14">
-            <div>
-              <span className="text-xs font-semibold tracking-[0.24em] text-[#6E6257] uppercase block mb-3">
-                Keep your kitchen ready
-              </span>
-              <h2
-                className="text-4xl sm:text-5xl text-[#141211] tracking-tight font-semibold"
-                style={{ fontFamily: 'var(--dynamic-heading-font)' }}
-              >
-                The everyday essentials.
-              </h2>
-            </div>
-
-            <a
-              href={ORDER_ONLINE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              id="essentials-explore-all-link"
-              className="mt-5 sm:mt-0 inline-flex items-center text-sm font-semibold text-[#6E6257] hover:text-[#A3161F] transition-colors shrink-0"
-            >
-              <span>Explore all products</span>
-              <ArrowUpRight className="w-4 h-4 ml-1" />
-            </a>
-          </div>
-        </Reveal>
+        <SectionHeader
+          eyebrow="Keep your kitchen ready"
+          title="The everyday essentials."
+          actionLabel="Explore all products"
+          actionHref={ORDER_ONLINE_URL}
+        />
 
         {/* 3 column cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">

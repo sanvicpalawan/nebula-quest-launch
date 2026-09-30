@@ -60,9 +60,9 @@ function MainSite() {
 
       <main className="flex-1">
         <Hero onWholesaleEnquiry={handleOpenWholesale} />
+        <PartnerLogos />
         <CategorySelection onSelectCategory={(cat) => setSelectedCategory(cat)} />
         <FeaturedRanges />
-        <PartnerLogos />
         <EditorialStory onOpenWholesale={handleOpenWholesale} />
         <CustomSectionsRenderer />
         <EssentialsGrid />
@@ -71,8 +71,8 @@ function MainSite() {
         <LocationSection onOpenMapModal={handleOpenMap} />
         <FAQSection />
         <OnlineStoreBanner />
-        <FoodRibbon />
         <PreFooterCTA />
+        <FoodRibbon />
       </main>
 
       <Footer onOpenWholesale={handleOpenWholesale} />
