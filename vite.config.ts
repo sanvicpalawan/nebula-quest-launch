@@ -10,6 +10,10 @@ export default defineConfig({
   vite: {
     server: { allowedHosts: [".e2b.app"] },
   },
+  // Keep Lovable's default Cloudflare target, but build Vercel's native output when running in its CI.
+  nitro: {
+    preset: process.env.VERCEL === "1" ? "vercel" : "cloudflare-module",
+  },
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
