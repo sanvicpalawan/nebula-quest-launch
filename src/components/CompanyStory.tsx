@@ -64,18 +64,18 @@ export const CompanyStory: React.FC = () => {
         </div>
 
         {/* 4 Feature Pillars */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-6 pt-16 md:pt-20 mt-16 border-t border-[#E7E5E4] dark:border-[#262322]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 pt-12 md:pt-14 mt-16 border-t border-[#E7E5E4] dark:border-[#262322]">
           {pillars.map((pillar) => {
             const Icon = pillar.icon;
             return (
-              <div key={pillar.title} className="flex flex-col space-y-2.5">
-                <div className="w-8 h-8 rounded-full bg-[#F5F5F4] dark:bg-[#23201F] flex items-center justify-center text-[#991B1B] dark:text-[#EF4444]">
-                  <Icon className="w-4 h-4 stroke-[1.8]" />
+              <div key={pillar.title} className="flex flex-col items-start">
+                <div className="w-14 h-14 rounded-2xl bg-[#F5F5F4] dark:bg-[#23201F] flex items-center justify-center text-[#991B1B] dark:text-[#EF4444]">
+                  <Icon aria-hidden="true" className="w-7 h-7 stroke-[1.7]" />
                 </div>
-                <h3 className="text-sm font-semibold text-[#1C1917] dark:text-white pt-1">
+                <h3 className="text-base font-semibold text-[#1C1917] dark:text-white mt-5">
                   {pillar.title}
                 </h3>
-                <p className="text-xs text-[#78716C] dark:text-[#A8A29E] leading-relaxed font-light">
+                <p className="text-sm text-[#78716C] dark:text-[#A8A29E] leading-relaxed mt-1.5">
                   {pillar.description}
                 </p>
               </div>

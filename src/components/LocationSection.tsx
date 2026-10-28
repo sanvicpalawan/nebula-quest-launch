@@ -122,8 +122,8 @@ export const LocationSection: React.FC<LocationSectionProps> = ({ onOpenMapModal
 
         {/* Map Callout Banner Card */}
         <div className="rounded-xl bg-[#F5F5F4] dark:bg-[#181615] p-6 sm:p-8 lg:p-10 border border-[#E7E5E4] dark:border-[#262322] transition-colors">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div className="lg:col-span-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+            <div className="lg:col-span-5">
               <span className="text-[11px] font-semibold tracking-[0.2em] text-[#78716C] dark:text-[#A8A29E] uppercase block mb-1.5">
                 PUERTO PRINCESA · PALAWAN
               </span>
@@ -139,9 +139,9 @@ export const LocationSection: React.FC<LocationSectionProps> = ({ onOpenMapModal
                   type="button"
                   onClick={onOpenMapModal}
                   id="view-interactive-map-btn"
-                  className="inline-flex items-center space-x-1.5 bg-[#8B1D24] hover:bg-[#74151B] text-white px-4 py-2.5 rounded-md text-xs sm:text-sm font-medium transition-colors cursor-pointer"
+                  className="inline-flex items-center space-x-1.5 bg-[#8B1D24] hover:bg-[#74151B] text-white px-4 py-2.5 rounded-md text-xs sm:text-sm font-medium cursor-pointer"
                 >
-                  <span>View interactive map</span>
+                  <span>View larger map</span>
                 </button>
 
                 <a
@@ -149,12 +149,23 @@ export const LocationSection: React.FC<LocationSectionProps> = ({ onOpenMapModal
                   target="_blank"
                   rel="noopener noreferrer"
                   id="map-card-directions-link"
-                  className="inline-flex items-center space-x-1 text-xs sm:text-sm font-medium text-[#1C1917] dark:text-[#D6D3D1] hover:text-[#991B1B] dark:hover:text-[#F87171] px-3 py-2 transition-colors"
+                  className="inline-flex items-center space-x-1 text-xs sm:text-sm font-medium text-[#1C1917] dark:text-[#D6D3D1] hover:text-[#991B1B] dark:hover:text-[#F87171] px-3 py-2"
                 >
                   <span>Get Directions</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />
                 </a>
               </div>
+            </div>
+
+            <div className="lg:col-span-7 h-64 sm:h-80 overflow-hidden rounded-lg border border-[#E7E5E4] dark:border-[#3A3532] bg-[#E7E5E4]">
+              <iframe
+                title="Map showing JayCee Trading & Services on B.M. Road, Puerto Princesa"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3932.022030908181!2d118.74953547502824!3d9.764200990329519!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33b563000ff94ee5%3A0x361d56d8cceee597!2sJayCee%20Trading%20%26%20Services!5e0!3m2!1sen!2sph!4v1793161997156!5m2!1sen!2sph"
+                className="w-full h-full border-0"
+                loading="lazy"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              />
             </div>
           </div>
 

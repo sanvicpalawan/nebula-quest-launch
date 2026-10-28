@@ -41,10 +41,11 @@ export const InteractiveMapModal: React.FC<InteractiveMapModalProps> = ({ isOpen
         <div className="w-full h-[400px] bg-stone-100 dark:bg-stone-900 relative">
           <iframe
             title="JayCee Trading and Services Location Map"
-            src="https://maps.google.com/maps?q=Puerto%20Princesa%20B.M.%20Road%20JayCee%20Trading&t=&z=15&ie=UTF8&iwloc=&output=embed"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3932.022030908181!2d118.74953547502824!3d9.764200990329519!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33b563000ff94ee5%3A0x361d56d8cceee597!2sJayCee%20Trading%20%26%20Services!5e0!3m2!1sen!2sph!4v1793161997156!5m2!1sen!2sph"
             className="w-full h-full border-0"
             loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
           />
         </div>
 

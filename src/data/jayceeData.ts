@@ -4,7 +4,7 @@ export const ORDER_ONLINE_URL = 'https://jaycee.palawancollective.com/';
 export const PHONE_NUMBER = '0977 116 7555';
 export const PHONE_TEL = 'tel:09771167555';
 export const STORE_ADDRESS = 'Osmeña Ave., B.M. Road, Puerto Princesa City, Palawan';
-export const GOOGLE_MAPS_DIRECTIONS_URL = 'https://www.google.com/maps/dir/?api=1&destination=JayCee+Trading+and+Services+B.M.+Road+Puerto+Princesa+Palawan';
+export const GOOGLE_MAPS_DIRECTIONS_URL = 'https://maps.app.goo.gl/MPQJngrT6xJJayvB9';
 
 export const CATEGORIES: ProductCategory[] = [
   {
